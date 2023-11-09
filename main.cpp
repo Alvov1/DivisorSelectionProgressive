@@ -47,6 +47,9 @@ int main(int argc, const char* const* const argv) {
             prime = it.next_prime();
 
         savePrimes(primeTable, "primes.txt");
+    } else if(argv[1] == "load-primes"sv) {
+        const auto primes = loadPrimes("primes.txt");
+        std::cout << "Loaded prime table"
     }
 
     return 0;
