@@ -38,7 +38,9 @@ gpu void kernel() {
 int main(int argc, const char* const* const argv) {
     using namespace std::string_view_literals;
     if(argc < 3)
-        return std::printf("Usage:\n\t%s generate-primes <primes location>\n\t%s load-primes <primes location>", argv[0], argv[0]);
+        return std::printf("Usage:\n\t%s generate-primes <primes location>"
+                           "\n\t%s load-primes <primes location>"
+                           "\n\t%s factorize <number> <primes location>", argv[0], argv[0], argv[0]);
 
     if(argv[1] == "generate-primes"sv) {
         std::vector<uint64_t> primes(134'217'727);
@@ -49,9 +51,11 @@ int main(int argc, const char* const* const argv) {
     } else if(argv[1] == "load-primes"sv) {
         const auto primes = loadPrimes(argv[2]);
         std::cout << "Loaded prime table of " << primes.size() << " elements." << std::endl;
-    } else if(argv[1] == "factorize"sv) {
+    }
+
+    if(argc > 3 && argv[1] == "factorize"sv) {
         Aesi number = std::string_view(argv[2]);
-        std::cout << "Factorizing number " << std::hex << number << '.' << std::endl;
+        std::cout << "Factorizing number " << std::hex << number << ". Loading primes from '" << argv[3] << "'." << std::endl;
     }
 
     return 0;
