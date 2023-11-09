@@ -39,19 +39,17 @@ void savePrimes(const std::vector<Integral>& primes, const std::filesystem::path
 
 int main(int argc, const char* const* const argv) {
     using namespace std::string_view_literals;
+    if(argc < 3)
+        return std::printf("Usage:\n\t%s generate-primes primetable.txt\n\t%s load-primes primetable.txt", argv[0], argv[0]);
 
-    if(argc < 2 || argv[1] == "generate-primes"sv) {
-        std::vector<uint64_t> primeTable(134'217'727);
+    if(argv[1] == "generate-primes"sv) {
+        std::vector<uint64_t> primes(134'217'727);
         primesieve::iterator it;
-        for(unsigned i = 0; i < primeTable.size(); ++i) {
-            primeTable[i] = it.next_prime();
-            if((i + 1) % 1'000'000 == 0)
-                std::cout << "Completed " << i + 1 << "." << std::endl;
-        }
-
-        savePrimes(primeTable, "primes.txt");
+        for(auto& prime: primes)
+            prime = it.next_prime(); savePrimes(primes, argv[2]);
+        std::cout << "Generated prime table of " << primes.size() << " elements." << std::endl;
     } else if(argv[1] == "load-primes"sv) {
-        const auto primes = loadPrimes("primes.txt");
+        const auto primes = loadPrimes(argv[2]);
         std::cout << "Loaded prime table of " << primes.size() << " elements." << std::endl;
     }
 
