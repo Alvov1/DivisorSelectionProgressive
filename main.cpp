@@ -41,7 +41,7 @@ int main(int argc, const char* const* const argv) {
     using namespace std::string_view_literals;
 
     if(argc < 2 || argv[1] == "generate-primes"sv) {
-        std::vector<uint64_t> primeTable(200); //78643200
+        std::vector<uint64_t> primeTable(80'000'000); //78'643'200
         primesieve::iterator it;
         for (auto &prime: primeTable)
             prime = it.next_prime();
