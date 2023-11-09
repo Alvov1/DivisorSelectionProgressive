@@ -9,7 +9,7 @@ gpu void kernel() {
 }
 
 template <typename Integral = uint64_t> requires (std::is_integral_v<Integral>)
-static std::vector<Integral> loadPrimes(const std::filesystem::path& fromLocation) {
+std::vector<Integral> loadPrimes(const std::filesystem::path& fromLocation) {
     if(!std::filesystem::exists(fromLocation) || !std::filesystem::is_regular_file(fromLocation))
         throw std::invalid_argument("Failed to load prime table: bad input file.");
 
@@ -24,7 +24,7 @@ static std::vector<Integral> loadPrimes(const std::filesystem::path& fromLocatio
 }
 
 template <typename Integral = uint64_t> requires (std::is_integral_v<Integral>)
-static void savePrimes(const std::vector<Integral>& primes, const std::filesystem::path& toLocation) {
+void savePrimes(const std::vector<Integral>& primes, const std::filesystem::path& toLocation) {
     std::ofstream output(toLocation, std::ios::binary);
     if(output.fail())
         throw std::runtime_error("Failed to save prime table: bad output file.");
@@ -49,7 +49,7 @@ int main(int argc, const char* const* const argv) {
         savePrimes(primeTable, "primes.txt");
     } else if(argv[1] == "load-primes"sv) {
         const auto primes = loadPrimes("primes.txt");
-        std::cout << "Loaded prime table"
+        std::cout << "Loaded prime table of " << primes.size() << " elements." << std::endl;
     }
 
     return 0;
