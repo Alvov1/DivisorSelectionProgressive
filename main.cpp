@@ -41,12 +41,12 @@ int main(int argc, const char* const* const argv) {
     using namespace std::string_view_literals;
 
     if(argc < 2 || argv[1] == "generate-primes"sv) {
-        std::vector<uint64_t> primeTable(2'000'000); //78'643'200
+        std::vector<uint64_t> primeTable(80'000'000); //78'643'200
         primesieve::iterator it;
         for(unsigned i = 0; i < primeTable.size(); ++i) {
             primeTable[i] = it.next_prime();
             if((i + 1) % 1'000'000 == 0)
-                std::cout << "Completed " << i << "." << std::endl;
+                std::cout << "Completed " << i + 1 << "." << std::endl;
         }
 
         savePrimes(primeTable, "primes.txt");
