@@ -55,7 +55,7 @@ int main(int argc, const char* const* const argv) {
 
     if(argc > 3 && argv[1] == "factorize"sv) {
         Aesi number = std::string_view(argv[2]);
-        std::cout << "Factorizing number " << std::hex << number << ". Loading primes from '" << argv[3] << "'." << std::endl;
+        std::cout << "Factorizing number " << std::hex << std::showbase << number << ". Loading primes from '" << argv[3] << "'." << std::endl;
     }
 
     return 0;
