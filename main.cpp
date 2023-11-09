@@ -50,7 +50,7 @@ int main(int argc, const char* const* const argv) {
         const auto primes = loadPrimes(argv[2]);
         std::cout << "Loaded prime table of " << primes.size() << " elements." << std::endl;
     } else if(argv[1] == "factorize"sv) {
-        Aesi number(argv[2]);
+        Aesi number = std::string_view(argv[2]);
         std::cout << "Factorizing number " << std::hex << number << '.' << std::endl;
     }
 
