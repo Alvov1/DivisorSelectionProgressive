@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(DivisorSelectionProgressive CXX)
+project(DivisorSelectionProgressive CUDA)
 
 set(CMAKE_CXX_STANDARD 20)
 
