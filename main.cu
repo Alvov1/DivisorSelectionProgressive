@@ -57,7 +57,7 @@ std::vector<uint64_t> loadPrimes(const std::filesystem::path& fromLocation) {
 //    }
 //}
 
-__global__ void kernel(Aesi* const numbers) {
+__global__ void kernel(Aesi<512>* const numbers) {
     const auto tid = blockDim.x * blockIdx.x + threadIdx.x;
     if(tid > 0) return;
 
@@ -75,13 +75,13 @@ int main(int argc, const char* const* const argv) {
 //    const thrust::device_vector<uint64_t> primeTable = loadPrimes(argv[3]);
 //    std::cout << "Loaded prime table of " << primeTable.size() << " elements." << std::endl;
 
-    thrust::device_vector<Aesi> numbers = { number, {} };
+    thrust::device_vector<Aesi<512>> numbers = { number, {} };
 
     kernel<<<32, 32>>>(number); const auto code = cudaDeviceSynchronize();
     if (code != cudaSuccess)
         return std::printf("Kernel launch failed: %s.\n", cudaGetErrorString(code));
 
-    std::vector<Aesi> values = numbers;
+    std::vector<Aesi<512>> values = numbers;
     std::cout << "Kernel completed. Got product: " << values[1] << std::endl;
 
     return 0;
