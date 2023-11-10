@@ -2,6 +2,7 @@
 #include <fstream>
 #include <filesystem>
 #include <thrust/device_vector.h>
+#include <thrust/device_ptr.h>
 #include "AesiMultiprecision.h"
 
 std::vector<uint64_t> loadPrimes(const std::filesystem::path& fromLocation) {
@@ -56,12 +57,12 @@ std::vector<uint64_t> loadPrimes(const std::filesystem::path& fromLocation) {
 //    }
 //}
 
-__global__ void kernel(const Aesi<512>& value) {
+__global__ void kernel(Aesi* const numbers) {
     const auto tid = blockDim.x * blockIdx.x + threadIdx.x;
-    if(tid > 9) return;
+    if(tid > 0) return;
 
-    char buffer[512] {}; value.getString<10>(buffer, 512);
-    printf("Kernel thread %d: factorizing value %s\n", tid, buffer);
+    Aesi left = *numbers;
+    numbers[1] = left * 10 + left ^ "12345678901234567890123456789012345678901234567890";
 }
 
 int main(int argc, const char* const* const argv) {
@@ -71,13 +72,17 @@ int main(int argc, const char* const* const argv) {
     Aesi<512> number = std::string_view(argv[2]);
     std::cout << "Factorizing number " << std::hex << std::showbase << number << '.' << std::endl;
 
-    const thrust::device_vector<uint64_t> primeTable = loadPrimes(argv[3]);
-    std::cout << "Loaded prime table of " << primeTable.size() << " elements." << std::endl;
+//    const thrust::device_vector<uint64_t> primeTable = loadPrimes(argv[3]);
+//    std::cout << "Loaded prime table of " << primeTable.size() << " elements." << std::endl;
+
+    thrust::device_vector<Aesi> numbers = { number, {} };
 
     kernel<<<32, 32>>>(number); const auto code = cudaDeviceSynchronize();
     if (code != cudaSuccess)
         return std::printf("Kernel launch failed: %s.\n", cudaGetErrorString(code));
-    else return std::printf("Kernel launch completed.\n");
+
+    std::vector<Aesi> values = numbers;
+    std::cout << "Kernel completed. Got product: " << values[1] << std::endl;
 
     return 0;
 }
