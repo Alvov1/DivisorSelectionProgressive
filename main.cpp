@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
-#include <primesieve.hpp>
 #include <thrust/device_vector.h>
 #include "AesiMultiprecision.h"
 
@@ -17,22 +16,6 @@ std::vector<uint64_t> loadPrimes(const std::filesystem::path& fromLocation) {
         input.read(reinterpret_cast<char*>(&prime), sizeof(uint64_t));
 
     return primes;
-}
-
-void savePrimes(const std::vector<uint64_t>& primes, const std::filesystem::path& toLocation) {
-    std::ofstream output(toLocation, std::ios::binary);
-    if(output.fail())
-        throw std::runtime_error("Failed to save prime table: bad output file");
-
-    const uint64_t primesCount = primes.size();
-    output.write(reinterpret_cast<const char*>(&primesCount), sizeof(uint64_t));
-
-    for(const auto& prime: primes)
-        output.write(reinterpret_cast<const char*>(&prime), sizeof(uint64_t));
-}
-
-thrust::device_vector<uint64_t> deviceLoadPrimes(const std::filesystem::path& fromLocation) {
-    return loadPrimes(fromLocation);
 }
 
 //gpu void kernel(const Aesi& n, const thrust::device_vector<uint64_t>& primes) {
@@ -82,39 +65,18 @@ gpu void kernel(const Aesi& value) {
 }
 
 int main(int argc, const char* const* const argv) {
-    using namespace std::string_view_literals;
-    if(argc < 3)
-        return std::printf("Usage:\n\t%s load-primes <primes location>"
-                           "\n\t%s generate-primes <primes count> <primes location>"
-                           "\n\t%s factorize <number> <primes location>", argv[0], argv[0], argv[0]);
+    if(argc < 4)
+        return std::printf("Usage: %s factorize <number> <primes location>", argv[0]);
 
-    try {
-        if (argc == 3 && argv[1] == "load-primes"sv) {
-            const auto primes = loadPrimes(argv[2]);
-            std::cout << "Loaded prime table of " << primes.size() << " elements." << std::endl;
-        } else if (argc > 3) {
-            if (argv[1] == "generate-primes"sv) {
-                std::vector<uint64_t> primes(std::stoi(argv[2]));
-                primesieve::iterator it;
-                for (auto &prime: primes)
-                    prime = it.next_prime();
-                savePrimes(primes, argv[3]);
-                std::cout << "Generated prime table of " << primes.size() << " elements to '" << argv[3] << "'." << std::endl;
-            } else if (argc > 3 && argv[1] == "factorize"sv) {
-                Aesi number = std::string_view(argv[2]);
-                std::cout << "Factorizing number " << std::hex << std::showbase << number << '.' << std::endl;
+    Aesi number = std::string_view(argv[2]);
+    std::cout << "Factorizing number " << std::hex << std::showbase << number << '.' << std::endl;
 
-//                const auto primeTable = deviceLoadPrimes(argv[3]);
-//                std::cout << "Primes are loaded to device" << std::endl;
+    const thrust::device_vector<uint64_t> primeTable = deviceLoadPrimes(argv[3]);
+    std::cout << "Loaded prime table of " << primeTable.size() << " elements." << std::endl;
 
-                kernel<<<32, 32>>>(number);
-                if (cudaSuccess != cudaDeviceSynchronize())
-                    throw std::runtime_error("Kernel launch failed");
-            }
-        }
-    } catch (const std::exception& e) {
-        std::cerr << "Failed: " << e.what() << '.' << std::endl;
-    }
+    kernel<<<32, 32>>>(number); const auto code = cudaDeviceSynchronize();
+    if (code != cudaSuccess)
+        return std::printf("Kernel launch failed: %s.", cudaGetErrorString(code));
 
     return 0;
 }
