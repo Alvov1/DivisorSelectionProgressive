@@ -76,7 +76,8 @@ int main(int argc, const char* const* const argv) {
 
     kernel<<<32, 32>>>(number); const auto code = cudaDeviceSynchronize();
     if (code != cudaSuccess)
-        return std::printf("Kernel launch failed: %s.", cudaGetErrorString(code));
+        return std::printf("Kernel launch failed: %s.\n", cudaGetErrorString(code));
+    else return std::printf("Kernel launch completed.\n");
 
     return 0;
 }
