@@ -71,7 +71,7 @@ int main(int argc, const char* const* const argv) {
     Aesi number = std::string_view(argv[2]);
     std::cout << "Factorizing number " << std::hex << std::showbase << number << '.' << std::endl;
 
-    const thrust::device_vector<uint64_t> primeTable = deviceLoadPrimes(argv[3]);
+    const thrust::device_vector<uint64_t> primeTable = loadPrimes(argv[3]);
     std::cout << "Loaded prime table of " << primeTable.size() << " elements." << std::endl;
 
     kernel<<<32, 32>>>(number); const auto code = cudaDeviceSynchronize();
