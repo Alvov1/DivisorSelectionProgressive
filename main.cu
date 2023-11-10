@@ -56,7 +56,7 @@ std::vector<uint64_t> loadPrimes(const std::filesystem::path& fromLocation) {
 //    }
 //}
 
-__global__ void kernel(const Aesi& value) {
+__global__ void kernel(const Aesi<512>& value) {
     const auto tid = blockDim.x * blockIdx.x + threadIdx.x;
     if(tid > 0) return;
 
@@ -68,7 +68,7 @@ int main(int argc, const char* const* const argv) {
     if(argc < 4)
         return std::printf("Usage: %s factorize <number> <primes location>", argv[0]);
 
-    Aesi number = std::string_view(argv[2]);
+    Aesi<512> number = std::string_view(argv[2]);
     std::cout << "Factorizing number " << std::hex << std::showbase << number << '.' << std::endl;
 
     const thrust::device_vector<uint64_t> primeTable = loadPrimes(argv[3]);
