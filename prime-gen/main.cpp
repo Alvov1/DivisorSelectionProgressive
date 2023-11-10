@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <chrono>
 #include <primesieve.hpp>
 
 int main(int argc, const char* const* const argv) {
