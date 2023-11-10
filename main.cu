@@ -2,6 +2,7 @@
 #include <fstream>
 #include <filesystem>
 #include <thrust/device_vector.h>
+#include <thrust/host_vector.h>
 #include <thrust/device_ptr.h>
 #include "AesiMultiprecision.h"
 
@@ -81,8 +82,7 @@ int main(int argc, const char* const* const argv) {
     if (code != cudaSuccess)
         return std::printf("Kernel launch failed: %s.\n", cudaGetErrorString(code));
 
-    std::vector<Aesi<512>> values = numbers;
-    std::cout << "Kernel completed. Got product: " << values[1] << std::endl;
+    std::cout << "Kernel completed. Got product: " << numbers[1] << std::endl;
 
     return 0;
 }
