@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
 project(DivisorSelectionProgressive CUDA)
 
-set(CMAKE_CXX_STANDARD 20)
+set_property(TARGET DivisorSelectionProgressive PROPERTY CUDA_STANDARD 20)
 
 include(FetchContent)
 FetchContent_Declare(AesiMultiprecision
