@@ -8,6 +8,8 @@ int main(int argc, const char* const* const argv) {
         return std::printf("Usage: %s <primes count> <primes location>\n", argv[0]);
 
     try {
+        std::cout << "uint64_t size: " << sizeof(uint64_t) << std::endl << "Unsigned long long size: " << sizeof(unsigned long long) << std::endl;
+
         std::ofstream output(argv[2], std::ios::binary);
         if (output.fail())
             return std::printf("Failed to create the output file %s\n", argv[2]);
@@ -23,7 +25,7 @@ int main(int argc, const char* const* const argv) {
             output.write(reinterpret_cast<const char *>(&prime), sizeof(uint64_t));
         }
 
-        return std::printf("Generated prime table '%s' of %llu elements. %lu ms.\n",
+        return std::printf("Generated prime table '%s' of %lu elements. %llu ms.\n",
                            argv[2],
                            primeCount,
                            std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - start).count());
