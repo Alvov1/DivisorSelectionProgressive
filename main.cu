@@ -56,7 +56,7 @@ std::vector<uint64_t> loadPrimes(const std::filesystem::path& fromLocation) {
 //    }
 //}
 
-_global_ void kernel(const Aesi& value) {
+__global__ void kernel(const Aesi& value) {
     const auto tid = blockDim.x * blockIdx.x + threadIdx.x;
     if(tid > 0) return;
 
