@@ -78,7 +78,7 @@ int main(int argc, const char* const* const argv) {
 
     thrust::device_vector<Aesi<512>> numbers = { number, {} };
 
-    kernel<<<32, 32>>>(thrust::raw_pointer_cast(number.data())); const auto code = cudaDeviceSynchronize();
+    kernel<<<32, 32>>>(thrust::raw_pointer_cast(numbers.data())); const auto code = cudaDeviceSynchronize();
     if (code != cudaSuccess)
         return std::printf("Kernel launch failed: %s.\n", cudaGetErrorString(code));
 
