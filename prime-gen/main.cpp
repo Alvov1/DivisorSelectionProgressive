@@ -23,7 +23,7 @@ int main(int argc, const char* const* const argv) {
             output.write(reinterpret_cast<const char *>(&prime), sizeof(uint64_t));
         }
 
-        return std::printf("Generated prime table '%s' of %llu elements. %llu ms",
+        return std::printf("Generated prime table '%s' of %llu elements. %lu ms.\n",
                            argv[2],
                            primeCount,
                            std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - start).count());
