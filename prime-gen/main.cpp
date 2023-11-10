@@ -10,7 +10,7 @@ int main(int argc, const char* const* const argv) {
     if(output.fail())
         return std::printf("Failed to create the output file %s\n", argv[2]);
 
-    const uint64_t primeCount = std::stoi(argv[2]);
+    const uint64_t primeCount = std::stoi(argv[1]);
     output.write(reinterpret_cast<const char*>(&primeCount), sizeof(uint64_t));
 
     primesieve::iterator it;
