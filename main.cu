@@ -57,8 +57,8 @@ std::vector<uint64_t> loadPrimes(const std::filesystem::path& fromLocation) {
 //}
 
 gpu void kernel(const Aesi& value) {
-    const auto threadIdx = blockDim.x * blockIdx.x + threadIdx.x;
-    if(threadIdx > 0) return;
+    const auto tid = blockDim.x * blockIdx.x + threadIdx.x;
+    if(tid > 0) return;
 
     char buffer[512] {}; value.getString<10>(buffer, 512);
     printf("Kernel thread: factorizing value %s\n", buffer);
