@@ -5,7 +5,6 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CUDA_STANDARD 20)
 set(CMAKE_CUDA_STANDARD_REQUIRED ON)
-set(CUDA_NVCC_FLAGS "-arch=sm_75" CACHE STRING "nvcc flags" FORCE)
 
 
 include(FetchContent)
@@ -16,5 +15,6 @@ FetchContent_Declare(AesiMultiprecision
 FetchContent_MakeAvailable(AesiMultiprecision)
 
 add_executable(DivisorSelectionProgressive main.cu)
+set_property(TARGET DivisorSelectionProgressive PROPERTY CUDA_ARCHITECTURES 75)
 target_include_directories(DivisorSelectionProgressive PRIVATE ${AesiMultiprecision_SOURCE_DIR})
 
