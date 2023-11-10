@@ -10,6 +10,6 @@ FetchContent_Declare(AesiMultiprecision
 )
 FetchContent_MakeAvailable(AesiMultiprecision)
 
-add_executable(DivisorSelectionProgressive main.cpp)
+add_executable(DivisorSelectionProgressive main.cu)
 target_include_directories(DivisorSelectionProgressive PRIVATE ${AesiMultiprecision_SOURCE_DIR})
 
