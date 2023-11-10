@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(DivisorSelectionProgressive CXX)
+project(DivisorSelectionProgressive CUDA)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -10,9 +10,6 @@ FetchContent_Declare(AesiMultiprecision
 )
 FetchContent_MakeAvailable(AesiMultiprecision)
 
-find_package(primesieve REQUIRED)
-
 add_executable(DivisorSelectionProgressive main.cpp)
 target_include_directories(DivisorSelectionProgressive PRIVATE ${AesiMultiprecision_SOURCE_DIR})
-target_link_libraries(DivisorSelectionProgressive primesieve::primesieve)
 
