@@ -58,10 +58,10 @@ std::vector<uint64_t> loadPrimes(const std::filesystem::path& fromLocation) {
 
 __global__ void kernel(const Aesi<512>& value) {
     const auto tid = blockDim.x * blockIdx.x + threadIdx.x;
-    if(tid > 0) return;
+    if(tid > 9) return;
 
     char buffer[512] {}; value.getString<10>(buffer, 512);
-    printf("Kernel thread: factorizing value %s\n", buffer);
+    printf("Kernel thread %d: factorizing value %s\n", tid, buffer);
 }
 
 int main(int argc, const char* const* const argv) {
