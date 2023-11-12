@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
-#include <chrono>
 #include <primesieve.hpp>
+#include "Timer.h"
 
 int main(int argc, const char* const* const argv) {
     if(argc < 3)
@@ -12,7 +12,7 @@ int main(int argc, const char* const* const argv) {
         if (output.fail())
             return std::printf("Failed to create the output file %s\n", argv[2]);
 
-        const auto start = std::chrono::steady_clock::now();
+        Timer::init();
 
         const uint64_t primeCount = std::stoi(argv[1]);
         output.write(reinterpret_cast<const char *>(&primeCount), sizeof(uint64_t));
@@ -23,11 +23,9 @@ int main(int argc, const char* const* const argv) {
             output.write(reinterpret_cast<const char *>(&prime), sizeof(uint64_t));
         }
 
-        return std::printf("Generated prime table '%s' of %lu elements. %lu ms.\n",
-                           argv[2],
-                           primeCount,
-                           std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - start).count());
+        Timer::out << "Generated prime table '" << argv[2] << "' of " << primeCount << " elements." << Timer::endl;
     } catch (const std::exception& e) {
         return std::printf("Failed: %s\n", e.what());
     }
+    return 0;
 }
