@@ -27,7 +27,5 @@ int main(int argc, const char* const* const argv) {
     } catch (const std::exception& e) {
         return std::printf("Failed: %s\n", e.what());
     }
-
-    std::vector<unsigned>().size()
     return 0;
 }
