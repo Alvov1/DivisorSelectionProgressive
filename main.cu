@@ -5,6 +5,7 @@
 #include <thrust/host_vector.h>
 #include <thrust/device_ptr.h>
 #include "AesiMultiprecision.h"
+#include "Timer.h"
 
 std::vector<uint64_t> loadPrimes(const std::filesystem::path& fromLocation) {
     if(!std::filesystem::exists(fromLocation) || !std::filesystem::is_regular_file(fromLocation))
@@ -39,7 +40,7 @@ gpu void kernel(const Aesi<512>* numberAndFactor, const uint64_t* const primes, 
 
     Aesi a = threadId * max_it + 2, e = 1;
     for (unsigned B = bStart; B < B_MAX; B += bInc) {
-        const auto primeUl = primes[0];
+        auto primeUl = primes[0];
 
         for (unsigned pi = 0; primeUl < B; ++pi) {
             if(!factor.isZero()) return;
