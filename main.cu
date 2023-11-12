@@ -21,7 +21,7 @@ std::vector<uint64_t> loadPrimes(const std::filesystem::path& fromLocation) {
     return primes;
 }
 
-gpu void kernel(const Aesi<512>* numberAndFactor, const uint64_t* const primes, std::size_t primesCount) {
+__global__ void kernel(const Aesi<512>* numberAndFactor, const uint64_t* const primes, std::size_t primesCount) {
     const auto threadId = blockDim.x * blockIdx.x + threadIdx.x,
             threads = gridDim.x * blockDim.x,
             max_it = 400000 / threads,
