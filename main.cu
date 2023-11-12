@@ -20,7 +20,7 @@ std::vector<uint64_t> loadPrimes(const std::filesystem::path& fromLocation) {
     return primes;
 }
 
-gpu void kernel(const Aesi<512>* numberAndFactor, const thrust::device_vector<uint64_t>& primes) {
+gpu void kernel(const Aesi<512>* numberAndFactor, const uint64_t* const primes, std::size_t primesCount) {
     const auto threadId = blockDim.x * blockIdx.x + threadIdx.x,
             threads = gridDim.x * blockDim.x,
             max_it = 400000 / threads,
@@ -68,14 +68,15 @@ int main(int argc, const char* const* const argv) {
         return std::printf("Usage: %s factorize <number> <primes location>", argv[0]);
 
     thrust::device_vector<Aesi<512>> numberAndFactor = { { std::string_view(argv[2]) }, {} };
-    Timer::init() << "Factorizing number " << std::hex << std::showbase << number << '.' << Timer::endl;
+    Timer::init() << "Factorizing number " << std::hex << std::showbase << numberAndFactor[0] << '.' << Timer::endl;
 
     const thrust::device_vector<uint64_t> primes = loadPrimes(argv[3]);
     Timer::out << "Loaded prime table of " << primes.size() << " elements." << Timer::endl;
 
     kernel<<<32, 32>>>(
             thrust::raw_pointer_cast(numberAndFactor.data()),
-            thrust::raw_pointer_cast(primes.data()));
+            thrust::raw_pointer_cast(primes.data()),
+            primes.size());
 
     const auto code = cudaDeviceSynchronize();
     if (code != cudaSuccess)
