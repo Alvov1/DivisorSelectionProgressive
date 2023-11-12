@@ -21,14 +21,14 @@ std::vector<uint64_t> loadPrimes(const std::filesystem::path& fromLocation) {
 }
 
 gpu void kernel(const Aesi<512>* numberAndFactor, const thrust::device_vector<uint64_t>& primes) {
-    const auto threadIdx = blockDim.x * blockIdx.x + threadIdx.x,
+    const auto threadId = blockDim.x * blockIdx.x + threadIdx.x,
             threads = gridDim.x * blockDim.x,
             max_it = 400000 / threads,
             bStart = 2 + blockIdx.x,
             bInc = gridDim.x,
             B_MAX = 2000000000;
 
-    const n = numberAndFactor[0], factor = numberAndFactor[1];
+    const Aesi n = numberAndFactor[0], factor = numberAndFactor[1];
     const auto checkWriteRepeat = [&n](const Aesi<512> &value) {
         if (value < 2 || value >= n) return false;
         char buffer[512]{};
@@ -37,7 +37,7 @@ gpu void kernel(const Aesi<512>* numberAndFactor, const thrust::device_vector<ui
     };
     if(!factor.isZero()) return;
 
-    Aesi a = threadIdx * max_it + 2, e = 1;
+    Aesi a = threadId * max_it + 2, e = 1;
     for (unsigned B = bStart; B < B_MAX; B += bInc) {
         const auto primeUl = primes[0];
 
@@ -70,8 +70,8 @@ int main(int argc, const char* const* const argv) {
     thrust::device_vector<Aesi<512>> numberAndFactor = { { std::string_view(argv[2]) }, {} };
     Timer::init() << "Factorizing number " << std::hex << std::showbase << number << '.' << Timer::endl;
 
-    const thrust::device_vector<uint64_t> primeTable = loadPrimes(argv[3]);
-    Timer::out << "Loaded prime table of " << primeTable.size() << " elements." << Timer::endl;
+    const thrust::device_vector<uint64_t> primes = loadPrimes(argv[3]);
+    Timer::out << "Loaded prime table of " << primes.size() << " elements." << Timer::endl;
 
     kernel<<<32, 32>>>(
             thrust::raw_pointer_cast(numberAndFactor.data()),
@@ -80,7 +80,7 @@ int main(int argc, const char* const* const argv) {
     const auto code = cudaDeviceSynchronize();
     if (code != cudaSuccess)
         return std::printf("Kernel launch failed: %s.\n", cudaGetErrorString(code));
-    Timer::out << "Kernel completed. Founded factor: " << std::hex << std::showbase << numbers[1] << '.' << Timer::endl;
+    Timer::out << "Kernel completed. Founded factor: " << std::hex << std::showbase << numberAndFactor[1] << '.' << Timer::endl;
 
     return 0;
 }
