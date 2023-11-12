@@ -27,7 +27,7 @@ __global__ void kernel(const Aesi<512>* numberAndFactor, const uint64_t* const p
             max_it = 400000 / threads,
             bStart = 2 + blockIdx.x,
             bInc = gridDim.x,
-            B_MAX = 2000000000;
+            B_MAX = 2000000000U;
 
     const Aesi n = numberAndFactor[0], factor = numberAndFactor[1];
     const auto checkWriteRepeat = [&n](const Aesi<512> &value) {
