@@ -29,7 +29,7 @@ __global__ void kernel(const Aesi<512>* numberAndFactor, const uint64_t* const p
             bInc = gridDim.x,
             B_MAX = 2000000000U;
 
-    const Aesi n = numberAndFactor[0]; Aesi* const factor = numberAndFactor + 1;
+    const Aesi n = numberAndFactor[0]; Aesi<512>* const factor = numberAndFactor + 1;
 
     const auto checkWriteRepeat = [&n, &factor](const Aesi<512> &value) {
         if (value < 2 || value >= n)
