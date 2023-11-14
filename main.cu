@@ -28,6 +28,9 @@ __global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const p
             bStart = 2 + blockIdx.x,
             bInc = gridDim.x,
             B_MAX = 2000000000U;
+    if(threadId > 0) return;
+        else printf("Thread 0: 1.\n");
+
     const Aesi n = numberAndFactor[0]; Aesi<512>* const factor = numberAndFactor + 1;
 
     const auto checkWriteRepeat = [&n, &factor](const Aesi<512> &value) {
@@ -45,9 +48,13 @@ __global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const p
     };
     if(checkOtherThread(factor, threadId)) return;
 
+    printf("Thread 0: 2.\n");
+
     Aesi a = threadId * max_it + 2, e = 1;
     for (unsigned B = bStart; B < B_MAX; B += bInc) {
         auto primeUl = primes[0];
+
+        printf("Thread 0: 3 (%u).\n", B);
 
         for (unsigned pi = 0; primeUl < B; ++pi) {
             if(checkOtherThread(factor, threadId)) return;
@@ -57,6 +64,8 @@ __global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const p
         }
 
         if (e == 1) continue;
+
+        printf("Thread 0: 4 (%u).\n", B);
 
         for (unsigned it = 0; it < max_it; ++it) {
             if(checkOtherThread(factor, threadId)) return;
@@ -68,6 +77,8 @@ __global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const p
 
             a += threads * max_it;
         }
+
+        printf("Thread 0: 5 (%u).\n", B);
     }
 
     if(threadId % 64 == 0)
