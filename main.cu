@@ -31,12 +31,6 @@ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const primes, std:
             B_MAX = 2000000000U;
 
     const Aesi<512> n = numberAndFactor[0]; Aesi<512>* const factor = numberAndFactor + 1;
-    if(threadId == 0) {
-        char buffer [100] {}, buffer2 [100] {};
-        n.getString<10>(buffer, 100); factor->getString<10>(buffer2, 100);
-        printf("Kernel. Factorizing number %s. Result-place: %s.\n", buffer, buffer2);
-    }
-
     const auto checkFactor = [&n, &factor, &threadId] (const Aesi<512>& candidate) {
         if(candidate > 1 && candidate < n) {
             factor->atomicSet(candidate);
@@ -54,8 +48,10 @@ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const primes, std:
         Aesi e = 1;
         for (unsigned pi = 0; primeUl < B; ++pi) {
             if(!factor->isZero()) return;
-            const unsigned power = log(static_cast<double>(B)) / log(static_cast<double>(primeUl));
-            e *= static_cast<uint64_t>(pow(static_cast<double>(primeUl), static_cast<double>(power)));
+//            const unsigned power = log(static_cast<double>(B)) / log(static_cast<double>(primeUl));
+            const unsigned power = (unsigned) (log((double) B) / log((double) prime_ul));
+//            e *= static_cast<uint64_t>(pow(static_cast<double>(primeUl), static_cast<double>(power)));
+            e *= (unsigned) pow((double) prime_ul, (double) power);
             primeUl = primes[pi + 1];
         }
 
