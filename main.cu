@@ -21,7 +21,8 @@ std::vector<uint64_t> loadPrimes(const std::filesystem::path& fromLocation) {
     return primes;
 }
 
-__global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const primes, std::size_t primesCount) {
+__global__
+void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const primes, std::size_t primesCount) {
     const auto threadId = blockDim.x * blockIdx.x + threadIdx.x,
             threads = gridDim.x * blockDim.x,
             max_it = 400000 / threads,
@@ -41,10 +42,11 @@ __global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const p
         } else return false;
     };
 
-    Aesi a = threadId * max_it + 2, e = 1;
+    Aesi a = threadId * max_it + 2;
     for (unsigned B = bStart; B < B_MAX; B += bInc) {
         auto primeUl = primes[0];
 
+        Aesi e = 1;
         for (unsigned pi = 0; primeUl < B; ++pi) {
             if(!factor->isZero()) return;
             const unsigned power = log(static_cast<double>(B)) / log(static_cast<double>(primeUl));
