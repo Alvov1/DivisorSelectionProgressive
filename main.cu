@@ -33,6 +33,8 @@ __global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const p
 
     const Aesi n = numberAndFactor[0]; Aesi<512>* const factor = numberAndFactor + 1;
 
+    printf("Thread 0: 2.5.\n");
+
     const auto checkWriteRepeat = [&n, &factor](const Aesi<512> &value) {
         if (value < 2 || value >= n)
             return false;
