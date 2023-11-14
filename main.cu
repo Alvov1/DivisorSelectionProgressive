@@ -28,9 +28,6 @@ __global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const p
             bStart = 2 + blockIdx.x,
             bInc = gridDim.x,
             B_MAX = 2000000000U;
-    if(threadId % 128 == 0)
-        printf("Thread %u here.\n", threadId);
-
     const Aesi n = numberAndFactor[0]; Aesi<512>* const factor = numberAndFactor + 1;
 
     const auto checkWriteRepeat = [&n, &factor](const Aesi<512> &value) {
@@ -39,14 +36,21 @@ __global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const p
         factor->atomicSet(value);
         return true;
     };
-    if(!factor->isZero()) return;
+    const auto checkOtherThread = [] (const Aesi<512>* const factor, unsigned threadId) {
+        if(!factor->isZero()) {
+            char buffer[30] {}; factor->getString<10>(buffer, 30);
+            printf("Thread %u: factor is found (%s).\n", threadId, buffer);
+            return true;
+        }
+    };
+    if(checkOtherThread(factor, threadId)) return;
 
     Aesi a = threadId * max_it + 2, e = 1;
     for (unsigned B = bStart; B < B_MAX; B += bInc) {
         auto primeUl = primes[0];
 
         for (unsigned pi = 0; primeUl < B; ++pi) {
-            if(!factor->isZero()) return;
+            if(checkOtherThread(factor, threadId)) return;
             const unsigned power = log(static_cast<double>(B)) / log(static_cast<double>(primeUl));
             e *= static_cast<uint64_t>(pow(static_cast<double>(primeUl), static_cast<double>(power)));
             primeUl = primes[pi + 1];
@@ -55,7 +59,7 @@ __global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const p
         if (e == 1) continue;
 
         for (unsigned it = 0; it < max_it; ++it) {
-            if(!factor->isZero()) return;
+            if(checkOtherThread(factor, threadId)) return;
             if (checkWriteRepeat(Aesi<512>::gcd(a, n)))
                 return;
 
