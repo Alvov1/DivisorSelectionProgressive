@@ -31,7 +31,7 @@ __global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const p
 
     const Aesi<512> n = numberAndFactor[0]; Aesi<512>* const factor = numberAndFactor + 1;
 
-    const auto checkFactor = [&n, &factor] (const Aesi<512>& candidate) {
+    const auto checkFactor = [&n, &factor, &threadId] (const Aesi<512>& candidate) {
         if(candidate >= n) return false;
 
         factor->atomicSet(candidate);
