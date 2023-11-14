@@ -69,6 +69,9 @@ __global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const p
             a += threads * max_it;
         }
     }
+
+    if(threadId % 64 == 0)
+        printf("Thread %u exited.\n", threadId);
 }
 
 int main(int argc, const char* const* const argv) {
