@@ -28,18 +28,22 @@ __global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const p
             bStart = 2 + blockIdx.x,
             bInc = gridDim.x,
             B_MAX = 2000000000U;
-    if(threadId > 0) return;
-        else printf("Thread 0: 1.\n");
 
     const Aesi<512> n = numberAndFactor[0]; Aesi<512>* const factor = numberAndFactor + 1;
-    char buffer [100] {}, buffer2 [100] {}; n.getString<10>(buffer, 100); factor->getString<10>(buffer2, 100);
-    printf("\n\nThread 0: 2. Searching for number: %s. Factor: %s.\n", buffer, buffer2);
+
+    const auto checkFactor = [&n, &factor] (const Aesi<512>& candidate) {
+        if(candidate >= n) return false;
+
+        factor->atomicSet(candidate);
+
+        char buffer[100] {}; candidate.getString<10>(buffer, 100);
+        printf("Thread %d: found factor %s.\n", threadId, buffer);
+        return true;
+    };
 
     Aesi a = threadId * max_it + 2, e = 1;
     for (unsigned B = bStart; B < B_MAX; B += bInc) {
         auto primeUl = primes[0];
-
-        printf("Thread 0: 3 (%u).\n", B);
 
         for (unsigned pi = 0; primeUl < B; ++pi) {
             if(!factor->isZero()) return;
@@ -50,22 +54,14 @@ __global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const p
 
         if (e == 1) continue;
 
-        printf("Thread 0: 4 (%u).\n", B);
-
         for (unsigned it = 0; it < max_it; ++it) {
             if(!factor->isZero()) return;
 
-            auto candidate = Aesi<512>::gcd(a, n);
-            if(candidate < n) {
-                factor->atomicSet(candidate);
+            if(checkFactor(Aesi<512>::gcd(a, n)))
                 return;
-            }
 
-            candidate = Aesi<512>::gcd(Aesi<512>::powm(a, e, n) - 1, n);
-            if(candidate < n) {
-                factor->atomicSet(candidate);
+            if(checkFactor(Aesi<512>::gcd(Aesi<512>::powm(a, e, n) - 1, n))
                 return;
-            }
 
             a += threads * max_it;
         }
