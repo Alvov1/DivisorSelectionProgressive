@@ -96,8 +96,9 @@ int main(int argc, const char* const* const argv) {
     if(argc < 4)
         return std::printf("Usage: %s factorize <number> <primes location>", argv[0]);
 
-    thrust::device_vector<Aesi<512>> numberAndFactor = { { std::string_view(argv[2]) }, { 0 } };
-    Timer::init() << "Factorizing number " << std::hex << std::showbase << numberAndFactor[0] << std::dec << '.' << Timer::endl;
+    const Aesi number = std::string_view(argv[2]);
+    thrust::device_vector<Aesi<512>> numberAndFactor = { number, { 0 } };
+    Timer::init() << "Factorizing number " << std::hex << std::showbase << number << std::dec << '.' << Timer::endl;
 
     const thrust::device_vector<uint64_t> primes = loadPrimes(argv[3]);
     Timer::out << "Loaded prime table of " << primes.size() << " elements." << Timer::endl;
