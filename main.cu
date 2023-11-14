@@ -60,7 +60,7 @@ __global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const p
             if(checkFactor(Aesi<512>::gcd(a, n)))
                 return;
 
-            if(checkFactor(Aesi<512>::gcd(Aesi<512>::powm(a, e, n) - 1, n))
+            if(checkFactor(Aesi<512>::gcd(Aesi<512>::powm(a, e, n) - 1, n)))
                 return;
 
             a += threads * max_it;
