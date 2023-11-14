@@ -65,25 +65,37 @@ __global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const p
     }
 }
 
+__global__ void test() {
+    const auto threadId = blockDim.x * blockIdx.x + threadIdx.x;
+    if(threadId > 0) return;
+
+    printf("Thread 0 here.\n");
+}
+
 int main(int argc, const char* const* const argv) {
-    if(argc < 4)
-        return std::printf("Usage: %s factorize <number> <primes location>", argv[0]);
+//    if(argc < 4)
+//        return std::printf("Usage: %s factorize <number> <primes location>", argv[0]);
+//
+//    thrust::device_vector<Aesi<512>> numberAndFactor = { { std::string_view(argv[2]) }, { 0 } };
+//    Timer::init() << "Factorizing number " << std::hex << std::showbase << numberAndFactor[0] << std::dec << '.' << Timer::endl;
+//
+//    const thrust::device_vector<uint64_t> primes = loadPrimes(argv[3]);
+//    Timer::out << "Loaded prime table of " << primes.size() << " elements." << Timer::endl;
+//
+//    kernel<<<32, 32>>>(
+//            thrust::raw_pointer_cast(numberAndFactor.data()),
+//            thrust::raw_pointer_cast(primes.data()),
+//            primes.size());
+//
+//    const auto code = cudaDeviceSynchronize();
+//    if (code != cudaSuccess)
+//        return std::printf("Kernel launch failed: %s.\n", cudaGetErrorString(code));
+//    Timer::out << "Kernel completed. Founded factor: " << std::hex << std::showbase << numberAndFactor[1] << '.' << Timer::endl;
 
-    thrust::device_vector<Aesi<512>> numberAndFactor = { { std::string_view(argv[2]) }, { 0 } };
-    Timer::init() << "Factorizing number " << std::hex << std::showbase << numberAndFactor[0] << std::dec << '.' << Timer::endl;
-
-    const thrust::device_vector<uint64_t> primes = loadPrimes(argv[3]);
-    Timer::out << "Loaded prime table of " << primes.size() << " elements." << Timer::endl;
-
-    kernel<<<32, 32>>>(
-            thrust::raw_pointer_cast(numberAndFactor.data()),
-            thrust::raw_pointer_cast(primes.data()),
-            primes.size());
-
-    const auto code = cudaDeviceSynchronize();
+    test<<<32, 32>>>();
     if (code != cudaSuccess)
         return std::printf("Kernel launch failed: %s.\n", cudaGetErrorString(code));
-    Timer::out << "Kernel completed. Founded factor: " << std::hex << std::showbase << numberAndFactor[1] << '.' << Timer::endl;
+    std::cout << "Kernel completed." << std::endl;
 
     return 0;
 }
