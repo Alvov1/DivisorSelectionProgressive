@@ -33,24 +33,8 @@ __global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const p
 
     const Aesi n = numberAndFactor[0]; Aesi<512>* const factor = numberAndFactor + 1;
 
-    printf("Thread 0: 2.5.\n");
-
-    const auto checkWriteRepeat = [&n, &factor](const Aesi<512> &value) {
-        if (value < 2 || value >= n)
-            return false;
-        factor->atomicSet(value);
-        return true;
-    };
-    const auto checkOtherThread = [] (const Aesi<512>* const factor, unsigned threadId) {
-        if(!factor->isZero()) {
-            char buffer[30] {}; factor->getString<10>(buffer, 30);
-            printf("Thread %u: factor is found (%s).\n", threadId, buffer);
-            return true;
-        }
-    };
-    if(checkOtherThread(factor, threadId)) return;
-
-    printf("Thread 0: 2.\n");
+    char buffer [100] {}, buffer2[100]; n.getString<10>(buffer, 100); factor->getString<10>(buffer, 100);
+    printf("Thread 0: 2. Searching for number: %s. Factor: %s\n", buffer, buffer2);
 
     Aesi a = threadId * max_it + 2, e = 1;
     for (unsigned B = bStart; B < B_MAX; B += bInc) {
@@ -59,7 +43,7 @@ __global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const p
         printf("Thread 0: 3 (%u).\n", B);
 
         for (unsigned pi = 0; primeUl < B; ++pi) {
-            if(checkOtherThread(factor, threadId)) return;
+            if(!factor->isZero()) return;
             const unsigned power = log(static_cast<double>(B)) / log(static_cast<double>(primeUl));
             e *= static_cast<uint64_t>(pow(static_cast<double>(primeUl), static_cast<double>(power)));
             primeUl = primes[pi + 1];
@@ -70,12 +54,19 @@ __global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const p
         printf("Thread 0: 4 (%u).\n", B);
 
         for (unsigned it = 0; it < max_it; ++it) {
-            if(checkOtherThread(factor, threadId)) return;
-            if (checkWriteRepeat(Aesi<512>::gcd(a, n)))
-                return;
+            if(!factor->isZero()) return;
 
-            if (checkWriteRepeat(Aesi<512>::gcd(Aesi<512>::powm(a, e, n) - 1, n)))
+            auto candidate = Aesi<512>::gcd(a, n);
+            if(candidate < n) {
+                factor->atomicSet(candidate);
                 return;
+            }
+
+            candidate = Aesi<512>::gcd(Aesi<512>::powm(a, e, n) - 1, n);
+            if(candidate < n) {
+                factor->atomicSet(candidate);
+                return;
+            }
 
             a += threads * max_it;
         }
