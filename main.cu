@@ -96,7 +96,7 @@ int main(int argc, const char* const* const argv) {
     if(argc < 4)
         return std::printf("Usage: %s factorize <number> <primes location>", argv[0]);
 
-    const Aesi number = std::string_view(argv[2]);
+    const Aesi<512> number = std::string_view(argv[2]);
     thrust::device_vector<Aesi<512>> numberAndFactor = { number, { 0 } };
     Timer::init() << "Factorizing number " << std::hex << std::showbase << number << std::dec << '.' << Timer::endl;
 
