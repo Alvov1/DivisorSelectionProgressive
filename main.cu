@@ -32,13 +32,13 @@ __global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const p
     const Aesi<512> n = numberAndFactor[0]; Aesi<512>* const factor = numberAndFactor + 1;
 
     const auto checkFactor = [&n, &factor, &threadId] (const Aesi<512>& candidate) {
-        if(candidate >= n || candidate < 2) return false;
-
-        factor->atomicSet(candidate);
-
-        char buffer[100] {}; candidate.getString<10>(buffer, 100);
-        printf("Thread %d: found factor %s.\n", threadId, buffer);
-        return true;
+        if(candidate > 1 && candidate < n) {
+            factor->atomicSet(candidate);
+            char buffer[100]{};
+            candidate.getString<10>(buffer, 100);
+            printf("Thread %d: found factor %s.\n", threadId, buffer);
+            return true;
+        } else return false;
     };
 
     Aesi a = threadId * max_it + 2, e = 1;
@@ -55,7 +55,8 @@ __global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const p
         if (e == 1) continue;
 
         for (unsigned it = 0; it < max_it; ++it) {
-            if(!factor->isZero()) return;
+            if(!factor->isZero())
+                return;
 
             if(checkFactor(Aesi<512>::gcd(a, n)))
                 return;
