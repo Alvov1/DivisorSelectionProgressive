@@ -31,6 +31,11 @@ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const primes, std:
             B_MAX = 2000000000U;
 
     const Aesi<512> n = numberAndFactor[0]; Aesi<512>* const factor = numberAndFactor + 1;
+    if(threadId == 0) {
+        char buffer [100] {}, buffer2 [100] {};
+        n.getString<10>(buffer, 100); factor->getString<10>(buffer2, 100);
+        printf("Kernel. Factorizing number %s. Result-place: %s.\n", buffer, buffer2);
+    }
 
     const auto checkFactor = [&n, &factor, &threadId] (const Aesi<512>& candidate) {
         if(candidate > 1 && candidate < n) {
@@ -85,7 +90,7 @@ int main(int argc, const char* const* const argv) {
     const thrust::device_vector<uint64_t> primes = loadPrimes(argv[3]);
     Timer::out << "Loaded prime table of " << primes.size() << " elements." << Timer::endl;
 
-    kernel<<<32, 32>>>(
+    kernel<<<64, 64>>>(
             thrust::raw_pointer_cast(numberAndFactor.data()),
             thrust::raw_pointer_cast(primes.data()),
             primes.size());
