@@ -66,8 +66,6 @@ __global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const p
 
             a += threads * max_it;
         }
-
-        printf("Thread 0: 5 (%u).\n", B);
     }
 
     if(threadId % 64 == 0)
