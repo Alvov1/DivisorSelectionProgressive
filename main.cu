@@ -93,6 +93,7 @@ int main(int argc, const char* const* const argv) {
 //    Timer::out << "Kernel completed. Founded factor: " << std::hex << std::showbase << numberAndFactor[1] << '.' << Timer::endl;
 
     test<<<32, 32>>>();
+    const auto code = cudaDeviceSynchronize();
     if (code != cudaSuccess)
         return std::printf("Kernel launch failed: %s.\n", cudaGetErrorString(code));
     std::cout << "Kernel completed." << std::endl;
