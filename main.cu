@@ -35,58 +35,46 @@ __global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const p
     Aesi<512>* const factor = numberAndFactor + 1;
     n->introspect();
 
-    char buffer [100] {}, buffer2 [100] {};
-
-    unsigned l = n->getString<10>(buffer, 100);
-    unsigned r = factor->getString<10>(buffer2, 100);
-
-    printf("\nBuffer:\n");
-    for(unsigned i = 0; i < l; ++i)
-        printf("%d", static_cast<int>(buffer[i]));
-
-    printf("\n\nBuffer2:\n");
-    for(unsigned i = 0; i < l; ++i)
-        printf("%d", static_cast<int>(buffer2[i]));
-
+    char buffer [100] {}, buffer2 [100] {}; n->getString<10>(buffer, 100); factor->getString<10>(buffer2, 100);
     printf("\n\nThread 0: 2. Searching for number: %s. Factor: %s.\n", buffer, buffer2);
 
-//    Aesi a = threadId * max_it + 2, e = 1;
-//    for (unsigned B = bStart; B < B_MAX; B += bInc) {
-//        auto primeUl = primes[0];
-//
-//        printf("Thread 0: 3 (%u).\n", B);
-//
-//        for (unsigned pi = 0; primeUl < B; ++pi) {
-//            if(!factor->isZero()) return;
-//            const unsigned power = log(static_cast<double>(B)) / log(static_cast<double>(primeUl));
-//            e *= static_cast<uint64_t>(pow(static_cast<double>(primeUl), static_cast<double>(power)));
-//            primeUl = primes[pi + 1];
-//        }
-//
-//        if (e == 1) continue;
-//
-//        printf("Thread 0: 4 (%u).\n", B);
-//
-//        for (unsigned it = 0; it < max_it; ++it) {
-//            if(!factor->isZero()) return;
-//
-//            auto candidate = Aesi<512>::gcd(a, n);
-//            if(candidate < n) {
-//                factor->atomicSet(candidate);
-//                return;
-//            }
-//
-//            candidate = Aesi<512>::gcd(Aesi<512>::powm(a, e, n) - 1, n);
-//            if(candidate < n) {
-//                factor->atomicSet(candidate);
-//                return;
-//            }
-//
-//            a += threads * max_it;
-//        }
-//
-//        printf("Thread 0: 5 (%u).\n", B);
-//    }
+    Aesi a = threadId * max_it + 2, e = 1;
+    for (unsigned B = bStart; B < B_MAX; B += bInc) {
+        auto primeUl = primes[0];
+
+        printf("Thread 0: 3 (%u).\n", B);
+
+        for (unsigned pi = 0; primeUl < B; ++pi) {
+            if(!factor->isZero()) return;
+            const unsigned power = log(static_cast<double>(B)) / log(static_cast<double>(primeUl));
+            e *= static_cast<uint64_t>(pow(static_cast<double>(primeUl), static_cast<double>(power)));
+            primeUl = primes[pi + 1];
+        }
+
+        if (e == 1) continue;
+
+        printf("Thread 0: 4 (%u).\n", B);
+
+        for (unsigned it = 0; it < max_it; ++it) {
+            if(!factor->isZero()) return;
+
+            auto candidate = Aesi<512>::gcd(a, n);
+            if(candidate < n) {
+                factor->atomicSet(candidate);
+                return;
+            }
+
+            candidate = Aesi<512>::gcd(Aesi<512>::powm(a, e, n) - 1, n);
+            if(candidate < n) {
+                factor->atomicSet(candidate);
+                return;
+            }
+
+            a += threads * max_it;
+        }
+
+        printf("Thread 0: 5 (%u).\n", B);
+    }
 
     if(threadId % 64 == 0)
         printf("Thread %u exited.\n", threadId);
