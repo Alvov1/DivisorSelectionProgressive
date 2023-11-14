@@ -33,8 +33,8 @@ __global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const p
 
     const Aesi n = numberAndFactor[0]; Aesi<512>* const factor = numberAndFactor + 1;
 
-    char buffer [100] {}, buffer2[100]; n.getString<10>(buffer, 100); factor->getString<10>(buffer, 100);
-    printf("Thread 0: 2. Searching for number: %s. Factor: %s\n", buffer, buffer2);
+    char buffer [100] {}, buffer2[100]; n.getString<10>(buffer, 100); factor->getString<10>(buffer2, 100);
+    printf("Thread 0: 2. Searching for number: %s. Factor: %s.\n", buffer, buffer2);
 
     Aesi a = threadId * max_it + 2, e = 1;
     for (unsigned B = bStart; B < B_MAX; B += bInc) {
