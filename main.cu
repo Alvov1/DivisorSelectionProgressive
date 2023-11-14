@@ -23,7 +23,7 @@ std::vector<uint64_t> loadPrimes(const std::filesystem::path& fromLocation) {
 
 __global__
 void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const primes, std::size_t primesCount) {
-    const auto threadId = blockDim.x * blockIdx.x + threadIdx.x,
+    const unsigned threadId = blockDim.x * blockIdx.x + threadIdx.x,
             threads = gridDim.x * blockDim.x,
             max_it = 400000 / threads,
             bStart = 2 + blockIdx.x,
@@ -49,9 +49,9 @@ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const primes, std:
         for (unsigned pi = 0; primeUl < B; ++pi) {
             if(!factor->isZero()) return;
 //            const unsigned power = log(static_cast<double>(B)) / log(static_cast<double>(primeUl));
-            const unsigned power = (unsigned) (log((double) B) / log((double) prime_ul));
+            const unsigned power = (unsigned) (log((double) B) / log((double) primeUl));
 //            e *= static_cast<uint64_t>(pow(static_cast<double>(primeUl), static_cast<double>(power)));
-            e *= (unsigned) pow((double) prime_ul, (double) power);
+            e *= (unsigned) pow((double) primeUl, (double) power);
             primeUl = primes[pi + 1];
         }
 
