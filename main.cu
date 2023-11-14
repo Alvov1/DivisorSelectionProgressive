@@ -31,7 +31,8 @@ __global__ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const p
     if(threadId > 0) return;
         else printf("Thread 0: 1.\n");
 
-    Aesi<512>* const n = numberAndFactor, factor = numberAndFactor + 1;
+    Aesi<512>* const n = numberAndFactor;
+    Aesi<512>* const factor = numberAndFactor + 1;
     n->introspect();
 
     char buffer [100] {}, buffer2[100]; n->getString<10>(buffer, 100); factor->getString<10>(buffer2, 100);
