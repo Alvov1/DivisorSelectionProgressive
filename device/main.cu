@@ -76,14 +76,14 @@ void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const primes, std:
 }
 
 int main(int argc, const char* const* const argv) {
-    if(argc < 4)
-        return std::printf("Usage: %s factorize <number> <primes location>", argv[0]);
+    if(argc < 3)
+        return std::printf("Usage: %s <number> <primes location>", argv[0]);
 
-    const Aesi<512> number = std::string_view(argv[2]);
+    const Aesi<512> number = std::string_view(argv[1]);
     thrust::device_vector<Aesi<512>> numberAndFactor = { number, { 0 } };
     Timer::init() << "Factorizing number " << std::hex << std::showbase << number << std::dec << '.' << Timer::endl;
 
-    const thrust::device_vector<uint64_t> primes = loadPrimes(argv[3]);
+    const thrust::device_vector<uint64_t> primes = loadPrimes(argv[2]);
     Timer::out << "Loaded prime table of " << primes.size() << " elements." << Timer::endl;
 
     kernel<<<64, 64>>>(
