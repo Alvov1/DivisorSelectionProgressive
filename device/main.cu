@@ -3,8 +3,7 @@
 #include <filesystem>
 #include <thrust/device_vector.h>
 #include <thrust/host_vector.h>
-#include <thrust/device_ptr.h>
-#include "AesiMultiprecision.h"
+#include "Aesi.h"
 #include "Timer.h"
 
 std::vector<uint64_t> loadPrimes(const std::filesystem::path& fromLocation) {
@@ -21,72 +20,71 @@ std::vector<uint64_t> loadPrimes(const std::filesystem::path& fromLocation) {
     return primes;
 }
 
+
+using Uns = Aesi<1024>;
+
 __global__
-void kernel(Aesi<512>* const numberAndFactor, const uint64_t* const primes, std::size_t primesCount) {
+void kernel(Uns* const numberAndFactor, const uint64_t* const primes, std::size_t primesCount) {
     const unsigned threadId = blockDim.x * blockIdx.x + threadIdx.x,
-            threads = gridDim.x * blockDim.x,
-            max_it = 400000 / threads,
+            threadsCount = gridDim.x * blockDim.x,
+            iterationsBorder = 1024,
             bStart = 2 + blockIdx.x,
-            bInc = gridDim.x,
-            B_MAX = 2000000000U;
+            bShift = gridDim.x,
+            bMax = 2000000000U;
 
-    const Aesi<512> n = numberAndFactor[0]; Aesi<512>* const factor = numberAndFactor + 1;
-    const auto checkFactor = [&n, &factor, &threadId] (const Aesi<512>& candidate) {
-        if(candidate > 1 && candidate < n) {
-            factor->atomicSet(candidate);
-            char buffer[100]{};
-            candidate.getString<10>(buffer, 100);
-            printf("Thread %d: found factor %s.\n", threadId, buffer);
-            return true;
-        } else return false;
+    const Uns n = numberAndFactor[0]; Uns* const factor = numberAndFactor + 1;
+    const auto checkFactor = [&n, &factor] (const Uns& candidate) {
+        if(candidate < 2 || candidate >= n)
+            return false;
+        factor->tryAtomicSet(candidate); return true;
     };
-
-    Aesi a = threadId * max_it + 2;
-    for (unsigned B = bStart; B < B_MAX; B += bInc) {
+    
+    const auto countE = [] (unsigned B, const uint64_t* const primes, std::size_t primesCount) {
         auto primeUl = primes[0];
 
-        Aesi e = 1;
-        for (unsigned pi = 0; primeUl < B; ++pi) {
-            if(!factor->isZero()) return;
-//            const unsigned power = log(static_cast<double>(B)) / log(static_cast<double>(primeUl));
-            const unsigned power = (unsigned) (log((double) B) / log((double) primeUl));
-//            e *= static_cast<uint64_t>(pow(static_cast<double>(primeUl), static_cast<double>(power)));
-            e *= (unsigned) pow((double) primeUl, (double) power);
+        Uns e = 1;
+        for(unsigned pi = 0; primeUl < B && pi < primesCount; ++pi) {
+            const auto power = static_cast<unsigned>(log(static_cast<double>(B) / log(static_cast<double>(primeUl))));
+            e *= static_cast<uint64_t>(pow(static_cast<double>(primeUl), static_cast<double>(power)));
             primeUl = primes[pi + 1];
         }
 
-        if (e == 1) continue;
+        return e;
+    };
 
-        for (unsigned it = 0; it < max_it; ++it) {
+    static constexpr auto overflowBoarder = 5;
+    static constexpr auto overflowRatio = 0.9;
+
+    uint64_t a = threadId * iterationsBorder + 2, overflowCount = 0;
+    for (unsigned B = bStart; B < bMax; B += bShift) {
+        const Uns l = countE(B, primes, primesCount);
+        if (l == 1) continue;
+
+        for (unsigned it = 0; it < iterationsBorder; ++it) {
             if(!factor->isZero())
                 return;
 
-            if(checkFactor(Aesi<512>::gcd(a, n)))
+            /* GCD(a^l mod n, n) */
+            if(checkFactor(Uns::gcd(Uns::powm(a, l, n) - 1, n)))
                 return;
 
-            if(checkFactor(Aesi<512>::gcd(Aesi<512>::powm(a, e, n) - 1, n)))
-                return;
-
-            a += threads * max_it;
+            a += threadsCount * iterationsBorder;
         }
     }
-
-    if(threadId % 64 == 0)
-        printf("Thread %u exited.\n", threadId);
 }
 
 int main(int argc, const char* const* const argv) {
     if(argc < 3)
         return std::printf("Usage: %s <number> <primes location>", argv[0]);
 
-    const Aesi<512> number = std::string_view(argv[1]);
-    thrust::device_vector<Aesi<512>> numberAndFactor = { number, { 0 } };
-    Timer::init() << "Factorizing number " << std::hex << std::showbase << number << std::dec << '.' << Timer::endl;
+    const Uns number = std::string_view(argv[1]);
+    thrust::device_vector<Uns> numberAndFactor = { number, Uns { 0 } };
+    Timer::init() << "Factorizing number " << std::hex << std::showbase << number << std::dec << " (" << number.bitCount() << " bits)." << Timer::endl;
 
     const thrust::device_vector<uint64_t> primes = loadPrimes(argv[2]);
     Timer::out << "Loaded prime table of " << primes.size() << " elements." << Timer::endl;
 
-    kernel<<<64, 64>>>(
+    kernel<<<256, 256>>>(
             thrust::raw_pointer_cast(numberAndFactor.data()),
             thrust::raw_pointer_cast(primes.data()),
             primes.size());
