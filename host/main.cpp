@@ -22,32 +22,50 @@ std::vector<uint64_t> loadPrimes(const std::filesystem::path& fromLocation) {
 
 
 
-const struct { unsigned x {}; unsigned y {}; } gridDim = { 64, 1 }, blockDim = { 64, 1 }, blockIdx = { 0, 0 }, threadIdx = { 0, 0 };
+const struct { unsigned x {}; unsigned y {}; } gridDim = { 4, 1 }, blockDim = { 4, 1 }, blockIdx = { 0, 0 }, threadIdx = { 0, 0 };
 
-const unsigned threadId = blockDim.x * blockIdx.x + threadIdx.x,
+const unsigned threadId = 3,//blockDim.x * blockIdx.x + threadIdx.x,
                 threadsCount = gridDim.x * blockDim.x,
-                iterationBorder = 1024,
+                iterationBorder = 64,
                 bStart = /*2 + blockIdx.x, */rand() % 1024,
                 bShift = gridDim.x,
                 bMax = 2000000000U;
 using Uns = Aesi<2048>;
 
 
-Uns countE(unsigned B, const std::vector<uint64_t>& primes) {
+Uns countEBasic(unsigned B, const std::vector<uint64_t>& primes) {
     auto primeUl = primes[0];
 
     Uns e = 1;
+
     for (unsigned pi = 0; primeUl < B && pi < primes.size(); ++pi) {
         const auto power = static_cast<unsigned>(log(static_cast<double>(B)) / log(static_cast<double>(primeUl)));
-        std::cout << "Power " << power << ", base " << primeUl << "\n";
         e *= static_cast<uint64_t>(pow(static_cast<double>(primeUl), static_cast<double>(power)));
         primeUl = primes[pi + 1];
     }
 
-#ifndef NDEBUG
-    if(e.bitCount() >= static_cast<unsigned>(1024 * 0.75))
-        std::cout << "Bitness " << e.bitCount() << '\n';
-#endif
+    return e;
+}
+
+Uns countEComplex(const std::vector<uint64_t>& primes, const Uns& number) {
+
+    /* First 32 primes in required powers: 3^5 * 5^5 * 7^4 * 11^3 * 13^3 * 17^3....
+     * Currently, 247 bits. */
+    constexpr Uns eBase = Uns(1) * 2187 * 3125 * 2401 * 1331 * 2197
+            * 4913 * 19*19 * 23*23 * 29*29 * 31*31 * 37*37 * 41*41
+            * 43 * 47 * 53 * 59 * 61 * 67 * 71 * 73 * 79 * 83 * 89
+            * 97 * 101 * 103 * 107 * 109 * 113 * 127 * 131;
+
+    static unsigned lastGroup = 0;
+
+    Uns e = Uns::power2(static_cast<unsigned>(number.bitCount() / 10)) * eBase;
+
+    for(; e.bitCount() < number.bitCount() * 5; ++lastGroup) {
+        const unsigned iFirst = 32 + lastGroup * threadsCount + threadId,
+            iSecond = lastGroup * threadsCount + threadId + threadsCount / 2 + 32;
+        std::cout << primes[iFirst] << " - " << primes[iSecond] << std::endl;
+        e *= primes[iFirst]; e *= primes[iSecond];
+    }
 
     return e;
 }
@@ -62,14 +80,11 @@ void kernel(const std::vector<uint64_t>& primes, std::pair<Uns, Uns>& numberAndF
 
     uint64_t a = threadId * iterationBorder + 2;
     for (unsigned B = bStart; B < bMax; B += bShift) {
-        const Uns e = countE(B, primes);
+        const Uns e = countEComplex(primes, n);
         if (e == 1) continue;
 
         for (unsigned it = 0; it < iterationBorder; ++it) {
             if(!factor.isZero())
-                return;
-
-            if(checkFactor(Uns::gcd(a, n)))
                 return;
 
             if(checkFactor(Uns::gcd(Uns::powm(a, e, n) - 1, n)))
