@@ -18,4 +18,3 @@ FetchContent_MakeAvailable(STDStreamTimer)
 
 add_executable(DivisorSelectionProgressive main.cpp)
 target_include_directories(DivisorSelectionProgressive PRIVATE ${AesiMultiprecision_SOURCE_DIR} ${STDStreamTimer_SOURCE_DIR})
-
