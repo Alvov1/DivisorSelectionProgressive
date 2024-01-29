@@ -4,6 +4,21 @@
 #include "Aesi.h"
 #include "Timer.h"
 
+const struct { unsigned x {}; unsigned y {}; } gridDim = { 64, 1 }, blockDim = { 64, 1 }, blockIdx = { 0, 0 }, threadIdx = { 0, 0 };
+
+const unsigned threadId = 3,//blockDim.x * blockIdx.x + threadIdx.x,
+threadsCount = gridDim.x * blockDim.x,
+        iterationBorder = 32,
+        bStart = 2 + blockIdx.x,
+        bShift = gridDim.x,
+        bMax = 2'000'000'000U;
+using Uns = Aesi<8192>;
+
+
+
+
+
+
 std::vector<uint64_t> loadPrimes(const std::filesystem::path& fromLocation) {
     if(!std::filesystem::is_regular_file(fromLocation))
         throw std::invalid_argument("Failed to load prime table: bad input file");
@@ -18,19 +33,22 @@ std::vector<uint64_t> loadPrimes(const std::filesystem::path& fromLocation) {
     return primes;
 }
 
+std::vector<Uns> loadPowers(const std::filesystem::path& fromLocation) {
+    if(!std::filesystem::is_regular_file(fromLocation))
+        throw std::invalid_argument("Failed to load powers table: bad input file");
+
+    const auto recordsNumber = static_cast<std::size_t>(std::filesystem::file_size(fromLocation) / (static_cast<std::size_t>(Uns::getBitness() / 8)));
+    std::vector<Uns> records (recordsNumber);
+
+    std::ifstream input(fromLocation, std::ios::binary);
+    for(auto& value: records)
+        value.readBinary(input);
+
+    return records;
+}
 
 
 
-
-const struct { unsigned x {}; unsigned y {}; } gridDim = { 4, 1 }, blockDim = { 4, 1 }, blockIdx = { 0, 0 }, threadIdx = { 0, 0 };
-
-const unsigned threadId = 3,//blockDim.x * blockIdx.x + threadIdx.x,
-                threadsCount = gridDim.x * blockDim.x,
-                iterationBorder = 64,
-                bStart = /*2 + blockIdx.x, */rand() % 1024,
-                bShift = gridDim.x,
-                bMax = 2000000000U;
-using Uns = Aesi<2048>;
 
 
 Uns countEBasic(unsigned B, const std::vector<uint64_t>& primes) {
@@ -47,30 +65,31 @@ Uns countEBasic(unsigned B, const std::vector<uint64_t>& primes) {
     return e;
 }
 
-Uns countEComplex(const std::vector<uint64_t>& primes, const Uns& number) {
+void preparePowers(const std::vector<uint64_t>& primes, const std::filesystem::path& outputLocation) {
+    Uns previous = 0;
 
-    /* First 32 primes in required powers: 3^5 * 5^5 * 7^4 * 11^3 * 13^3 * 17^3....
-     * Currently, 247 bits. */
-    constexpr Uns eBase = Uns(1) * 2187 * 3125 * 2401 * 1331 * 2197
-            * 4913 * 19*19 * 23*23 * 29*29 * 31*31 * 37*37 * 41*41
-            * 43 * 47 * 53 * 59 * 61 * 67 * 71 * 73 * 79 * 83 * 89
-            * 97 * 101 * 103 * 107 * 109 * 113 * 127 * 131;
+    std::ofstream output(outputLocation, std::ios::binary);
 
-    static unsigned lastGroup = 0;
+    for (unsigned B = bStart; ; B++) {
+        const auto e = countEBasic(B, primes);
 
-    Uns e = Uns::power2(static_cast<unsigned>(number.bitCount() / 10)) * eBase;
+        if(e != previous) {
+            if(e.bitCount() >= 32)
+                e.writeBinary(output);
 
-    for(; e.bitCount() < number.bitCount() * 5; ++lastGroup) {
-        const unsigned iFirst = 32 + lastGroup * threadsCount + threadId,
-            iSecond = lastGroup * threadsCount + threadId + threadsCount / 2 + 32;
-        std::cout << primes[iFirst] << " - " << primes[iSecond] << std::endl;
-        e *= primes[iFirst]; e *= primes[iSecond];
+            previous = e;
+
+            if(e.bitCount() >= static_cast<std::size_t>(Uns::getBitness() * 0.99))
+                break;
+        }
     }
-
-    return e;
 }
 
-void kernel(const std::vector<uint64_t>& primes, std::pair<Uns, Uns>& numberAndFactor) {
+
+
+
+
+void kernelPrimes(const std::vector<uint64_t>& primes, std::pair<Uns, Uns>& numberAndFactor) {
     auto& [n, factor] = numberAndFactor;
     const auto checkFactor = [&n, &factor] (const Uns& candidate) {
         if(candidate < 2 || candidate >= n)
@@ -80,7 +99,7 @@ void kernel(const std::vector<uint64_t>& primes, std::pair<Uns, Uns>& numberAndF
 
     uint64_t a = threadId * iterationBorder + 2;
     for (unsigned B = bStart; B < bMax; B += bShift) {
-        const Uns e = countEComplex(primes, n);
+        const Uns e = countEBasic(B, primes);
         if (e == 1) continue;
 
         for (unsigned it = 0; it < iterationBorder; ++it) {
@@ -95,6 +114,31 @@ void kernel(const std::vector<uint64_t>& primes, std::pair<Uns, Uns>& numberAndF
     }
 }
 
+void kernelPowers(const std::vector<Uns>& powers, std::pair<Uns, Uns>& numberAndFactor) {
+    auto& [n, factor] = numberAndFactor;
+    const auto checkFactor = [&n, &factor] (const Uns& candidate) {
+        if(candidate < 2 || candidate >= n)
+            return false;
+        factor = candidate; return true;
+    };
+
+    uint64_t a = threadId * iterationBorder + 2;
+    for(unsigned i = threadId; i < powers.size(); i += blockDim.x) {
+        for(unsigned it = 0; it < iterationBorder; ++it) {
+            if(!factor.isZero())
+                return;
+
+            if(checkFactor(Uns::gcd(Uns::powm(a, powers[i], n) - 1, n)))
+                return;
+
+            a += threadsCount * iterationBorder;
+        }
+    }
+}
+
+
+
+
 int main(int argc, const char* const* const argv) {
     try {
         if (argc < 3)
@@ -104,16 +148,15 @@ int main(int argc, const char* const* const argv) {
         Timer::init() << "Factorizing number " << std::hex << std::showbase << numberAndFactor.first <<
             std::dec << " (" << numberAndFactor.first.bitCount() << " bits)." << Timer::endl;
 
-        const std::vector<uint64_t> primes = loadPrimes(argv[2]);
-        Timer::out << "Loaded prime table of " << primes.size() << " elements." << Timer::endl;
+//        const std::vector<uint64_t> primes = loadPrimes(argv[2]);
+//        Timer::out << "Loaded table of primes with " << primes.size() << " elements." << Timer::endl;
+        const std::vector<Uns> powers = loadPowers(argv[2]);
+        Timer::out << "Loaded table of powers with " << powers.size() << " elements." << Timer::endl;
 
-        kernel(primes, numberAndFactor);
-        if (numberAndFactor.second != 0)
+        kernelPowers(powers, numberAndFactor);
+        if (numberAndFactor.second != 0 && numberAndFactor.first % numberAndFactor.second != 0)
             Timer::out << "Found factor: " << std::hex << std::showbase << numberAndFactor.second << Timer::endl;
-        else Timer::out << "Factor is not fount" << Timer::endl;
-
-        if(numberAndFactor.first % numberAndFactor.second != 0)
-            Timer::out << "Factor is incorrect." << Timer::endl;
+        else Timer::out << "Factor is not fount or incorrect" << Timer::endl;
     } catch (const std::exception& e) {
         return std::printf("Failed: %s.\n", e.what());
     }
