@@ -1,3 +1,12 @@
+OxB8C8CBD2DAEE7D            (56 bits)
+0x6926C73F919FA3E7          (64 bits)   Primes-Release 1547         Powers-Release 10685
+0x1ba4b22fb8d11f51de10f84d  (93 bits)
+0x32247ef0fa671f78fbc40959  (94 bits)
+0x45c8dce3fe049c6e95240833  (95 bits)
+0x6c8c2243850171411359431b  (95 bits)
+0xa7592e4e6da2dc86ef41c307  (96 bits)
+
+
 1. 0x45c8dce3fe049c6e95240833 = 0x8473f025 * 0x86e08aaa15a59b77; (95 bits). 32557 ms: 768 bit: 64x64 threads
 2. 0x88df3405f63f12a9a236a063 = 0x8a6bd907 * 0xfd226f5d5170f2c5; (96 bits). 8777 ms: 768 bit: 64x64 threads
 3. 0x275c1685d17141d2bd4ee541 = 0xca4113f7 * 0x31d1a544b99a1287; (94 bits).

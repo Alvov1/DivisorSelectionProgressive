@@ -8,7 +8,7 @@ const struct { unsigned x {}; unsigned y {}; } gridDim = { 64, 1 }, blockDim = {
 
 const unsigned threadId = 3,//blockDim.x * blockIdx.x + threadIdx.x,
 threadsCount = gridDim.x * blockDim.x,
-        iterationBorder = 32,
+        iterationBorder = 64,
         bStart = 2 + blockIdx.x,
         bShift = gridDim.x,
         bMax = 2'000'000'000U;
@@ -89,7 +89,7 @@ void preparePowers(const std::vector<uint64_t>& primes, const std::filesystem::p
 
 
 
-void kernelPrimes(const std::vector<uint64_t>& primes, std::pair<Uns, Uns>& numberAndFactor) {
+void kernel(const std::vector<uint64_t>& primes, std::pair<Uns, Uns>& numberAndFactor) {
     auto& [n, factor] = numberAndFactor;
     const auto checkFactor = [&n, &factor] (const Uns& candidate) {
         if(candidate < 2 || candidate >= n)
@@ -114,7 +114,7 @@ void kernelPrimes(const std::vector<uint64_t>& primes, std::pair<Uns, Uns>& numb
     }
 }
 
-void kernelPowers(const std::vector<Uns>& powers, std::pair<Uns, Uns>& numberAndFactor) {
+void kernel(const std::vector<Uns>& powers, std::pair<Uns, Uns>& numberAndFactor) {
     auto& [n, factor] = numberAndFactor;
     const auto checkFactor = [&n, &factor] (const Uns& candidate) {
         if(candidate < 2 || candidate >= n)
@@ -148,12 +148,10 @@ int main(int argc, const char* const* const argv) {
         Timer::init() << "Factorizing number " << std::hex << std::showbase << numberAndFactor.first <<
             std::dec << " (" << numberAndFactor.first.bitCount() << " bits)." << Timer::endl;
 
-//        const std::vector<uint64_t> primes = loadPrimes(argv[2]);
-//        Timer::out << "Loaded table of primes with " << primes.size() << " elements." << Timer::endl;
-        const std::vector<Uns> powers = loadPowers(argv[2]);
-        Timer::out << "Loaded table of powers with " << powers.size() << " elements." << Timer::endl;
+        const auto values = loadPrimes(argv[2]); //loadPowers(argv[2]);
+        Timer::out << "Loaded table of primes with " << values.size() << " elements." << Timer::endl;
 
-        kernelPowers(powers, numberAndFactor);
+        kernel(values, numberAndFactor);
         if (numberAndFactor.second != 0 && numberAndFactor.first % numberAndFactor.second != 0)
             Timer::out << "Found factor: " << std::hex << std::showbase << numberAndFactor.second << Timer::endl;
         else Timer::out << "Factor is not fount or incorrect" << Timer::endl;
