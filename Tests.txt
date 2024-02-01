@@ -1,25 +1,50 @@
-OxB8C8CBD2DAEE7D            (56 bits)
-0x6926C73F919FA3E7          (64 bits)   Primes-Release 1547         Powers-Release 10685
-0x1ba4b22fb8d11f51de10f84d  (93 bits)
-0x32247ef0fa671f78fbc40959  (94 bits)
-0x45c8dce3fe049c6e95240833  (95 bits)
-0x6c8c2243850171411359431b  (95 bits)
-0xa7592e4e6da2dc86ef41c307  (96 bits)
+                                                                                      Primes                                Powers
+                                                                                bitness threads iterations time         bitness threads iterations time
+1. 0x6508b5dc2856a2dd = 0x9c2d9ef * 0xa59c38bf3; (63 bits).                     512bit  64x64   1024       31561ms      1024bit 64x64   64         17557ms
+2. 0x3833545c95d6c90a9 = 0x38d55253 * 0xfd2652993; (66 bits).                   ---                                     1024bit 64x64   64         39568ms
+3. 0x552e920c4321ed9b = 0xac58c7d * 0x7e86fb5f7; (63 bits).                     512bit  64x64   1024       31793ms
+4. 0x15a7157c212837cef = 0x24099d33 * 0x99d068955; (65 bits).                   512bit  64x64   1024       45265ms
+5. 0xb77d789943d289c9 = 0x11658187 * 0xa8c2aae2f; (64 bits).                    512bit  64x64   1024       60704ms
+6. 0x4dfc80550ba29535 = 0x5cd41cb * 0xd7118a4ff; (63 bits).                     512bit  64x64   1024       106331ms
+7. 0x56c7801a3620cb0b = 0x5ff1665 * 0xe78c8ccaf; (63 bits).                     512bit  64x64   1024       22038ms
+8. 0x1baddc641f1747de7 = 0x2395185b * 0xc723b4665; (65 bits).                   ---                                     1024bit 64x64   64         39688ms
+9. 0x2a37e91d6edfa7b59 = 0x329b1869 * 0xd59206d71; (66 bits).                   512bit  64x64   1024       25937ms
+10. 0x276c5d90b96db101 = 0x50910d9 * 0x7d4470869; (62 bits).                    512bit  64x64   1024       19636ms
+11. 0x8dd857f3d6c8dac5 = 0x2aed3fd1 * 0x34de9fcb5; (64 bits).                   512bit  64x64   1024       19929ms
+12. 0x2b3852f04f8f17bf5 = 0x3738fca3 * 0xc85bcd687; (66 bits).                  512bit  64x64   1024       25717ms
+13. 0x21a44dbbd302d01f1 = 0x2213175d * 0xfcbfa8fa5; (66 bits).                  512bit  64x64   1024       25815ms
+14. 0x102d28ca526b632cb = 0x23977a05 * 0x745a1028f; (65 bits).                  512bit  64x64   1024       30421ms
+15. 0x19aeef93674774c8d = 0x29b9195f * 0x9d95d2593; (65 bits).                  512bit  64x64   1024       485463ms
+16. 0x1b916e09ec9996ed5 = 0x20a8ef73 * 0xd816a8697; (65 bits).                  768bit  128x128 1024       557268ms     1024bit 64x64   64         39687ms
+17. 0x11dab62ef200d3a1b = 0x16274ce3 * 0xce51e5b69; (65 bits).                  512bit  64x64   1024       23265ms
+18. 0x46604c6ec32d4f7b = 0x2e6c1831 * 0x18418a36b; (63 bits).                   512bit  64x64   1024       219982ms
+19. 0xb8dfad5e20f1c2d = 0x393f21df * 0x33abbb73; (60 bits).                     512bit  64x64   1024       100521ms
 
+1. 0x933dd9bf169686dc03b = 0x7aa486445 * 0x13358d11a7f; (76 bits).              768bit  64x64   1024       103286ms     1024bit 64x64   64         37319ms
+2. 0x253af92f5c18bfc5bb = 0x40c72231 * 0x9322181fab; (70 bits).                 768bit  64x64   1024       118870ms     1024bit 64x64   64         36578ms
+3. 0x464b97e0c90a36e6337 = 0x6dc5b4a51 * 0xa3ef87eb07; (75 bits).               768bit  128x128 1024       ---          1024bit 64x64   64         37684ms
+4. 0x52317141cf868952351 = 0x35f4a8937 * 0x185f9eddbb7; (75 bits).              768bit  64x64   1024       67500ms      1024bit 64x64   64         37623ms
+5. 0x62920e4f66aa9079541 = 0x46634d28d * 0x1667ffb7a85; (75 bits).              768bit  64x65   1024       167965ms     1024bit 64x64   64         37835ms
 
-1. 0x45c8dce3fe049c6e95240833 = 0x8473f025 * 0x86e08aaa15a59b77; (95 bits). 32557 ms: 768 bit: 64x64 threads
-2. 0x88df3405f63f12a9a236a063 = 0x8a6bd907 * 0xfd226f5d5170f2c5; (96 bits). 8777 ms: 768 bit: 64x64 threads
-3. 0x275c1685d17141d2bd4ee541 = 0xca4113f7 * 0x31d1a544b99a1287; (94 bits).
+1. 0x223f5bdf109f4226f1c817 = 0xc4ad8e16e7 * 0x2c93c5930f51; (86 bits).         768bit  128x128  1024      141417ms     1024bit 64x64   64         44271ms
+2. 0xf6c9e3fdec39eec8c1625 = 0x4383512909 * 0x3a7ca039973d; (84 bits).          768bit  128x128  1024      360429ms     1024bit 64x64   64         44631ms
+3. 0x112fb22bb4bacbfc725fcf = 0xa97d37d38d * 0x19f56504dbcb; (85 bits).         768bit  128x128  1024      360037ms     1024bit 64x64   64         44437ms
+4. 0x1f3c4867612e258bd44e89 = 0xed89989f31 * 0x21a9ca7fbed9; (85 bits).         768bit  64, 128  1024      ---          1024bit 64x64   64         44157ms
+5. 0x2d04dfa4a24217e5bc81d1 = 0xc12735b3cf * 0x3baac1ceb85f; (86 bits).         768bit  64       1024      ---          1024bit 64x64   64         44144ms
+
+1. 0x45c8dce3fe049c6e95240833 = 0x8473f025 * 0x86e08aaa15a59b77; (95 bits).     768bit  64x64    1024      174628ms     1024bit 64x64   64         46327ms
+2. 0x88df3405f63f12a9a236a063 = 0x8a6bd907 * 0xfd226f5d5170f2c5; (96 bits).     768bit  64x64    1024      40138ms      1024bit 64x64   64         46902ms
+3. 0x275c1685d17141d2bd4ee541 = 0xca4113f7 * 0x31d1a544b99a1287; (94 bits).     768bit  64x64    1024      ---          1024bit 64x64   64         not found
 4. 0x6fad8515d1e99a97392af9d = 0x50862b81 * 0x1630b0327b68c21d; (91 bits).
-5. 0x3e65caa3cb87fd5b1a13eccb = 0xd8ba2e31 * 0x49b45f2875f05fbb; (94 bits).
-6. 0x14ffbf77493c12db15fe2c9f = 0x841d128f * 0x28b0bb24b6af0cf1; (93 bits).
-7. 0xf300f428c3a162158d7757f = 0x6b0adc75 * 0x245296242661dba3; (92 bits).
-8. 0x1ccb2c4fa3ff49d951124957 = 0x244062a3 * 0xcb55924d16ff1dbd; (93 bits). 3202 ms: 768 bit: 64x64 threads
-9. 0x149a3029ab363bcc047c5a1d = 0x18ebd087 * 0xd3a29079295c1d3b; (93 bits).
-10. 0x63896489b803aa2fb2a62429 = 0xf1188d0d * 0x69b09ad1dd0d448d; (95 bits).
-
+5. 0x3e65caa3cb87fd5b1a13eccb = 0xd8ba2e31 * 0x49b45f2875f05fbb; (94 bits).                                             1024bit 64x64   64         not found
+6. 0x14ffbf77493c12db15fe2c9f = 0x841d128f * 0x28b0bb24b6af0cf1; (93 bits).                                             1024bit 64x64   64         not found
+7. 0xf300f428c3a162158d7757f = 0x6b0adc75 * 0x245296242661dba3; (92 bits).                                              1024bit 64x64   64         45382ms
+8. 0x1ccb2c4fa3ff49d951124957 = 0x244062a3 * 0xcb55924d16ff1dbd; (93 bits).     768bit  64x64    1024      39697ms      1024bit 64x64   64         not found
+9. 0x149a3029ab363bcc047c5a1d = 0x18ebd087 * 0xd3a29079295c1d3b; (93 bits).                                             1024bit 64x64   64         not found
+10. 0x63896489b803aa2fb2a62429 = 0xf1188d0d * 0x69b09ad1dd0d448d; (95 bits).                                            1024bit 64x64   64         not found
 11. 0xf112605cab14a78c6ad210b = 0xd75ebdb * 0x11e8ce4f98862be91; (92 bits).
 12. 0x3010d9403a4d848c0e776da8f = 0x2808b7529 * 0x1335c0e8bc76c50f7; (98 bits).
+
 13. 0xc5c8f3c384420f943cad2186cb57 = 0x9f2f2b370d * 0x13e13e079aa558532f3; (112 bits).
 14. 0x4c055f80848c0085d60cfeec15ad = 0x169c18fdb1f * 0x35cc0494f51bed41b3; (111 bits).
 15. 0x19d824f0ac1f9023a793b55cda898d09 = 0x61703ba69797 * 0x43e699ae75d0bb0c945f; (125 bits).
@@ -50,4 +75,3 @@ OxB8C8CBD2DAEE7D            (56 bits)
 38. 0x6cd7b38a9febce7c635e81733cb9ace3bb8b5c66199674cc6cba208c1c5e9 = 0x1f5786653c0c512f63123000f * 0x379062f37f97accb7cf16a0f9f2bbfb496287; (243 bits).
 39. 0x4fdb61299a489c3cb1837e5f2f764de7464df224cf51ac8232ad3594d333363 = 0x12217c08107bfef1ddcc69a5dd * 0x4678cc3270a3dcc382a4c54a934d53ddefca3f; (251 bits).
 40. 0x34b553b6ab109b59b5c1bd6fb1a81e19a73eaa5a69e5ef7b3fd48a9e76d65631 = 0x3eb6db6ea902e8bcace01eebc1 * 0xd727d27fc62a4213b982a837646b1cd919c671; (254 bits).
-
