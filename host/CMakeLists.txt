@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include(FetchContent)
 FetchContent_Declare(AesiMultiprecision
         GIT_REPOSITORY https://github.com/Alvov1/Aesi-Multiprecision.git
-        GIT_TAG main
+        GIT_TAG split-signed-unsigned-integers
 )
 FetchContent_MakeAvailable(AesiMultiprecision)
 FetchContent_Declare(STDStreamTimer

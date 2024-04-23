@@ -1,18 +1,19 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include <filesystem>
-#include "Aesi.h"
+#include "Aeu.h"
 #include "Timer.h"
 
 const struct { unsigned x {}; unsigned y {}; } gridDim = { 64, 1 }, blockDim = { 64, 1 }, blockIdx = { 0, 0 }, threadIdx = { 0, 0 };
 
 const unsigned threadId = 0,//3,//blockDim.x * blockIdx.x + threadIdx.x,
 threadsCount = gridDim.x * blockDim.x,
-        iterationBorder = 1024,
+        iterationBorder = 64,
         bStart = 2 + blockIdx.x,
         bShift = gridDim.x,
         bMax = 2'000'000'000U;
-using Uns = Aesi<512>;
+using Uns = Aeu256;
 
 std::vector<uint64_t> loadPrimes(const std::filesystem::path& fromLocation) {
     if(!std::filesystem::is_regular_file(fromLocation))
@@ -45,7 +46,7 @@ Uns countE(unsigned B, const std::vector<uint64_t>& primes) {
 void kernel(const std::vector<uint64_t>& primes, std::pair<Uns, Uns>& numberAndFactor) {
     auto& [n, factor] = numberAndFactor;
     const auto checkFactor = [&n, &factor] (const Uns& candidate) {
-        if(candidate < 2 || candidate >= n)
+        if(candidate < 2u || candidate >= n)
             return false;
         factor = candidate; return true;
     };
@@ -71,7 +72,7 @@ void kernel(const std::vector<uint64_t>& primes, std::pair<Uns, Uns>& numberAndF
 
 int main() {
     const std::filesystem::path primes = "../../primes.txt";
-    const Uns tNumber = "0x1ba4b22fb8d11f51de10f84d";
+    const Uns tNumber = "0xb8dfad5e20f1c2d";
 
     std::pair<Uns, Uns> numberAndFactor = { tNumber, { 0 } };
     Timer::init() << "Factorizing number " << std::hex << std::showbase << numberAndFactor.first <<
