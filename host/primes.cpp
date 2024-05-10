@@ -36,7 +36,7 @@ Uns countE(unsigned B, const std::vector<uint64_t>& primes) {
 
     for (unsigned pi = 0; primeUl < B && pi < primes.size(); ++pi) {
         const auto power = static_cast<unsigned>(log(static_cast<double>(B)) / log(static_cast<double>(primeUl)));
-        e *= static_cast<uint64_t>(pow(static_cast<double>(primeUl), static_cast<double>(power)));
+        e *= Uns(static_cast<uint64_t>(pow(static_cast<double>(primeUl), static_cast<double>(power))));
         primeUl = primes[pi + 1];
     }
 
@@ -71,7 +71,7 @@ void kernel(const std::vector<uint64_t>& primes, std::pair<Uns, Uns>& numberAndF
 }
 
 int main() {
-    const std::filesystem::path primes = "../../primes.txt";
+    const std::filesystem::path primes = "../../all-primes-32-bit.bin";
     const Uns tNumber = "0xb8dfad5e20f1c2d";
 
     std::pair<Uns, Uns> numberAndFactor = { tNumber, { 0 } };

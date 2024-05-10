@@ -19,8 +19,9 @@ FetchContent_MakeAvailable(STDStreamTimer)
 add_executable(DivisorPrimes primes.cpp)
 target_include_directories(DivisorPrimes PRIVATE ${AesiMultiprecision_SOURCE_DIR} ${STDStreamTimer_SOURCE_DIR})
 
-add_executable(DivisorPowers powers.cpp)
+add_executable(DivisorPowers powers.cpp
+        ../tmain.cu)
 target_include_directories(DivisorPowers PRIVATE ${AesiMultiprecision_SOURCE_DIR} ${STDStreamTimer_SOURCE_DIR})
 
-add_executable(DivisorPreparations prepare.cpp)
+add_executable(DivisorPreparations ../powers/generate.cpp)
 target_include_directories(DivisorPreparations PRIVATE ${AesiMultiprecision_SOURCE_DIR} ${STDStreamTimer_SOURCE_DIR})

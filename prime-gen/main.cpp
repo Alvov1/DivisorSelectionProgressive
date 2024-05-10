@@ -1,29 +1,35 @@
 #include <iostream>
 #include <fstream>
 #include <primesieve.hpp>
-#include "Timer.h"
+#include <limits>
 
 int main(int argc, const char* const* const argv) {
+    using namespace std::string_literals;
     if(argc < 3)
-        return std::printf("Usage: %s <primes count> <primes location>\n", argv[0]);
+        return std::printf("Usage: %s <primes location> <options>\nOptions: boarder 32 bit number | full\n", argv[0]);
 
     try {
-        std::ofstream output(argv[2], std::ios::binary);
+        std::ofstream output(argv[1], std::ios::binary);
         if (output.fail())
-            return std::printf("Failed to create the output file %s\n", argv[2]);
+            return std::printf("Failed to create the output file %s\n", argv[1]);
 
-        Timer::init();
-
-        const uint64_t primeCount = std::stoi(argv[1]);
-        output.write(reinterpret_cast<const char *>(&primeCount), sizeof(uint64_t));
-
-        primesieve::iterator it;
-        for (uint64_t i = 0, prime = 0; i < primeCount; ++i) {
-            prime = it.next_prime();
-            output.write(reinterpret_cast<const char *>(&prime), sizeof(uint64_t));
+        if(argv[2] == "full"s) {
+            primesieve::iterator it;
+            for (uint64_t prime = it.next_prime();
+                 prime < std::numeric_limits<unsigned>::max(); prime = it.next_prime()) {
+                const auto casted = static_cast<unsigned>(prime);
+                output.write(reinterpret_cast<const char *>(&casted), sizeof(unsigned));
+            }
+        } else {
+            const auto boarder = std::stoull(argv[2]);
+            primesieve::iterator it;
+            for (uint64_t prime = it.next_prime(); prime < boarder; prime = it.next_prime()) {
+                const auto casted = static_cast<unsigned>(prime);
+                output.write(reinterpret_cast<const char *>(&casted), sizeof(unsigned));
+            }
         }
 
-        Timer::out << "Generated prime table '" << argv[2] << "' of " << primeCount << " elements." << Timer::endl;
+        std::cout << "Generated prime table '" << argv[1] << "'." << std::endl;
     } catch (const std::exception& e) {
         return std::printf("Failed: %s\n", e.what());
     }

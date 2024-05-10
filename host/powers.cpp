@@ -1,14 +1,16 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
+#include <vector>
+
 #include "Aesi.h"
 #include "Timer.h"
 
 const struct { unsigned x {}; unsigned y {}; } gridDim = { 64, 1 }, blockDim = { 64, 1 }, blockIdx = { 0, 0 }, threadIdx = { 0, 0 };
 
 //3,//blockDim.x * blockIdx.x + threadIdx.x,
-const unsigned threadId = 0, threadsCount = gridDim.x * blockDim.x, iterationBorder = 1024;
-using Uns = Aesi<8192>;
+const unsigned threadId = 0, threadsCount = gridDim.x * blockDim.x, iterationBorder = 2;
+using Uns = Aeu<2048>;
 
 std::vector<Uns> loadPowers(const std::filesystem::path& fromLocation) {
     if(!std::filesystem::is_regular_file(fromLocation))
@@ -47,8 +49,8 @@ void kernel(const std::vector<Uns>& powers, std::pair<Uns, Uns>& numberAndFactor
 }
 
 int main() {
-    const std::filesystem::path powers = "../../powers-8192.txt";
-    const Uns tNumber = "0x1ba4b22fb8d11f51de10f84d";
+    const std::filesystem::path powers = "../../powers/powers-2048.txt";
+    const Uns tNumber = "0x6508b5dc2856a2dd";
 
     std::pair<Uns, Uns> numberAndFactor = { tNumber, { 0 } };
     Timer::init() << "Factorizing number " << std::hex << std::showbase << numberAndFactor.first <<
