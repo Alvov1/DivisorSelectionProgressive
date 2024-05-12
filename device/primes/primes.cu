@@ -7,17 +7,17 @@
 #include "Timer.h"
 #include "primes-kernel.h"
 
-using prime = unsigned;
+using primeType = unsigned;
 thrust::host_vector<prime> loadPrimes(const std::filesystem::path& fromLocation) {
     if(!std::filesystem::is_regular_file(fromLocation))
         throw std::invalid_argument("Failed to load prime table: bad input file");
 
+    const auto primesCount = std::filesystem::file_size(fromLocation) / sizeof(primeType);
     std::ifstream input(fromLocation, std::ios::binary);
-    uint64_t buffer {}; input.read(reinterpret_cast<char*>(&buffer), sizeof(prime));
 
-    thrust::host_vector<prime> primes (buffer);
+    std::vector<primeType> primes (primesCount);
     for(auto& prime: primes)
-        input.read(reinterpret_cast<char*>(&prime), sizeof(prime));
+        input.read(reinterpret_cast<char*>(&prime), sizeof(primeType));
 
     return primes;
 }
@@ -31,7 +31,7 @@ int main(int argc, const char* const* const argv) {
     thrust::device_vector<Uns> numberAndFactor = { number, Uns { 0 } };
     Timer::init() << "Factorizing number " << std::hex << std::showbase << number << std::dec << " (" << number.bitCount() << " bits)." << Timer::endl;
 
-    const thrust::device_vector<prime> primes = loadPrimes(argv[2]);
+    const thrust::device_vector<primeType> primes = loadPrimes(argv[2]);
     Timer::out << "Loaded table of primes with " << primes.size() << " elements." << Timer::endl;
 
     const auto lThreads = std::stoi(argv[3]), rThreads = std::stoi(argv[4]);

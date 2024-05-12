@@ -18,6 +18,8 @@ FetchContent_Declare(STDStreamTimer
 )
 FetchContent_MakeAvailable(STDStreamTimer)
 
+message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
+
 add_executable(DivisorPrimes primes.cu)
 set_property(TARGET DivisorPrimes PROPERTY CUDA_ARCHITECTURES 75)
 target_include_directories(DivisorPrimes PRIVATE ${AesiMultiprecision_SOURCE_DIR} ${STDStreamTimer_SOURCE_DIR})
