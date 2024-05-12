@@ -4,7 +4,7 @@
 using Uns = Aeu<512>;
 
 __device__
-Uns countE(unsigned B, const uint64_t* const primes, std::size_t primesCount) {
+Uns countE(unsigned B, const unsigned* const primes, std::size_t primesCount) {
     auto primeUl = primes[0];
 
     Uns e = 1;
