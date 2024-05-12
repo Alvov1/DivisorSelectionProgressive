@@ -8,7 +8,7 @@
 #include "primes-kernel.h"
 
 using primeType = unsigned;
-thrust::host_vector<prime> loadPrimes(const std::filesystem::path& fromLocation) {
+thrust::host_vector<primeType> loadPrimes(const std::filesystem::path& fromLocation) {
     if(!std::filesystem::is_regular_file(fromLocation))
         throw std::invalid_argument("Failed to load prime table: bad input file");
 
