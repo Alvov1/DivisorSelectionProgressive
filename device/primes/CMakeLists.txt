@@ -9,7 +9,7 @@ set(CMAKE_CUDA_STANDARD_REQUIRED ON)
 include(FetchContent)
 FetchContent_Declare(AesiMultiprecision
         GIT_REPOSITORY https://github.com/Alvov1/Aesi-Multiprecision.git
-        GIT_TAG main
+        GIT_TAG split-signed-unsigned-integers
 )
 FetchContent_MakeAvailable(AesiMultiprecision)
 FetchContent_Declare(STDStreamTimer
@@ -21,8 +21,3 @@ FetchContent_MakeAvailable(STDStreamTimer)
 add_executable(DivisorPrimes primes.cu)
 set_property(TARGET DivisorPrimes PROPERTY CUDA_ARCHITECTURES 75)
 target_include_directories(DivisorPrimes PRIVATE ${AesiMultiprecision_SOURCE_DIR} ${STDStreamTimer_SOURCE_DIR})
-
-add_executable(DivisorPowers powers.cu)
-set_property(TARGET DivisorPowers PROPERTY CUDA_ARCHITECTURES 75)
-target_include_directories(DivisorPowers PRIVATE ${AesiMultiprecision_SOURCE_DIR} ${STDStreamTimer_SOURCE_DIR})
-

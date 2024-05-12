@@ -1,7 +1,7 @@
 #ifndef DIVISORSELECTIONPROGRESSIVE_PRIMES_KERNEL_H
 #define DIVISORSELECTIONPROGRESSIVE_PRIMES_KERNEL_H
 
-using Uns = Aesi<768>;
+using Uns = Aeu<512>;
 
 __device__
 Uns countE(unsigned B, const uint64_t* const primes, std::size_t primesCount) {
@@ -11,7 +11,7 @@ Uns countE(unsigned B, const uint64_t* const primes, std::size_t primesCount) {
 
     for (unsigned pi = 0; primeUl < B && pi < primesCount; ++pi) {
         const auto power = static_cast<unsigned>(log(static_cast<double>(B)) / log(static_cast<double>(primeUl)));
-        e *= static_cast<uint64_t>(pow(static_cast<double>(primeUl), static_cast<double>(power)));
+        e *= static_cast<unsigned>(pow(static_cast<double>(primeUl), static_cast<double>(power)));
         primeUl = primes[pi + 1];
     }
 
@@ -19,10 +19,10 @@ Uns countE(unsigned B, const uint64_t* const primes, std::size_t primesCount) {
 }
 
 __global__
-void kernel(Uns* const numberAndFactor, const uint64_t* const primes, std::size_t primesCount) {
+void kernel(Uns* const numberAndFactor, const unsigned* const primes, std::size_t primesCount) {
     const unsigned threadId = blockDim.x * blockIdx.x + threadIdx.x,
             threadsCount = gridDim.x * blockDim.x,
-            iterationsBorder = 1024,
+            iterationsBorder = 2,
             bStart = 2 + blockIdx.x,
             bShift = gridDim.x,
             bMax = 2000000000U;
