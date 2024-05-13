@@ -43,8 +43,12 @@ void kernel(Uns* const numberAndFactor, const unsigned* const primes, std::size_
             if(!factor->isZero())
                 return;
 
-            if(checkFactor(Uns::gcd(Uns::powm(a, e, n) - 1, n)))
+            if(checkFactor(Uns::gcd(Uns::powm(a, e, n) - 1, n))) {
+                char buffer [256] {};
+                e.getString<10>(buffer, 256, true, false);
+                printf("Thread %u. Found factor for power %s.\n", threadId, buffer);
                 return;
+            }
 
             a += threadsCount * iterationsBorder;
         }
