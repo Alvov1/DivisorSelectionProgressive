@@ -36,7 +36,8 @@ int main(int argc, const char* const* const argv) {
 
     const auto threads = std::stoul(argv[3]), iterations = std::stoul(argv[4]);
     const auto timePoint = std::chrono::system_clock::now();
-    Timer::out << std::ctime(&std::chrono::system_clock::to_time_t(timePoint)) << " Starting kernel <<<" << threads << ", " << threads << ">>>. Using bitness " << Uns::getBitness() << ". Iterations: " << iterations << Timer::endl;
+    const auto timeT = std::chrono::system_clock::to_time_t(timePoint);
+    Timer::out << std::ctime(&timeT) << " Starting kernel <<<" << threads << ", " << threads << ">>>. Using bitness " << Uns::getBitness() << ". Iterations: " << iterations << Timer::endl;
     kernel<<<threads, threads>>>(
             thrust::raw_pointer_cast(numberAndFactor.data()),
             thrust::raw_pointer_cast(primes.data()),
