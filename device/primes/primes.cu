@@ -35,9 +35,7 @@ int main(int argc, const char* const* const argv) {
     Timer::out << "Loaded table of primes with " << primes.size() << " elements." << Timer::endl;
 
     const auto threads = std::stoul(argv[3]), iterations = std::stoul(argv[4]);
-    const auto timePoint = std::chrono::system_clock::now();
-    const auto timeT = std::chrono::system_clock::to_time_t(timePoint);
-    Timer::out << std::ctime(&timeT) << " Starting kernel <<<" << threads << ", " << threads << ">>>. Using bitness " << Uns::getBitness() << ". Iterations: " << iterations << Timer::endl;
+    Timer::out << std::chrono::zoned_time { std::chrono::current_zone(), std::chrono::system_clock::now() } << " Starting kernel <<<" << threads << ", " << threads << ">>>. Using bitness " << Uns::getBitness() << ". Iterations: " << iterations << Timer::endl;
     kernel<<<threads, threads>>>(
             thrust::raw_pointer_cast(numberAndFactor.data()),
             thrust::raw_pointer_cast(primes.data()),
