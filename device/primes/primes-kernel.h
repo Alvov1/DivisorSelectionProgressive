@@ -4,14 +4,21 @@
 using Uns = Aeu<512>;
 
 __device__
-        Uns countE(unsigned B, const unsigned* const primes, std::size_t primesCount) {
+Uns countE(unsigned B, const unsigned* const primes, std::size_t primesCount) {
     auto primeUl = primes[0];
 
     Uns e = 1;
 
     for (unsigned pi = 0; primeUl < B && pi < primesCount; ++pi) {
         const auto power = static_cast<unsigned>(log(static_cast<double>(B)) / log(static_cast<double>(primeUl)));
-        e *= static_cast<unsigned>(pow(static_cast<double>(primeUl), static_cast<double>(power)));
+        const auto factor = static_cast<unsigned>(pow(static_cast<double>(primeUl), static_cast<double>(power)));
+
+        /* Avoiding overflow. */
+        const auto factorBitness = (sizeof(unsigned) * 8) - __clz(factor);
+        if(e.bitCount() + factorBitness >= Uns::getBitness())
+            return e;
+
+        e *= factor;
         primeUl = primes[pi + 1];
     }
 
