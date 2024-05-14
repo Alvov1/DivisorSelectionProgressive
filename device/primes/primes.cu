@@ -25,7 +25,7 @@ thrust::host_vector<primeType> loadPrimes(const std::filesystem::path& fromLocat
 
 int main(int argc, const char* const* const argv) {
     if(argc < 5)
-        return std::printf("Usage: %s <number> <primes location> <<64> threads parameters <64>>", argv[0]);
+        return std::printf("Usage: %s <number> <primes location> <threads> <iterations>", argv[0]);
 
     const Uns number = std::string_view(argv[1]);
     thrust::device_vector<Uns> numberAndFactor = { number, Uns { 0 } };
@@ -34,12 +34,13 @@ int main(int argc, const char* const* const argv) {
     const thrust::device_vector<primeType> primes = loadPrimes(argv[2]);
     Timer::out << "Loaded table of primes with " << primes.size() << " elements." << Timer::endl;
 
-    const auto lThreads = std::stoi(argv[3]), rThreads = std::stoi(argv[4]);
-    Timer::out << "Starting kernel <<<" << lThreads << ", " << rThreads << ">>>. Using bitness " << Uns::getBitness() << '.' << Timer::endl;
-    kernel<<<lThreads, rThreads>>>(
+    const auto threads = std::stoul(argv[3]), iterations = std::stoul(argv[4]);
+    Timer::out << "Starting kernel <<<" << threads << ", " << threads << ">>>. Using bitness " << Uns::getBitness() << ". Iterations: " << iterations << Timer::endl;
+    kernel<<<threads, threads>>>(
             thrust::raw_pointer_cast(numberAndFactor.data()),
             thrust::raw_pointer_cast(primes.data()),
-            primes.size());
+            primes.size(),
+            iterations);
 
     const auto code = cudaDeviceSynchronize();
     if(code != cudaSuccess)

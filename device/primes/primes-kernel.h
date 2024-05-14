@@ -4,7 +4,7 @@
 using Uns = Aeu<512>;
 
 __device__
-Uns countE(unsigned B, const unsigned* const primes, std::size_t primesCount) {
+        Uns countE(unsigned B, const unsigned* const primes, std::size_t primesCount) {
     auto primeUl = primes[0];
 
     Uns e = 1;
@@ -19,10 +19,9 @@ Uns countE(unsigned B, const unsigned* const primes, std::size_t primesCount) {
 }
 
 __global__
-void kernel(Uns* const numberAndFactor, const unsigned* const primes, std::size_t primesCount) {
+void kernel(Uns* const numberAndFactor, const unsigned* const primes, std::size_t primesCount, std::size_t iterationsBorder) {
     const unsigned threadId = blockDim.x * blockIdx.x + threadIdx.x,
             threadsCount = gridDim.x * blockDim.x,
-            iterationsBorder = 2,
             bStart = 2 + blockIdx.x,
             bShift = gridDim.x,
             bMax = 2000000000U;
