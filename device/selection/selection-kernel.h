@@ -30,7 +30,7 @@ void kernel(UBase* const numberAndFactor, const unsigned* const primes, std::siz
 
     /* Power base, containing the smallest primes in some powers. */
     constexpr UCalculations base = UCalculations::power2(9) * 2187 * 3125 * 2401; // 2^9 * 3^7 * 5^5 * 7^4
-    const UCalculations a = 3;
+    const UBase a = 3;
 
     /* Approximate number of primes required to overflow testing bitness
      * Ex: testing bitness 2048 -> 86 numbers of bitness 24. */
