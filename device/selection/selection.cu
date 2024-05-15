@@ -27,8 +27,8 @@ int main(int argc, const char* const* const argv) {
     if(argc < 5)
         return std::printf("Usage: %s <number> <smooth location> <threads> <iterations>", argv[0]);
 
-    const Uns number = std::string_view(argv[1]);
-    thrust::device_vector<Uns> numberAndFactor = { number, Uns { 0 } };
+    const UBase number = std::string_view(argv[1]);
+    thrust::device_vector<UBase> numberAndFactor = { number, UBase { 0 } };
     Timer::init() << "Factorizing number " << std::hex << std::showbase << number << std::dec << " (" << number.bitCount() << " bits)." << Timer::endl;
 
     const thrust::device_vector<primeType> primes = loadPrimes(argv[2]);
@@ -37,7 +37,7 @@ int main(int argc, const char* const* const argv) {
     const auto threads = std::stoul(argv[3]), iterations = std::stoul(argv[4]);
     const auto timePoint = std::chrono::system_clock::now();
     const auto timeT = std::chrono::system_clock::to_time_t(timePoint);
-    Timer::out << std::ctime(&timeT) << " Starting kernel <<<" << threads << ", " << threads << ">>>. Using bitness " << Uns::getBitness() << ". ITERATIONS PER PRIME: " << iterations << Timer::endl;
+    Timer::out << std::ctime(&timeT) << " Starting kernel <<<" << threads << ", " << threads << ">>>. Using bitness " << UCalculations::getBitness() << ". ITERATIONS PER PRIME: " << iterations << Timer::endl;
     kernel<<<threads, threads>>>(
             thrust::raw_pointer_cast(numberAndFactor.data()),
             thrust::raw_pointer_cast(primes.data()),
@@ -48,7 +48,7 @@ int main(int argc, const char* const* const argv) {
     if(code != cudaSuccess)
         return std::printf("Kernel launch failed: %s.\n", cudaGetErrorString(code));
 
-    const Uns factor = numberAndFactor[1];
+    const UBase factor = numberAndFactor[1];
     if(factor != 0 && number % factor == 0)
         Timer::out << "Kernel completed. Founded factor: " << std::hex << std::showbase << factor << '.' << Timer::endl;
     else Timer::out << "Kernel completed, but factor " << std::hex << std::showbase << factor << " is incorrect." << Timer::endl;
