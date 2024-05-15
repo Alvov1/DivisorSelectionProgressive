@@ -15,7 +15,7 @@ void kernel(UBase* const numberAndFactor, const unsigned* const primes, std::siz
             bShift = gridDim.x,
             bMax = 2000000000U;
 
-    const Uns n = numberAndFactor[0]; Uns* const factor = numberAndFactor + 1;
+    const UBase n = numberAndFactor[0]; UBase* const factor = numberAndFactor + 1;
     const auto checkFactor = [&n, &factor] (const UCalculations& candidate) {
         if(candidate < 2 || candidate >= n)
             return false;
