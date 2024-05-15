@@ -5,7 +5,7 @@
 #include <thrust/host_vector.h>
 #include "Aeu.h"
 #include "Timer.h"
-#include "primes-kernel.h"
+#include "smooth-kernel.h"
 
 using primeType = unsigned;
 thrust::host_vector<primeType> loadPrimes(const std::filesystem::path& fromLocation) {
@@ -25,14 +25,14 @@ thrust::host_vector<primeType> loadPrimes(const std::filesystem::path& fromLocat
 
 int main(int argc, const char* const* const argv) {
     if(argc < 5)
-        return std::printf("Usage: %s <number> <primes location> <threads> <iterations>", argv[0]);
+        return std::printf("Usage: %s <number> <smooth location> <threads> <iterations>", argv[0]);
 
     const Uns number = std::string_view(argv[1]);
     thrust::device_vector<Uns> numberAndFactor = { number, Uns { 0 } };
     Timer::init() << "Factorizing number " << std::hex << std::showbase << number << std::dec << " (" << number.bitCount() << " bits)." << Timer::endl;
 
     const thrust::device_vector<primeType> primes = loadPrimes(argv[2]);
-    Timer::out << "Loaded table of primes with " << primes.size() << " elements." << Timer::endl;
+    Timer::out << "Loaded table of smooth with " << primes.size() << " elements." << Timer::endl;
 
     const auto threads = std::stoul(argv[3]), iterations = std::stoul(argv[4]);
     const auto timePoint = std::chrono::system_clock::now();

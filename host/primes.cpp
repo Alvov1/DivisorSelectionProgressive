@@ -4,8 +4,9 @@
 #include <filesystem>
 #include "Aeu.h"
 #include "Timer.h"
+#include "simple-circular-buffer.h"
 
-const struct { unsigned x {}; unsigned y {}; } gridDim = { 64, 1 }, blockDim = { 64, 1 }, blockIdx = { 0, 0 }, threadIdx = { 0, 0 };
+const struct { unsigned x {}; unsigned y {}; } gridDim = { 256, 1 }, blockDim = { 256, 1 }, blockIdx = { 0, 0 }, threadIdx = { 0, 0 };
 
 const unsigned threadId = 0,//3,//blockDim.x * blockIdx.x + threadIdx.x,
 threadsCount = gridDim.x * blockDim.x,
@@ -13,61 +14,88 @@ threadsCount = gridDim.x * blockDim.x,
         bStart = 2 + blockIdx.x,
         bShift = gridDim.x,
         bMax = 2'000'000'000U;
-using Uns = Aeu256;
+using Uns = Aeu512;
 
-std::vector<uint64_t> loadPrimes(const std::filesystem::path& fromLocation) {
+using primeType = unsigned;
+std::vector<primeType> loadPrimes(const std::filesystem::path& fromLocation) {
     if(!std::filesystem::is_regular_file(fromLocation))
         throw std::invalid_argument("Failed to load prime table: bad input file");
 
+    const auto primesCount = 3388003;//std::filesystem::file_size(fromLocation) / sizeof(primeType);
     std::ifstream input(fromLocation, std::ios::binary);
-    uint64_t buffer {}; input.read(reinterpret_cast<char*>(&buffer), sizeof(uint64_t));
 
-    std::vector<uint64_t> primes (buffer);
+    std::vector<primeType> primes (primesCount);
     for(auto& prime: primes)
-        input.read(reinterpret_cast<char*>(&prime), sizeof(uint64_t));
+        input.read(reinterpret_cast<char*>(&prime), sizeof(primeType));
 
     return primes;
 }
 
-Uns countE(unsigned B, const std::vector<uint64_t>& primes) {
-    auto primeUl = primes[0];
-
-    Uns e = 1;
-
-    for (unsigned pi = 0; primeUl < B && pi < primes.size(); ++pi) {
-        const auto power = static_cast<unsigned>(log(static_cast<double>(B)) / log(static_cast<double>(primeUl)));
-        e *= Uns(static_cast<uint64_t>(pow(static_cast<double>(primeUl), static_cast<double>(power))));
-        primeUl = primes[pi + 1];
-    }
-
-    return e;
-}
-
-void kernel(const std::vector<uint64_t>& primes, std::pair<Uns, Uns>& numberAndFactor) {
+void kernel(const std::vector<primeType>& primes, std::pair<Uns, Uns>& numberAndFactor) {
     auto& [n, factor] = numberAndFactor;
     const auto checkFactor = [&n, &factor] (const Uns& candidate) {
         if(candidate < 2u || candidate >= n)
             return false;
         factor = candidate; return true;
     };
+    constexpr auto getNumbersBitness = [] (primeType prime) {
+#ifndef __CUDACC__
+        return (sizeof(primeType) * 8 - std::countl_zero(prime));
+#else
+        return (sizeof(primeType) * 8 - __clz(lastBlock));
+#endif
+    };
+    const auto primesCount = primes.size();
+    const std::size_t iterationsPerPrime = 2048;
 
-    uint64_t a = threadId * iterationBorder + 2;
-    for (unsigned B = bStart; B < bMax; B += bShift) {
-        const Uns e = countE(B, primes);
-        if (e == 1) continue;
+    /* Average amount of prime number selected for the thread. */
+    std::size_t numbersPerThread = primesCount / threadsCount;
 
-        for (unsigned it = 0; it < iterationBorder; ++it) {
-            if(!factor.isZero())
-                return;
+    /* Power base, containing the smallest primes in some powers. */
+    constexpr Uns base = Uns::power2(9) * 2187 * 3125 * 2401, a = 3; // 2^9 * 3^7 * 5^5 * 7^4
+    constexpr auto baseBitness = base.bitCount();
 
-            if(checkFactor(Uns::gcd(Uns::powm(a, e, n) - 1, n)))
-                return;
+    /* Approximate number of primes required to overflow testing bitness
+     * Ex: testing bitness 2048 -> 86 numbers of bitness 24. */
+    constexpr auto approximateNumberOfPrimesPerTestingBitness = static_cast<std::size_t>(Uns::getBitness() / (sizeof(primeType) * 4));
 
-            a += threadsCount * iterationBorder;
+    /* Shift in prime table according to which we're taking primes. */
+    const auto primesShift = static_cast<std::size_t>(primesCount / 60);
+
+    for(std::size_t i = 0; i < numbersPerThread; ++i) {
+        const std::size_t currentNumberIndex = (threadId + i * numbersPerThread) % primesCount;
+
+        CircularBuffer<primeType, approximateNumberOfPrimesPerTestingBitness> buffer {};
+        Uns e = base;
+
+        std::size_t nextPrimeIndex = threadId % primesShift;
+
+        for(std::size_t j = 0; j < iterationsPerPrime; ++j) {
+            const primeType nextPrime = primes[nextPrimeIndex];
+            const auto nextPrimeBitness = getNumbersBitness(nextPrime);
+
+            /* If in the number there is enough space for new prime. */
+            const auto currentBitness = e.bitCount();
+            if(currentBitness + nextPrimeBitness + 10 < Uns::getBitness()) {
+                e *= nextPrime;
+                buffer.push_back(nextPrime);
+                nextPrimeIndex = (nextPrimeIndex + primesShift) % primesCount;
+            } else {
+                /* If the number's overflowed. */
+                /* 1. Check. */
+                if(checkFactor(Uns::gcd(Uns::powm(a, e, n) - 1, n))) {
+                    std::cout << "Thread " << threadId << ". Found factor for power " << e << ", a = " << a << std::endl;
+                    return;
+                }
+
+
+                /* 2. Erase bitness. */
+                for(std::size_t t = 0; e.bitCount() + nextPrimeBitness + 10 >= Uns::getBitness() && t < approximateNumberOfPrimesPerTestingBitness; ++t) {
+                    e /= Uns(buffer.pop_front());
+                }
+            }
         }
     }
-
-    std::cout << "Here :D" << std::endl;
 }
 
 int main() {
@@ -79,7 +107,7 @@ int main() {
                   std::dec << " (" << numberAndFactor.first.bitCount() << " bits)." << Timer::endl;
 
     const auto values = loadPrimes(primes);
-    Timer::out << "Loaded table of primes with " << values.size() << " elements." << Timer::endl;
+    Timer::out << "Loaded table of smooth with " << values.size() << " elements." << Timer::endl;
 
     kernel(values, numberAndFactor);
     if (numberAndFactor.second != 0 && numberAndFactor.first % numberAndFactor.second == 0)

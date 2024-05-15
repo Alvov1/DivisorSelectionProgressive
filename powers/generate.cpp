@@ -115,7 +115,7 @@ void preparePowers(const std::vector<uint64_t>& primes, std::ostream& output) {
 
 
 int main() {
-    const std::filesystem::path primes = "../../all-primes-32-bit.bin", outputLocation = "../test-test.txt";
+    const std::filesystem::path primes = "../../all-smooth-32-bit.bin", outputLocation = "../test-test.txt";
 //    if(std::filesystem::is_regular_file(outputLocation))
 //        return std::printf("Output file exists and no overwritting.");
 
@@ -123,7 +123,7 @@ int main() {
 //    if(output.fail())
 //        return std::printf("Failed to open output file.");
 
-//    preparePowers<96>(loadPrimes(primes), output);
+//    preparePowers<96>(loadPrimes(smooth), output);
 
     auto primesL = loadPrimes(primes);
     std::cout << primesL.back() << std::endl;

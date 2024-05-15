@@ -1,7 +1,7 @@
 #ifndef DIVISORSELECTIONPROGRESSIVE_PRIMES_KERNEL_H
 #define DIVISORSELECTIONPROGRESSIVE_PRIMES_KERNEL_H
 
-using Uns = Aeu<512>;
+using Uns = Aeu<2048>;
 
 __device__
 Uns countE(unsigned B, const unsigned* const primes, std::size_t primesCount) {

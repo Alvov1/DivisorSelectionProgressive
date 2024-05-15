@@ -57,7 +57,7 @@ int main() {
                   std::dec << " (" << numberAndFactor.first.bitCount() << " bits)." << Timer::endl;
 
     const auto values = loadPowers(powers);
-    Timer::out << "Loaded table of primes with " << values.size() << " elements." << Timer::endl;
+    Timer::out << "Loaded table of smooth with " << values.size() << " elements." << Timer::endl;
 
     kernel(values, numberAndFactor);
     if (numberAndFactor.second != 0 && numberAndFactor.first % numberAndFactor.second == 0)

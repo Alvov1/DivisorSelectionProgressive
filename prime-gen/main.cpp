@@ -6,7 +6,7 @@
 int main(int argc, const char* const* const argv) {
     using namespace std::string_literals;
     if(argc < 3)
-        return std::printf("Usage: %s <primes location> <options>\nOptions: boarder 32 bit number | full\n", argv[0]);
+        return std::printf("Usage: %s <smooth location> <options>\nOptions: boarder 32 bit number | full\n", argv[0]);
 
     try {
         std::ofstream output(argv[1], std::ios::binary);
