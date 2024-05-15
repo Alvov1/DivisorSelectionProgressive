@@ -63,7 +63,7 @@
 26. 0x7132c924105f171e0c29871283f3 = 0x5ab5ff87f637 * 0x5ab5ff87f637 (111 bits) --- Smooths
 27. 0x765f7a2bc7ca8af976d182d0fb7 = 0x44e0590ac2d * 0x44e0590ac2d (107 bits)    --- Smooths
 28. 0x611f76e8be1106968a81b6298ecd = 0x777d07d9b681 * 0x777d07d9b681 (111 bits) --- Smooths
-29. 0x21d0e374f408fc068563d6125f7d = 0x1301113c62c1 * 0x1301113c62c1 (110 bits) --- Smooths
+29. 0x21d0e374f408fc068563d6125f7d = 0x1301113c62c1 * 0x1301113c62c1 (110 bits) --- Smooths |--------------| 2048 bit; 256x256; 64 iterations; 19428 ms
 
 
 

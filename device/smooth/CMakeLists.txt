@@ -18,6 +18,6 @@ FetchContent_Declare(STDStreamTimer
 )
 FetchContent_MakeAvailable(STDStreamTimer)
 
-add_executable(DivisorPrimes smooth.cu)
-set_property(TARGET DivisorPrimes PROPERTY CUDA_ARCHITECTURES 75)
-target_include_directories(DivisorPrimes PRIVATE ${AesiMultiprecision_SOURCE_DIR} ${STDStreamTimer_SOURCE_DIR})
+add_executable(PrimesSmoothes smooth.cu)
+set_property(TARGET PrimesSmoothes PROPERTY CUDA_ARCHITECTURES 75)
+target_include_directories(PrimesSmoothes PRIVATE ${AesiMultiprecision_SOURCE_DIR} ${STDStreamTimer_SOURCE_DIR})

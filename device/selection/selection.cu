@@ -5,7 +5,7 @@
 #include <thrust/host_vector.h>
 #include "Aeu.h"
 #include "Timer.h"
-#include "smooth-kernel.h"
+#include "selection-kernel.h"
 
 using primeType = unsigned;
 thrust::host_vector<primeType> loadPrimes(const std::filesystem::path& fromLocation) {

@@ -4,6 +4,7 @@
 #include "../../host/simple-circular-buffer.h"
 
 using Uns = Aeu<2048>;
+using primeType = unsigned;
 
 __global__
 void kernel(Uns* const numberAndFactor, const unsigned* const primes, std::size_t primesCount, std::size_t iterationsPerPrime) {
@@ -19,15 +20,16 @@ void kernel(Uns* const numberAndFactor, const unsigned* const primes, std::size_
             return false;
         factor->tryAtomicSet(candidate); return true;
     };
-
-    const std::size_t iterationsPerPrime = 2048;
+    constexpr auto getNumbersBitness = [] (primeType prime) {
+        return (sizeof(primeType) * 8 - __clz(prime));
+    };
 
     /* Average amount of prime number selected for the thread. */
     std::size_t numbersPerThread = primesCount / threadsCount;
 
     /* Power base, containing the smallest primes in some powers. */
-    constexpr Uns base = Uns::power2(9) * 2187 * 3125 * 2401, a = 3; // 2^9 * 3^7 * 5^5 * 7^4
-    constexpr auto baseBitness = base.bitCount();
+    constexpr Uns base = Uns::power2(9) * 2187 * 3125 * 2401; // 2^9 * 3^7 * 5^5 * 7^4
+    const Uns a = 3;
 
     /* Approximate number of primes required to overflow testing bitness
      * Ex: testing bitness 2048 -> 86 numbers of bitness 24. */
