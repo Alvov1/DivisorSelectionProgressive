@@ -16,7 +16,7 @@ void kernel(UBase* const numberAndFactor, const unsigned* const primes, std::siz
             bMax = 2000000000U;
 
     const UBase n = numberAndFactor[0]; UBase* const factor = numberAndFactor + 1;
-    const auto checkFactor = [&n, &factor] (const UCalculations& candidate) {
+    const auto checkFactor = [&n, &factor] (const UBase& candidate) {
         if(candidate < 2 || candidate >= n)
             return false;
         factor->tryAtomicSet(candidate); return true;
