@@ -60,7 +60,7 @@ void kernel(const std::vector<primeType>& primes, std::pair<Uns, Uns>& numberAnd
     constexpr auto approximateNumberOfPrimesPerTestingBitness = static_cast<std::size_t>(Uns::getBitness() / (sizeof(primeType) * 4));
 
     /* Shift in prime table according to which we're taking primes. */
-    const auto primesShift = static_cast<std::size_t>(primesCount / 60);
+    const auto primesShift = static_cast<std::size_t>(primesCount / 30);
 
     for(std::size_t i = 0; i < numbersPerThread; ++i) {
         const std::size_t currentNumberIndex = (threadId + i * numbersPerThread) % primesCount;
@@ -83,6 +83,8 @@ void kernel(const std::vector<primeType>& primes, std::pair<Uns, Uns>& numberAnd
             } else {
                 /* If the number's overflowed. */
                 /* 1. Check. */
+                buffer.introspect();
+
                 if(checkFactor(Uns::gcd(Uns::powm(a, e, n) - 1, n))) {
                     std::cout << "Thread " << threadId << ". Found factor for power " << e << ", a = " << a << std::endl;
                     return;

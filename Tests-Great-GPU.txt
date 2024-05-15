@@ -45,34 +45,30 @@
 11. 0xf112605cab14a78c6ad210b = 0xd75ebdb * 0x11e8ce4f98862be91; (92 bits).
 12. 0x3010d9403a4d848c0e776da8f = 0x2808b7529 * 0x1335c0e8bc76c50f7; (98 bits).
 
-13. 0xc5c8f3c384420f943cad2186cb57 = 0x9f2f2b370d * 0x13e13e079aa558532f3; (112 bits).
-14. 0x4c055f80848c0085d60cfeec15ad = 0x169c18fdb1f * 0x35cc0494f51bed41b3; (111 bits).
-15. 0x19d824f0ac1f9023a793b55cda898d09 = 0x61703ba69797 * 0x43e699ae75d0bb0c945f; (125 bits).
-16. 0x479fa5645f8826dd0b6c4b418693033 = 0x4947cf9e990b * 0xfa36361dde80d64ce79; (123 bits).
-17. 0x96a22c4148c009889db220d5bcaa5f245 = 0x37bc883add0db * 0x2b3ddc482aaf72e9ea35f; (132 bits).
-18. 0xf0245f15e37be24e4a0a649fbe281902b = 0x65fed9a46e287 * 0x25abc6ec37b19211d3a3d; (132 bits).
-19. 0x11d2d87503090e6ea7e99ff2c6156418a41efd = 0x44cc3d820bab71b * 0x425291c94ec8b34e8deebc7; (149 bits).
-20. 0x48d11cdefa0515cb1c4654d4dc2e7730e490d = 0x4febd47f0fed6c5 * 0xe93e5e04135896ace88da9; (147 bits).
+13. 0xc5c8f3c384420f943cad2186cb57 = 0x9f2f2b370d * 0x13e13e079aa558532f3;                      (112 bits).     |--------------| --- 64
+14. 0x4c055f80848c0085d60cfeec15ad = 0x169c18fdb1f * 0x35cc0494f51bed41b3;                      (111 bits).     |--------------| --- 64
+15. 0x19d824f0ac1f9023a793b55cda898d09 = 0x61703ba69797 * 0x43e699ae75d0bb0c945f;               (125 bits).     |--------------| --- 64
+16. 0x479fa5645f8826dd0b6c4b418693033 = 0x4947cf9e990b * 0xfa36361dde80d64ce79;                 (123 bits).     |--------------| --- 64
+17. 0x96a22c4148c009889db220d5bcaa5f245 = 0x37bc883add0db * 0x2b3ddc482aaf72e9ea35f;            (132 bits).     |--------------| --- 64
+18. 0xf0245f15e37be24e4a0a649fbe281902b = 0x65fed9a46e287 * 0x25abc6ec37b19211d3a3d;            (132 bits).     |--------------| ---
+19. 0x11d2d87503090e6ea7e99ff2c6156418a41efd = 0x44cc3d820bab71b * 0x425291c94ec8b34e8deebc7;   (149 bits).     |--------------| ---
+20. 0x48d11cdefa0515cb1c4654d4dc2e7730e490d = 0x4febd47f0fed6c5 * 0xe93e5e04135896ace88da9;     (147 bits).     |--------------| ---
 
-20. 0x98eabc06adf1e27e822a363cd81d = 0x4e4f9da64f7f * 0x4e4f9da64f7f (112 bits) Smooths 2048 bit; 256x256; 64 iterations; 30058 ms
-21. 0xf66d2a55999de8fc226080dfa7b7 = 0x7c14f08c6323 * 0x7c14f08c6323 (112 bits) --- Smooths
-22. 0x92a9fb9222042978287ff9da2935 = 0x6d38b29c656d * 0x6d38b29c656d (112 bits) --- Smooths
-23. 0x1e7e97c7b37b44e07023a37c150d = 0x6d2992638faf * 0x6d2992638faf (109 bits) --- Smooths
-24. 0x66ee64b74c3d88a79c57064d8365 = 0x3e9c7bb357c3 * 0x3e9c7bb357c3 (111 bits) --- Smooths
-25. 0x10982438c32b1d9f1b5d3c7e11d9 = 0x2a20d92613fb * 0x2a20d92613fb (109 bits) --- Smooths
-26. 0x7132c924105f171e0c29871283f3 = 0x5ab5ff87f637 * 0x5ab5ff87f637 (111 bits) --- Smooths
-27. 0x765f7a2bc7ca8af976d182d0fb7 = 0x44e0590ac2d * 0x44e0590ac2d (107 bits)    --- Smooths
-28. 0x611f76e8be1106968a81b6298ecd = 0x777d07d9b681 * 0x777d07d9b681 (111 bits) --- Smooths
-29. 0x21d0e374f408fc068563d6125f7d = 0x1301113c62c1 * 0x1301113c62c1 (110 bits) --- Smooths |--------------| 2048 bit; 256x256; 64 iterations; 19428 ms
+20. 0x98eabc06adf1e27e822a363cd81d = 0x4e4f9da64f7f * 0x4e4f9da64f7f (112 bits) Smooths 2048 bit; 256x256; 64 iterations; 30058 ms |--------------|
+21. 0xf66d2a55999de8fc226080dfa7b7 = 0x7c14f08c6323 * 0x7c14f08c6323 (112 bits) --- |--------------|
+22. 0x92a9fb9222042978287ff9da2935 = 0x6d38b29c656d * 0x6d38b29c656d (112 bits) --- |--------------|
+23. 0x1e7e97c7b37b44e07023a37c150d = 0x6d2992638faf * 0x6d2992638faf (109 bits) --- |--------------|
+24. 0x66ee64b74c3d88a79c57064d8365 = 0x3e9c7bb357c3 * 0x3e9c7bb357c3 (111 bits) --- |--------------|
+25. 0x10982438c32b1d9f1b5d3c7e11d9 = 0x2a20d92613fb * 0x2a20d92613fb (109 bits) --- |--------------|
+26. 0x7132c924105f171e0c29871283f3 = 0x5ab5ff87f637 * 0x5ab5ff87f637 (111 bits) --- |--------------| ---
+27. 0x765f7a2bc7ca8af976d182d0fb7 = 0x44e0590ac2d * 0x44e0590ac2d (107 bits)    --- |--------------| ---
+28. 0x611f76e8be1106968a81b6298ecd = 0x777d07d9b681 * 0x777d07d9b681 (111 bits) --- |--------------| ---
+29. 0x21d0e374f408fc068563d6125f7d = 0x1301113c62c1 * 0x1301113c62c1 (110 bits) --- |--------------| 2048 bit; 256x256; 64 iterations; 19428 ms
 
-
-
-
-
-21. 0x654b61bc9fc50e16081903f38d508e067ca5b = 0x1a55c8022a999 * 0x3d8abab9f680802af13075413; (147 bits).
-22. 0x1b1f9030b9b6055fe93391bb8e89b803cff = 0x565bb88de689 * 0x5067756e4c889272e57a547; (137 bits).
-23. 0x545e18a29cdbb180605b5ab2e8a7012948e49357 = 0x6567934a6bdb75 * 0xd4fd44ea8b55228cdc25daf61b; (159 bits).
-24. 0x4f85117a8f716faa973cd063329f196f7a13665d = 0x60d06ce160a1a7 * 0xd244fff64e310238193154905b; (159 bits).
+21. 0x654b61bc9fc50e16081903f38d508e067ca5b = 0x1a55c8022a999 * 0x3d8abab9f680802af13075413; (147 bits).                            |--------------| ---
+22. 0x1b1f9030b9b6055fe93391bb8e89b803cff = 0x565bb88de689 * 0x5067756e4c889272e57a547; (137 bits).                                 |--------------| ---
+23. 0x545e18a29cdbb180605b5ab2e8a7012948e49357 = 0x6567934a6bdb75 * 0xd4fd44ea8b55228cdc25daf61b; (159 bits).                       |--------------| ---
+24. 0x4f85117a8f716faa973cd063329f196f7a13665d = 0x60d06ce160a1a7 * 0xd244fff64e310238193154905b; (159 bits).                       |--------------| ---
 25. 0xed89ea397186a8038b64114f9f0c94f11ace6e7063 = 0xb04d22a33e3f129 * 0x158eb9e16c583aac2ced3412caab; (168 bits).
 26. 0x2f91450a9c803ff056e92986cc8e51a380d02a72acb = 0x1360fab38950156f * 0x274615324589e100f10ec9ddaa65; (170 bits).
 27. 0x2fb4c98fd26ae6562b9639c86da5ab7e9b160fa69166cd = 0x6c90288e04b85b003 * 0x707eabd2e4fd40f47b855832b5cef; (182 bits).
