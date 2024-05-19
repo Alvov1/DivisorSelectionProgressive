@@ -115,5 +115,10 @@ int main() {
     if (numberAndFactor.second != 0 && numberAndFactor.first % numberAndFactor.second == 0)
         Timer::out << "Found factor: " << std::hex << std::showbase << numberAndFactor.second << Timer::endl;
     else Timer::out << "Factor is not fount or incorrect" << Timer::endl;
+
+
+
+
+
     return 0;
 }

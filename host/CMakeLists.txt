@@ -27,3 +27,4 @@ add_executable(DivisorPreparations ../powers/generate.cpp)
 target_include_directories(DivisorPreparations PRIVATE ${AesiMultiprecision_SOURCE_DIR} ${STDStreamTimer_SOURCE_DIR})
 
 add_executable(CircularBuffer main.cpp)
+target_include_directories(CircularBuffer PRIVATE ${AesiMultiprecision_SOURCE_DIR} ${STDStreamTimer_SOURCE_DIR})
