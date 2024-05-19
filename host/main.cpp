@@ -30,7 +30,7 @@ std::vector<primeType> loadPrimes(const std::filesystem::path& fromLocation, std
 //}
 
 using ValuePrecision = Aeu128;
-using TestPrecision = Aeu<ValuePrecision::getBitness() * 2 + 32>;
+using TestPrecision = Aeu<ValuePrecision::getBitness() * 4 + 32>;
 
 bool checkValue(const TestPrecision& value) {
     return false; }
@@ -38,7 +38,7 @@ bool checkValue(const TestPrecision& value) {
 
 
 void processPrime(const std::vector<primeType>& primes, std::size_t threadId, std::size_t threadsCount) {
-    /* Using base with some smallest primes: 2^9 * 3^6 * 5^5 * * 11^2 * 13^2 *
+    /* Using base with some smallest primes: 2^9 * 3^6 * 5^5 * 7^4 * 11^2 * 13^2 *
      * 17 * 19 * 21 = 57267964353600000 (56 bit). */
     constexpr TestPrecision startingBase = TestPrecision(512) * 729 * TestPrecision(3125) * 2401 * 121 * 169;
     constexpr auto stackSizeTestPrecision = TestPrecision::getBitness() / 8;
@@ -78,6 +78,5 @@ void processPrime(const std::vector<primeType>& primes, std::size_t threadId, st
 int main() {
     const std::filesystem::path primesLocation = "../../all-primes-32-bit.bin";
     const auto primes = loadPrimes(primesLocation, 1024);
-
     processPrime(primes, 4, 7);
 }
