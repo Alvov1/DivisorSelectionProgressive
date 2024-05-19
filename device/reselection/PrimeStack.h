@@ -7,8 +7,8 @@
     #include <cuda/std/array>
 #else
 #define gpu
-    #include <utility>
-    #include <array>
+#include <utility>
+#include <array>
 #endif
 #include <array>
 
@@ -31,15 +31,21 @@ public:
     gpu constexpr PrimeStack() noexcept = default;
 
     gpu constexpr void push(Elem value, std::size_t index) noexcept {
+        if(stackPosition >= size) return;
         values[stackPosition].first = value;
         values[stackPosition++].second = index;
     }
 
     gpu constexpr std::size_t pop() noexcept {
+        if(stackPosition == 0) return 0;
         return values[--stackPosition].second;
     }
 
-    gpu constexpr const auto& top() const noexcept { return values[stackPosition - 1]; }
+    gpu constexpr const auto& top() const noexcept {
+        if(stackPosition > 0)
+            return values[stackPosition - 1];
+        else return values[0];
+    }
 
     [[nodiscard]]
     gpu std::size_t getSize() const noexcept { return stackPosition; }
@@ -48,9 +54,8 @@ public:
     gpu constexpr bool isEmpty() const noexcept { return stackPosition == 0; }
 
     template <typename ReturnType> [[nodiscard]]
-    constexpr ReturnType unite() const noexcept {
-        introspect();
-        ReturnType value = 1;
+    gpu constexpr ReturnType unite() const noexcept {
+        ReturnType value = 1u;
         for(std::size_t i = 0; i < stackPosition; ++i)
             value *= values[i].first;
         return value;

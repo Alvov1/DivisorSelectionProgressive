@@ -38,67 +38,28 @@ void kernel(ValuePrecision* const numberAndFactor,
     const std::size_t threadId = blockDim.x * blockIdx.x + threadIdx.x,
             threadsCount = gridDim.x * blockDim.x;
 
-
-
-
-
-
     constexpr ValuePrecision a = ValuePrecision(2u) * 1u;
     const ValuePrecision n = numberAndFactor[0];
     ValuePrecision& factor = numberAndFactor[1];
 
-
-
-
-    /* Using base with some smallest primes: 2^9 * 3^6 * 5^5 * 7^4 * 11^2 * 13^2 *
-      * 17 * 19 * 21 * 23 * 27 * 29 * 31 * 37. */
     constexpr ValuePrecision startingBase =
             ValuePrecision(512u) * 729u
             * 3125u * 2401u * 121u * 169u
             * 17u * 19u * 21u * 23u
             * 27u * 29u * 31u * 37u;
-    constexpr auto stackSize = 10,
-            primesPositionShift = 1;
 
-    for(std::size_t i = threadId; i < primesCount; i += threadsCount) {
-        /* Storing in stack: prime number with its position in array. */
-        PrimeStack<primeType, stackSize + 2> stack {};
-        std::size_t primesPosition = i;
+    const ValuePrecision multiplication = startingBase * primes[threadId];
+    for(std::size_t i = threadId + 1; i < primesCount; ++i) {
+        const auto tMult = multiplication * primes[i];
+        const auto decPowm = ValuePrecision::powm(a, test, n) - 1;
+        const auto candidate = ValuePrecision::gcd(decremented, n) > 1;
+        if(candidate > 1) {
+            char buffer[512] {};
+            candidate.getString<10>(buffer, 512, true, false);
 
-        do {
-            if (stack.getSize() >= stackSize) {
-                const ValuePrecision test = stack.unite<ValuePrecision>() * startingBase * primes[i];
-
-                const auto powm = ValuePrecision::powm(a, test, n);
-                const auto decremented = powm - 1u;
-                const auto gcd = ValuePrecision::gcd(decremented, n);
-
-                if(gcd > 1u) {
-                    char buffer[512] {};
-                    gcd.getString<10>(buffer, 512, true, false);
-                    printf("Thread %u. Found factor for power %s, a = 2.\n", threadId, buffer);
-
-                    factor.tryAtomicSet(gcd);
-                    return;
-                }
-            }
-
-            if (stack.getSize() >= stackSize || primesPosition >= primesCount) {
-                std::size_t checkedLast = primesCount;
-                do {
-                    primesPosition = stack.pop();
-                    checkedLast -= primesPositionShift;
-                } while (primesPosition == checkedLast);
-
-                primesPosition += primesPositionShift;
-                stack.push(primes[primesPosition], primesPosition);
-                primesPosition += primesPositionShift;
-            } else {
-                stack.push(primes[primesPosition], primesPosition);
-                primesPosition += primesPositionShift;
-            }
-
-        } while (!stack.isEmpty());
+            printf("Thread %u. Found number for power %s.\n", threadId, buffer);
+            return;
+        }
     }
 }
 

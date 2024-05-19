@@ -3,73 +3,1091 @@ BASE: 2^9 * 3^6 * 5^5 * 7^4 * 11^2 * 13^2 * 17 * 19 * 21 * 23 * 27 * 29 * 31 * 3
 
 0x66ee64b74c3d88a79c57064d8365 = 0x3e9c7bb357c3 * 0x3e9c7bb357c3 (111 bits)
 BASE * 83 × 257 × 76840783
+22 54 4495744
 
 0x765f7a2bc7ca8af976d182d0fb7 = 0x44e0590ac2d * 0x44e0590ac2d (107 bits)
 BASE * 121063 × 250619
+11396 22080
 
 0x611f76e8be1106968a81b6298ecd = 0x777d07d9b681 * 0x777d07d9b681 (111 bits)
 BASE * 382519 × 2683259
+32481 195495
 
 0xc5c8f3c384420f943cad2186cb57 = 0x9f2f2b370d * 0x13e13e079aa558532f3;                      (112 bits).
 BASE * 498317173;                     2 × 3 × 739 × 997 × 6833 × 70199 × 2767067
+26272001
 
 0x19d824f0ac1f9023a793b55cda898d09 = 0x61703ba69797 * 0x43e699ae75d0bb0c945f;               (125 bits).
 BASE * 1051 × 61779353;         2 × 5 × 7 × 107 × 11732521 × 3648894518327
+176 3661285
 
 0x479fa5645f8826dd0b6c4b418693033 = 0x4947cf9e990b * 0xfa36361dde80d64ce79;                 (123 bits).
 BASE * 137201 × 13982401;              2^3 × 3 × 19 × 161950609157742451271
+12775 909020
 
 0xf0245f15e37be24e4a0a649fbe281902b = 0x65fed9a46e287 * 0x25abc6ec37b19211d3a3d;            (132 bits).
 BASE * 994303 × 39230539;                 2^2 × 26209 × 227753711 × 119209526273
+78082 2389605
 
 0x48d11cdefa0515cb1c4654d4dc2e7730e490d = 0x4febd47f0fed6c5 * 0xe93e5e04135896ace88da9;     (147 bits).
 BASE * 97 × 331 × 881 × 6997 × 151549;   2^3 × 115462902427 × 305264971532783
+24 66 151 899 13981
 
 0x1b1f9030b9b6055fe93391bb8e89b803cff = 0x565bb88de689 * 0x5067756e4c889272e57a547; (137 bits).
 BASE * 1933 × 11391823;               2 × 3^2 × 7477 × 11555749992877730097023
+294 750612
 
 0x545e18a29cdbb180605b5ab2e8a7012948e49357 = 0x6567934a6bdb75 * 0xd4fd44ea8b55228cdc25daf61b; (159 bits).
 BASE * 131 × 1637 × 652450049;          2 × 599 × 6467621 × 30707689 × 70923298052231
+31 258 33914092
 
 0x2fb4c98fd26ae6562b9639c86da5ab7e9b160fa69166cd = 0x6c90288e04b85b003 * 0x707eabd2e4fd40f47b855832b5cef; (182 bits).
 BASE * 83 × 919 × 20771 × 272416271;      2 × 7 × 2399 × 123759511 × 29177061499 × 301018783627
+22 156 2339 14835641
 
 0x34e31a64d4265985313609d426812922d2199bd6ba203b = 0x363cf236e514b2f13 * 0xf99fa4f5376befd48b51d94446739; (182 bits).
 BASE * 571 × 4159 × 60887 × 14415613;      2^3 × 37 × 167 × 1638766247334258524415027970669
+104 572 6133 935367
 
 0x4d5371c3faff1aeffb0c662a83ebba09d951f8685de52893bbb6d89e0f = 0x5e76d8f0a782d874a706931 * 0xd18e0cd24ed5dc95867c30b49adf2dbab3f; (231 bits).
 BASE * 3659 × 4273 × 38723 × 63907 × 327953209;    2 × 3 × 5 × 571 × 21157 × 61297 × 395651 686169 × 129805628207080783
-
-
-0x360d1291dd5479fc94d10b9bbd466352d78c61d305daab27349b9942d2d = 0x18570cbb26d99 * 0x2387d7c4c27552a6caea862149d6bbd30f8cdef6ae030b5; (234 bits).
-BASE * 1297 × 1965132343;                2^2 × 3 × 11 × 3301 × 5417 × 137869 × 19231237 × 5695251507767 × 1527696761602395598567
+510 586 4080 6407 17681138
 
 0x5ee1aa56fb23b6f2e13c7bb6d6a5b5d0f2d2f7a6ed6eef77724d51a7b49 = 0x23b7da80d4e33 * 0x2a809596cbea7479f78e633c1447929080cea9740731c93; (235 bits).
 BASE * 199 × 317 × 47432659;           2 × 5 × 6741497089 × 1857881445809 × 520040449147050758786092797282053
+45 65 2856137
 
 0x1db1f51136a494b795bc86acf1bcae01cee0012b44b8ecd45e83601a201 = 0x24f37e0c20257 * 0xcdbadf3629157685b7d0c63336439ee20095cc3ede3767; (233 bits).
 BASE * 1338413 × 80948029;                     2 × 5 × 31 × 88395599 × 125683319 × 1321894245460693 × 4328227763751779227597
+102733 4721538
 
 0x8e188da03bc3d6cb39e49a5e85604bf060126fee760f727af30dc18bca36e0f9 = 0xc9b7866a7d4dca8deed3 * 0xb455ae18190c39f3a82cc55dc4c1dae0e4c66966c983; (256 bits).
 BASE * 434521 × 317268793 × 1151628979;        2 × 29 × 1163296844640950153439952206769043316253098010222069
+36525 17135889 58138425
 
 0x478763481ea22a363276b141b61121964c42e2f9ff8968875fa1aba2c07159cab4603e9 = 0x105cdb8d30b7397a28e3b967 * 0x45f177190b99c05602e75390c1814d9c6c1e0cddf982f62f; (283 bits).
 BASE * 2927 × 2973583 × 8835109 × 889915627;              2 × 7 × 5449 × 14253308597351 × 169986629866832507 × 9278751653007206953949
+422 215037 592181 45520282
 
 0xb150b8a38e1c8c6cd63cb87edb796fa32f9977361361d85e501ffb3389ac27969d4258b = 0xa5b3f2de167d2bea72c249f81 * 0x111f0bc643cacc9133208b02737345e634a1d841cc6cb0b; (284 bits).
 BASE * 15937 × 17021 × 554707 × 810259 × 52577587;           2 × 5 × 383 × 433 × 727 × 21489313401508680397 × 1012725303778228546869165197
-
-0xec56e76ad38634ec59407cd675d8be3f7029af125a597847cb47810899abf325ad45f7b3ced = 0x990c01f47472d1c3247d63 * 0x18b529778519140e3f9fcb98a7e64d49e3b1845ef0efd1cd0d556f; (300 bits).
-BASE * 9616471 × 573852823 × 2394858839;           2 × 1733 × 35114501 × 1172793283 × 71208896391435426663327987555448 240265505989
+1857 1961 45676 64701 3146256
 
 0x54a33718eacd8ad248eadd784e4b0ae09e8673fa1593982f795a167b6420257ca764c2bcb68c3a883 = 0x28ad9c959c30ccee957f971 * 0x214a6528fe3033dceb8d1d8f2e9dc7674fa9e931b23ba8e7e2a58a8e733; (323 bits).
 BASE * 97 × 24216209 × 51567629 × 405981283;                     2 × 3 × 7 × 495359 × 3170183 × 217724364798371355944428415498073405921912898689642429917
+24 1519847 3089463 21638243
 
 0x15d318e1e425586ce40ce517fd8f528e133da269dd98ee8a3c0f65ff3133b543604468b25a0565b9b341a691 = 0x2bee5dca25c99d3af8a7b13 * 0x7f2db74a28508e27d9038d95345a8465f3e4992ebb9b2c74049a5fcafe2ad084b; (349 bits).
 BASE * 67 × 211 × 2617 × 15616411 × 117908183;      2 × 32 × 34159 × 1496908377017360119279656013246669806070026199384844449272015474748826899
+18 46 379 1007963 6729290
 
 0xce586144cc86c60a3c723c3fb33219415f48874bb499a2591f97aa63901fcdb08da311a19d9687d230fe26c700bf7ee0f7d1 = 0xcf4895f9f73016abf8cdb7 * 0xfed75712b994d5f2320d06582e6291f339132d38e427b34ae953c11feb4fe7e401518f626966b7; (400 bits).
-BASE * 792 × 137 × 359 × 601 × 24671 × 63287041;      2 × 3 × 1579 × 113489 × 6579211 × 7406540556168973 × 158530163134385749373576339480760251299717913925581059394457701
+BASE * 79^2 × 137 × 359 × 601 × 24671 × 63287041;      2 × 3 × 1579 × 113489 × 6579211 × 7406540556168973 × 158530163134385749373576339480760251299717913925581059394457701
+21 21 32 71 109 2730 3745306
 
 0x210d7282437b91b2f454422689510eadd390f11fa5c007b5a1c70a73193c3da8696690c7f743d8f4ca68acbf658a3016d80eee446f569031 = 0x173804e52d10247efa2b611 * 0x16c6bff112c5e3d1c154dbcdc53f8c3d2015cabcb420c6f30c647ccac9a5a308965ab628a29c30315fac139821; (446 bits).
 BASE * 79 × 173 × 127681 × 6779189 × 474561683;              25 × 32 × 179 × 811 × 61493 × 2779650248899541 × 29238878080723751949013756486632228831573362611871890910320855617722057753647313
+21 39 11958 462565 25083915
+
+HERE LAST FACTOR IS LONG
+0x360d1291dd5479fc94d10b9bbd466352d78c61d305daab27349b9942d2d = 0x18570cbb26d99 * 0x2387d7c4c27552a6caea862149d6bbd30f8cdef6ae030b5; (234 bits).
+BASE * 1297 × 1965132343;                2^2 × 3 × 11 × 3301 × 5417 × 137869 × 19231237 × 5695251507767 × 1527696761602395598567
+210 96593623
+
+0xec56e76ad38634ec59407cd675d8be3f7029af125a597847cb47810899abf325ad45f7b3ced = 0x990c01f47472d1c3247d63 * 0x18b529778519140e3f9fcb98a7e64d49e3b1845ef0efd1cd0d556f; (300 bits).
+BASE * 9616471 × 573852823 × 2394858839;           2 × 1733 × 35114501 × 1172793283 × 71208896391435426663327987555448 240265505989
+640865 30029457 116580523
+
+
+151549 -> 0
+250619 -> 0
+2683259 -> 0
+11391823 -> 0
+13982401 -> 0
+14415613 -> 0
+39230539 -> 1
+47432659 -> 1
+52577587 -> 1
+61779353 -> 1
+63287041 -> 1
+76840783 -> 2
+80948029 -> 2
+117908183 -> 3
+272416271 -> 7
+327953209 -> 8
+405981283 -> 10
+474561683 -> 12
+498317173 -> 12
+652450049 -> 16
+889915627 -> 22
+1151628979 -> 28
+1965132343 -> 47
+2394858839 -> 57
+
+
+
+11396 22080     // разница 10684 = 2^2 × 2671
+32481 195495    // разница 163014 = 2 × 3 × 101 × 269
+12775 909020    // разница 896245 = 5 × 7 × 29 × 883
+176 3661285     // разница 3661109 = 277 × 13217
+102733 4721538  // разница 4618805 = 5 × 19 × 48619
+210 96593623    // разница 96593413 = 7 × 47 × 331 × 887
+78082 2389605   // разница 2311523 = 23 × 100501
+294 750612      // разница 750318 = 2 × 3 × 125053
+
+
+
+
+26272001
+
+
+
+24 66 151 899 13981
+22 54 4495744
+31 258 33914092
+22 156 2339 14835641
+104 572 6133 935367
+510 586 4080 6407 17681138
+45 65 2856137
+
+36525 17135889 58138425
+422 215037 592181 45520282
+1857 1961 45676 64701 3146256
+24 1519847 3089463 21638243
+18 46 379 1007963 6729290
+21 32 71 109 2730 3745306
+21 39 11958 462565 25083915
+
+640865 30029457 116580523
+
+
+
+
+
+
+[==========] Running 128 tests from 30 test suites.
+[----------] Global test environment set-up.
+[----------] 13 tests from Signed_Bitwise
+[ RUN      ] Signed_Bitwise.AND
+/content/Aesi-Multiprecision/test/bitwise/and/signed.cpp:4: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Bitwise.AND (0 ms)
+[ RUN      ] Signed_Bitwise.DifferentPrecisionAND
+/content/Aesi-Multiprecision/test/bitwise/and/signed.cpp:6: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Bitwise.DifferentPrecisionAND (0 ms)
+[ RUN      ] Signed_Bitwise.GetSetBit
+/content/Aesi-Multiprecision/test/bitwise/manipulations/signed.cpp:4: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Bitwise.GetSetBit (0 ms)
+[ RUN      ] Signed_Bitwise.GetSetByte
+/content/Aesi-Multiprecision/test/bitwise/manipulations/signed.cpp:6: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Bitwise.GetSetByte (0 ms)
+[ RUN      ] Signed_Bitwise.GetSetBlock
+/content/Aesi-Multiprecision/test/bitwise/manipulations/signed.cpp:8: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Bitwise.GetSetBlock (0 ms)
+[ RUN      ] Signed_Bitwise.CountBitsBytes
+/content/Aesi-Multiprecision/test/bitwise/manipulations/signed.cpp:10: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Bitwise.CountBitsBytes (0 ms)
+[ RUN      ] Signed_Bitwise.NOT
+[       OK ] Signed_Bitwise.NOT (3 ms)
+[ RUN      ] Signed_Bitwise.OR
+/content/Aesi-Multiprecision/test/bitwise/or/signed.cpp:4: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Bitwise.OR (0 ms)
+[ RUN      ] Signed_Bitwise.DifferentPrecisionOR
+/content/Aesi-Multiprecision/test/bitwise/or/signed.cpp:6: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Bitwise.DifferentPrecisionOR (0 ms)
+[ RUN      ] Signed_Bitwise.LeftShift
+/content/Aesi-Multiprecision/test/bitwise/shift/signed.cpp:4: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Bitwise.LeftShift (0 ms)
+[ RUN      ] Signed_Bitwise.RightShift
+/content/Aesi-Multiprecision/test/bitwise/shift/signed.cpp:6: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Bitwise.RightShift (0 ms)
+[ RUN      ] Signed_Bitwise.XOR
+/content/Aesi-Multiprecision/test/bitwise/xor/signed.cpp:4: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Bitwise.XOR (0 ms)
+[ RUN      ] Signed_Bitwise.DifferentPrecisionXOR
+/content/Aesi-Multiprecision/test/bitwise/xor/signed.cpp:6: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Bitwise.DifferentPrecisionXOR (0 ms)
+[----------] 13 tests from Signed_Bitwise (4 ms total)
+
+[----------] 7 tests from Signed_Addition
+[ RUN      ] Signed_Addition.Basic
+/content/Aesi-Multiprecision/test/arithmetic/addition/signed.cpp:4: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Addition.Basic (0 ms)
+[ RUN      ] Signed_Addition.MixedMultiplication
+/content/Aesi-Multiprecision/test/arithmetic/addition/signed.cpp:6: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Addition.MixedMultiplication (0 ms)
+[ RUN      ] Signed_Addition.MixedMultiplicationAssignment
+/content/Aesi-Multiprecision/test/arithmetic/addition/signed.cpp:8: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Addition.MixedMultiplicationAssignment (0 ms)
+[ RUN      ] Signed_Addition.DifferentPrecision
+/content/Aesi-Multiprecision/test/arithmetic/addition/signed.cpp:10: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Addition.DifferentPrecision (0 ms)
+[ RUN      ] Signed_Addition.Huge
+/content/Aesi-Multiprecision/test/arithmetic/addition/signed.cpp:12: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Addition.Huge (0 ms)
+[ RUN      ] Signed_Addition.HugeAssignment
+/content/Aesi-Multiprecision/test/arithmetic/addition/signed.cpp:14: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Addition.HugeAssignment (0 ms)
+[ RUN      ] Signed_Addition.Increment
+/content/Aesi-Multiprecision/test/arithmetic/addition/signed.cpp:16: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Addition.Increment (0 ms)
+[----------] 7 tests from Signed_Addition (0 ms total)
+
+[----------] 4 tests from Unsigned_Addition
+[ RUN      ] Unsigned_Addition.Basic
+[       OK ] Unsigned_Addition.Basic (0 ms)
+[ RUN      ] Unsigned_Addition.Huge
+[       OK ] Unsigned_Addition.Huge (5 ms)
+[ RUN      ] Unsigned_Addition.HugeAssignment
+[       OK ] Unsigned_Addition.HugeAssignment (5 ms)
+[ RUN      ] Unsigned_Addition.Increment
+[       OK ] Unsigned_Addition.Increment (0 ms)
+[----------] 4 tests from Unsigned_Addition (11 ms total)
+
+[----------] 6 tests from Signed_Division
+[ RUN      ] Signed_Division.Basic
+/content/Aesi-Multiprecision/test/arithmetic/division/signed.cpp:4: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Division.Basic (0 ms)
+[ RUN      ] Signed_Division.MixedMultiplication
+/content/Aesi-Multiprecision/test/arithmetic/division/signed.cpp:6: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Division.MixedMultiplication (0 ms)
+[ RUN      ] Signed_Division.MixedMultiplicationAssignment
+/content/Aesi-Multiprecision/test/arithmetic/division/signed.cpp:8: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Division.MixedMultiplicationAssignment (0 ms)
+[ RUN      ] Signed_Division.DifferentPrecision
+/content/Aesi-Multiprecision/test/arithmetic/division/signed.cpp:10: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Division.DifferentPrecision (0 ms)
+[ RUN      ] Signed_Division.Huge
+/content/Aesi-Multiprecision/test/arithmetic/division/signed.cpp:12: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Division.Huge (0 ms)
+[ RUN      ] Signed_Division.HugeAssignment
+/content/Aesi-Multiprecision/test/arithmetic/division/signed.cpp:14: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Division.HugeAssignment (0 ms)
+[----------] 6 tests from Signed_Division (0 ms total)
+
+[----------] 3 tests from Unsigned_Division
+[ RUN      ] Unsigned_Division.Basic
+[       OK ] Unsigned_Division.Basic (0 ms)
+[ RUN      ] Unsigned_Division.Huge
+[       OK ] Unsigned_Division.Huge (21 ms)
+[ RUN      ] Unsigned_Division.HugeAssignment
+[       OK ] Unsigned_Division.HugeAssignment (21 ms)
+[----------] 3 tests from Unsigned_Division (42 ms total)
+
+[----------] 6 tests from Signed_Modulo
+[ RUN      ] Signed_Modulo.Basic
+/content/Aesi-Multiprecision/test/arithmetic/modulo/signed.cpp:4: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Modulo.Basic (0 ms)
+[ RUN      ] Signed_Modulo.MixedMultiplication
+/content/Aesi-Multiprecision/test/arithmetic/modulo/signed.cpp:6: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Modulo.MixedMultiplication (0 ms)
+[ RUN      ] Signed_Modulo.MixedMultiplicationAssignment
+/content/Aesi-Multiprecision/test/arithmetic/modulo/signed.cpp:8: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Modulo.MixedMultiplicationAssignment (0 ms)
+[ RUN      ] Signed_Modulo.DifferentPrecision
+/content/Aesi-Multiprecision/test/arithmetic/modulo/signed.cpp:10: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Modulo.DifferentPrecision (0 ms)
+[ RUN      ] Signed_Modulo.Huge
+/content/Aesi-Multiprecision/test/arithmetic/modulo/signed.cpp:12: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Modulo.Huge (0 ms)
+[ RUN      ] Signed_Modulo.HugeAssignment
+/content/Aesi-Multiprecision/test/arithmetic/modulo/signed.cpp:14: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Modulo.HugeAssignment (0 ms)
+[----------] 6 tests from Signed_Modulo (0 ms total)
+
+[----------] 3 tests from Unsigned_Modulo
+[ RUN      ] Unsigned_Modulo.Basic
+[       OK ] Unsigned_Modulo.Basic (0 ms)
+[ RUN      ] Unsigned_Modulo.Huge
+[       OK ] Unsigned_Modulo.Huge (16 ms)
+[ RUN      ] Unsigned_Modulo.HugeAssignment
+[       OK ] Unsigned_Modulo.HugeAssignment (16 ms)
+[----------] 3 tests from Unsigned_Modulo (33 ms total)
+
+[----------] 6 tests from Signed_Multiplication
+[ RUN      ] Signed_Multiplication.Basic
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/signed.cpp:4: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Multiplication.Basic (0 ms)
+[ RUN      ] Signed_Multiplication.MixedMultiplication
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/signed.cpp:6: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Multiplication.MixedMultiplication (0 ms)
+[ RUN      ] Signed_Multiplication.MixedMultiplicationAssignment
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/signed.cpp:8: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Multiplication.MixedMultiplicationAssignment (0 ms)
+[ RUN      ] Signed_Multiplication.DifferentPrecision
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/signed.cpp:10: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Multiplication.DifferentPrecision (0 ms)
+[ RUN      ] Signed_Multiplication.Huge
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/signed.cpp:12: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Multiplication.Huge (0 ms)
+[ RUN      ] Signed_Multiplication.HugeAssignment
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/signed.cpp:14: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Multiplication.HugeAssignment (0 ms)
+[----------] 6 tests from Signed_Multiplication (0 ms total)
+
+[----------] 3 tests from Unsigned_Multiplication
+[ RUN      ] Unsigned_Multiplication.Basic
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/unsigned.cpp:102: Failure
+Expected equality of these values:
+  n
+    Which is: 24790110192330897482260357447253131558965271437141944960701461705220
+  "128709163784951390725303665713635814858710080377159578410726546226186371949467674936961675780"
+    Which is: 0x5c2ba854e8b0
+
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/unsigned.cpp:105: Failure
+Expected equality of these values:
+  n
+    Which is: 19070689982159135600134561348165346084536425345418193296391070670592
+  "106729060797922676183153861932607502833249486355381514108097565176327823624259258014558183168"
+    Which is: 0x5c2ba854e9a0
+
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/unsigned.cpp:108: Failure
+Expected equality of these values:
+  n
+    Which is: 20730560914688558966597822215355712652563219938276664997559341997940
+  "93130080404501258561669947749409186930953242485610083594368706379950307590820558182604660"
+    Which is: 0x5c2ba854ea88
+
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/unsigned.cpp:111: Failure
+Expected equality of these values:
+  n
+    Which is: 4960994595366308819033906005594074876912278259595446758622115376848
+  "16205669274730789727902790193940871859268070016806864513498549194237222466654079484140170960"
+    Which is: 0x5c2ba854eb70
+
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/unsigned.cpp:114: Failure
+Expected equality of these values:
+  n
+    Which is: 23621213209669942074996089551417198177545562506272758838253356991746
+  "20622238743472565517081241822835763737375583016799358342635149745806888180250334982965445890"
+    Which is: 0x5c2ba854ec58
+
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/unsigned.cpp:117: Failure
+Expected equality of these values:
+  n
+    Which is: 17962877820096904713800232753477499681133504519743050074070446236632
+  "58385126095176882914980217118697405461128585390661369434109788083211129174578768335545295832"
+    Which is: 0x5c2ba854ed40
+
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/unsigned.cpp:120: Failure
+Expected equality of these values:
+  n
+    Which is: 24707655051354362594642767118490453287648783082517780719923652681008
+  "5147774539841517437784676007911170649772239548179805724226214518619982891980299537661517104"
+    Which is: 0x5c2ba854ee28
+
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/unsigned.cpp:123: Failure
+Expected equality of these values:
+  n
+    Which is: 21236140560447164822568573648702661084495641899969712224762897774316
+  "54106781352548836345583774207136984005267395254540938002959905063190773678993769978369816300"
+    Which is: 0x5c2ba854ef10
+
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/unsigned.cpp:126: Failure
+Expected equality of these values:
+  n
+    Which is: 7776157551437620721686041058847787263363295118277606198337210985780
+  "9140894895282242682555152562494076534080050002907951707431346629705926592307891773250252084"
+    Which is: 0x5c2ba854eff8
+
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/unsigned.cpp:129: Failure
+Expected equality of these values:
+  n
+    Which is: 14740636747913574820031026399104261313823683351242276394141634940002
+  "1034924842835852845969616028548706508868877543326774524516496320009596646244097369492573282"
+    Which is: 0x5c2ba854f0e0
+
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/unsigned.cpp:132: Failure
+Expected equality of these values:
+  n
+    Which is: 18523614100946250081368967744336826766528980922305932690843863921536
+  "45833403723868939198488292969342722866499306580846783095147334992557539774881525658376778624"
+    Which is: 0x5c2ba854f1c8
+
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/unsigned.cpp:135: Failure
+Expected equality of these values:
+  n
+    Which is: 22236172477915935033865810250252296023739494695100721518173044852736
+  "2875718154827435664620603868803244291319585015864472257135557138452746020714248247382886400"
+    Which is: 0x5c2ba854f2b0
+
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/unsigned.cpp:138: Failure
+Expected equality of these values:
+  n
+    Which is: 17171028652882726849392721938859240251276652948761942022669853766669
+  "9180541091273344320745151709544432282974962710490103430110091648563504465669594266546189325"
+    Which is: 0x5c2ba854f398
+
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/unsigned.cpp:141: Failure
+Expected equality of these values:
+  n
+    Which is: 523802720664656254064797827521201294476002596661770271796032299776
+  "3221316284354950174919815717051357889853976400228636102732102425264406554644845572478329600"
+    Which is: 0x5c2ba854f480
+
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/unsigned.cpp:144: Failure
+Expected equality of these values:
+  n
+    Which is: 19516784323344541130565404040986182446011099191623290512051168639682
+  "112046529125470530085259596454782388428012098489038122333281800890580434668498768360980118210"
+    Which is: 0x5c2ba854f568
+
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/unsigned.cpp:147: Failure
+Expected equality of these values:
+  n
+    Which is: 26933775835157080512116059748424061592191580084179283168881491644100
+  "6074687015991996447609239181128358377332946982191692502717116979621114166490923207735709380"
+    Which is: 0x5c2ba854f650
+
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/unsigned.cpp:150: Failure
+Expected equality of these values:
+  n
+    Which is: 7802666476027287746492346430045878260906427402596516828414522635968
+  "26915450991888536853283603212158584785366252929148256635338745273220797384902923725243102912"
+    Which is: 0x5c2ba854f738
+
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/unsigned.cpp:153: Failure
+Expected equality of these values:
+  n
+    Which is: 9637247323303918906158450531182425380851716621254553619991271004160
+  "5404403957064417493429329621669070560961877840649792287502065127346826744470993392822343680"
+    Which is: 0x5c2ba854f820
+
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/unsigned.cpp:156: Failure
+Expected equality of these values:
+  n
+    Which is: 15650671407409238579209009932810539832902076735198400723182283765050
+  "3984632028144269956401874547395359283612610059409742294810095784021394695330292823998182714"
+    Which is: 0x5c2ba854f908
+
+/content/Aesi-Multiprecision/test/arithmetic/multiplication/unsigned.cpp:159: Failure
+Expected equality of these values:
+  n
+    Which is: 14424487947320961323002989912362034694616519089878857715280350068672
+  "3765287076020668026433116736042287489076891612432647896371226916780563404035138530099136"
+    Which is: 0x5c2ba854f9f0
+
+[  FAILED  ] Unsigned_Multiplication.Basic (114 ms)
+[ RUN      ] Unsigned_Multiplication.Huge
+[       OK ] Unsigned_Multiplication.Huge (5 ms)
+[ RUN      ] Unsigned_Multiplication.HugeAssignment
+[       OK ] Unsigned_Multiplication.HugeAssignment (5 ms)
+[----------] 3 tests from Unsigned_Multiplication (125 ms total)
+
+[----------] 2 tests from Signed
+[ RUN      ] Signed.OddEven
+/content/Aesi-Multiprecision/test/arithmetic/odd_even.cpp:5: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed.OddEven (0 ms)
+[ RUN      ] Signed.Power2
+/content/Aesi-Multiprecision/test/arithmetic/power2.cpp:518: Failure
+Expected equality of these values:
+  Aesi512::power2(512)
+    Which is: 0
+  0
+
+[  FAILED  ] Signed.Power2 (35 ms)
+[----------] 2 tests from Signed (35 ms total)
+
+[----------] 2 tests from Unsigned
+[ RUN      ] Unsigned.OddEven
+[       OK ] Unsigned.OddEven (0 ms)
+[ RUN      ] Unsigned.Power2
+[       OK ] Unsigned.Power2 (35 ms)
+[----------] 2 tests from Unsigned (35 ms total)
+
+[----------] 1 test from Signed_SquareRoot
+[ RUN      ] Signed_SquareRoot.SquareRoot
+/content/Aesi-Multiprecision/test/arithmetic/square-root.cpp:5: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_SquareRoot.SquareRoot (0 ms)
+[----------] 1 test from Signed_SquareRoot (0 ms total)
+
+[----------] 1 test from Unsigned_SquareRoot
+[ RUN      ] Unsigned_SquareRoot.SquareRoot
+[       OK ] Unsigned_SquareRoot.SquareRoot (132 ms)
+[----------] 1 test from Unsigned_SquareRoot (132 ms total)
+
+[----------] 7 tests from Signed_Subtraction
+[ RUN      ] Signed_Subtraction.Basic
+/content/Aesi-Multiprecision/test/arithmetic/subtraction/signed.cpp:4: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Subtraction.Basic (0 ms)
+[ RUN      ] Signed_Subtraction.Decrement
+/content/Aesi-Multiprecision/test/arithmetic/subtraction/signed.cpp:6: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Subtraction.Decrement (0 ms)
+[ RUN      ] Signed_Subtraction.MixedSubtraction
+/content/Aesi-Multiprecision/test/arithmetic/subtraction/signed.cpp:8: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Subtraction.MixedSubtraction (0 ms)
+[ RUN      ] Signed_Subtraction.MixedSubtractionAssignment
+/content/Aesi-Multiprecision/test/arithmetic/subtraction/signed.cpp:10: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Subtraction.MixedSubtractionAssignment (0 ms)
+[ RUN      ] Signed_Subtraction.DifferentPrecision
+/content/Aesi-Multiprecision/test/arithmetic/subtraction/signed.cpp:12: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Subtraction.DifferentPrecision (0 ms)
+[ RUN      ] Signed_Subtraction.Huge
+/content/Aesi-Multiprecision/test/arithmetic/subtraction/signed.cpp:14: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Subtraction.Huge (0 ms)
+[ RUN      ] Signed_Subtraction.HugeAssignment
+/content/Aesi-Multiprecision/test/arithmetic/subtraction/signed.cpp:16: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Subtraction.HugeAssignment (0 ms)
+[----------] 7 tests from Signed_Subtraction (0 ms total)
+
+[----------] 4 tests from Unsigned_Subtraction
+[ RUN      ] Unsigned_Subtraction.Basic
+[       OK ] Unsigned_Subtraction.Basic (0 ms)
+[ RUN      ] Unsigned_Subtraction.Huge
+[       OK ] Unsigned_Subtraction.Huge (5 ms)
+[ RUN      ] Unsigned_Subtraction.HugeAssignment
+[       OK ] Unsigned_Subtraction.HugeAssignment (5 ms)
+[ RUN      ] Unsigned_Subtraction.Decrement
+[       OK ] Unsigned_Subtraction.Decrement (0 ms)
+[----------] 4 tests from Unsigned_Subtraction (11 ms total)
+
+[----------] 2 tests from Unsigned_BinaryIO
+[ RUN      ] Unsigned_BinaryIO.BinaryRead
+[       OK ] Unsigned_BinaryIO.BinaryRead (3 ms)
+[ RUN      ] Unsigned_BinaryIO.BinaryWrite
+[       OK ] Unsigned_BinaryIO.BinaryWrite (0 ms)
+[----------] 2 tests from Unsigned_BinaryIO (3 ms total)
+
+[----------] 1 test from Signed_IntegralCast
+[ RUN      ] Signed_IntegralCast.IntegralCast
+/content/Aesi-Multiprecision/test/operations/casts/integral_cast.cpp:6: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_IntegralCast.IntegralCast (0 ms)
+[----------] 1 test from Signed_IntegralCast (0 ms total)
+
+[----------] 1 test from Unsigned_IntegralCast
+[ RUN      ] Unsigned_IntegralCast.IntegralCast
+[       OK ] Unsigned_IntegralCast.IntegralCast (0 ms)
+[----------] 1 test from Unsigned_IntegralCast (0 ms total)
+
+[----------] 1 test from Signed_PrecisionCast
+[ RUN      ] Signed_PrecisionCast.PrecisionCast
+/content/Aesi-Multiprecision/test/operations/casts/precision_cast.cpp:6: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_PrecisionCast.PrecisionCast (0 ms)
+[----------] 1 test from Signed_PrecisionCast (0 ms total)
+
+[----------] 1 test from Unsigned_PrecisionCast
+[ RUN      ] Unsigned_PrecisionCast.PrecisionCast
+[       OK ] Unsigned_PrecisionCast.PrecisionCast (1 ms)
+[----------] 1 test from Unsigned_PrecisionCast (1 ms total)
+
+[----------] 8 tests from Signed_Display
+[ RUN      ] Signed_Display.Zero
+/content/Aesi-Multiprecision/test/operations/display/signed.cpp:5: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Display.Zero (0 ms)
+[ RUN      ] Signed_Display.DecimalStreams
+/content/Aesi-Multiprecision/test/operations/display/signed.cpp:7: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Display.DecimalStreams (0 ms)
+[ RUN      ] Signed_Display.DecimalFormat
+/content/Aesi-Multiprecision/test/operations/display/signed.cpp:9: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Display.DecimalFormat (0 ms)
+[ RUN      ] Signed_Display.OctalStreams
+/content/Aesi-Multiprecision/test/operations/display/signed.cpp:11: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Display.OctalStreams (0 ms)
+[ RUN      ] Signed_Display.OctalFormat
+/content/Aesi-Multiprecision/test/operations/display/signed.cpp:13: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Display.OctalFormat (0 ms)
+[ RUN      ] Signed_Display.HexadecimalStreams
+/content/Aesi-Multiprecision/test/operations/display/signed.cpp:15: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Display.HexadecimalStreams (0 ms)
+[ RUN      ] Signed_Display.HexadecimalFormat
+/content/Aesi-Multiprecision/test/operations/display/signed.cpp:17: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Display.HexadecimalFormat (0 ms)
+[ RUN      ] Signed_Display.ShowBase
+/content/Aesi-Multiprecision/test/operations/display/signed.cpp:19: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Display.ShowBase (0 ms)
+[----------] 8 tests from Signed_Display (0 ms total)
+
+[----------] 8 tests from Unsigned_Display
+[ RUN      ] Unsigned_Display.Zero
+[       OK ] Unsigned_Display.Zero (0 ms)
+[ RUN      ] Unsigned_Display.DecimalStreams
+[       OK ] Unsigned_Display.DecimalStreams (1054 ms)
+[ RUN      ] Unsigned_Display.DecimalFormat
+[       OK ] Unsigned_Display.DecimalFormat (1051 ms)
+[ RUN      ] Unsigned_Display.OctalStreams
+[       OK ] Unsigned_Display.OctalStreams (1166 ms)
+[ RUN      ] Unsigned_Display.OctalFormat
+[       OK ] Unsigned_Display.OctalFormat (1168 ms)
+[ RUN      ] Unsigned_Display.HexadecimalStreams
+[       OK ] Unsigned_Display.HexadecimalStreams (0 ms)
+[ RUN      ] Unsigned_Display.HexadecimalFormat
+[       OK ] Unsigned_Display.HexadecimalFormat (0 ms)
+[ RUN      ] Unsigned_Display.ShowBase
+[       OK ] Unsigned_Display.ShowBase (182 ms)
+[----------] 8 tests from Unsigned_Display (4624 ms total)
+
+[----------] 6 tests from Signed_Initialization
+[ RUN      ] Signed_Initialization.Basic
+/content/Aesi-Multiprecision/test/operations/initialization/signed.cpp:5: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Initialization.Basic (0 ms)
+[ RUN      ] Signed_Initialization.Different_precisions
+/content/Aesi-Multiprecision/test/operations/initialization/signed.cpp:62: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Initialization.Different_precisions (0 ms)
+[ RUN      ] Signed_Initialization.Binary
+/content/Aesi-Multiprecision/test/operations/initialization/signed.cpp:64: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Initialization.Binary (0 ms)
+[ RUN      ] Signed_Initialization.Decimal
+/content/Aesi-Multiprecision/test/operations/initialization/signed.cpp:66: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Initialization.Decimal (0 ms)
+[ RUN      ] Signed_Initialization.Octal
+/content/Aesi-Multiprecision/test/operations/initialization/signed.cpp:68: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Initialization.Octal (0 ms)
+[ RUN      ] Signed_Initialization.Hexadecimal
+/content/Aesi-Multiprecision/test/operations/initialization/signed.cpp:70: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Initialization.Hexadecimal (0 ms)
+[----------] 6 tests from Signed_Initialization (0 ms total)
+
+[----------] 6 tests from Unsigned_Initialization
+[ RUN      ] Unsigned_Initialization.Basic
+[       OK ] Unsigned_Initialization.Basic (0 ms)
+[ RUN      ] Unsigned_Initialization.Different_precisions
+[       OK ] Unsigned_Initialization.Different_precisions (0 ms)
+[ RUN      ] Unsigned_Initialization.Binary
+[       OK ] Unsigned_Initialization.Binary (0 ms)
+[ RUN      ] Unsigned_Initialization.Decimal
+[       OK ] Unsigned_Initialization.Decimal (0 ms)
+[ RUN      ] Unsigned_Initialization.Octal
+[       OK ] Unsigned_Initialization.Octal (0 ms)
+[ RUN      ] Unsigned_Initialization.Hexadecimal
+[       OK ] Unsigned_Initialization.Hexadecimal (0 ms)
+[----------] 6 tests from Unsigned_Initialization (0 ms total)
+
+[----------] 1 test from Prezentation
+[ RUN      ] Prezentation.Factorial
+/content/Aesi-Multiprecision/test/operations/prezentation.cpp:5: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Prezentation.Factorial (0 ms)
+[----------] 1 test from Prezentation (0 ms total)
+
+[----------] 10 tests from Unsigned_Bitwise
+[ RUN      ] Unsigned_Bitwise.AND
+[       OK ] Unsigned_Bitwise.AND (3 ms)
+[ RUN      ] Unsigned_Bitwise.GetSetBit
+[       OK ] Unsigned_Bitwise.GetSetBit (4 ms)
+[ RUN      ] Unsigned_Bitwise.GetSetByte
+[       OK ] Unsigned_Bitwise.GetSetByte (17 ms)
+[ RUN      ] Unsigned_Bitwise.GetSetBlock
+[       OK ] Unsigned_Bitwise.GetSetBlock (3 ms)
+[ RUN      ] Unsigned_Bitwise.CountBitsBytes
+[       OK ] Unsigned_Bitwise.CountBitsBytes (0 ms)
+[ RUN      ] Unsigned_Bitwise.NOT
+[       OK ] Unsigned_Bitwise.NOT (3 ms)
+[ RUN      ] Unsigned_Bitwise.OR
+[       OK ] Unsigned_Bitwise.OR (4 ms)
+[ RUN      ] Unsigned_Bitwise.LeftShift
+[       OK ] Unsigned_Bitwise.LeftShift (2 ms)
+[ RUN      ] Unsigned_Bitwise.RightShift
+[       OK ] Unsigned_Bitwise.RightShift (3 ms)
+[ RUN      ] Unsigned_Bitwise.XOR
+[       OK ] Unsigned_Bitwise.XOR (4 ms)
+[----------] 10 tests from Unsigned_Bitwise (47 ms total)
+
+[----------] 4 tests from Signed_NumberTheory
+[ RUN      ] Signed_NumberTheory.GreatestCommonDivisor
+/content/Aesi-Multiprecision/test/number-theory/gcd/signed.cpp:4: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_NumberTheory.GreatestCommonDivisor (0 ms)
+[ RUN      ] Signed_NumberTheory.GreatestCommonDivisor_DifferentPrecision
+/content/Aesi-Multiprecision/test/number-theory/gcd/signed.cpp:6: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_NumberTheory.GreatestCommonDivisor_DifferentPrecision (0 ms)
+[ RUN      ] Signed_NumberTheory.LeastCommonMultiplier
+/content/Aesi-Multiprecision/test/number-theory/lcm/signed.cpp:4: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_NumberTheory.LeastCommonMultiplier (0 ms)
+[ RUN      ] Signed_NumberTheory.LeastCommonMultiplier_DifferentPrecision
+/content/Aesi-Multiprecision/test/number-theory/lcm/signed.cpp:6: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_NumberTheory.LeastCommonMultiplier_DifferentPrecision (0 ms)
+[----------] 4 tests from Signed_NumberTheory (0 ms total)
+
+[----------] 5 tests from Unsigned_NumberTheory
+[ RUN      ] Unsigned_NumberTheory.GreatestCommonDivisor
+[       OK ] Unsigned_NumberTheory.GreatestCommonDivisor (2958 ms)
+[ RUN      ] Unsigned_NumberTheory.LeastCommonMultiplier
+[       OK ] Unsigned_NumberTheory.LeastCommonMultiplier (299 ms)
+[ RUN      ] Unsigned_NumberTheory.PowerByModulo
+[       OK ] Unsigned_NumberTheory.PowerByModulo (303 ms)
+[ RUN      ] Unsigned_NumberTheory.PowerByModuloDifferentPrecision
+/content/Aesi-Multiprecision/test/number-theory/powm.cpp:88: Failure
+Expected equality of these values:
+  true
+  false
+
+[  FAILED  ] Unsigned_NumberTheory.PowerByModuloDifferentPrecision (0 ms)
+[ RUN      ] Unsigned_NumberTheory.PowerByModuloHuge
+[       OK ] Unsigned_NumberTheory.PowerByModuloHuge (34591 ms)
+[----------] 5 tests from Unsigned_NumberTheory (38154 ms total)
+
+[----------] 3 tests from Signed_Boolean_Spaceship
+[ RUN      ] Signed_Boolean_Spaceship.ThreeWayComparasion
+/content/Aesi-Multiprecision/test/boolean/spaceship/signed.cpp:5: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Boolean_Spaceship.ThreeWayComparasion (0 ms)
+[ RUN      ] Signed_Boolean_Spaceship.ThreeWayEquallComparasion
+/content/Aesi-Multiprecision/test/boolean/spaceship/signed.cpp:7: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Boolean_Spaceship.ThreeWayEquallComparasion (0 ms)
+[ RUN      ] Signed_Boolean_Spaceship.DifferentPrecisions
+/content/Aesi-Multiprecision/test/boolean/spaceship/signed.cpp:9: Failure
+Value of: false
+  Actual: false
+Expected: true
+
+[  FAILED  ] Signed_Boolean_Spaceship.DifferentPrecisions (0 ms)
+[----------] 3 tests from Signed_Boolean_Spaceship (0 ms total)
+
+[----------] 3 tests from Unsigned_Boolean_Spaceship
+[ RUN      ] Unsigned_Boolean_Spaceship.ThreeWayComparasion
+[       OK ] Unsigned_Boolean_Spaceship.ThreeWayComparasion (0 ms)
+[ RUN      ] Unsigned_Boolean_Spaceship.ThreeWayEquallComparasion
+[       OK ] Unsigned_Boolean_Spaceship.ThreeWayEquallComparasion (0 ms)
+[ RUN      ] Unsigned_Boolean_Spaceship.DifferentPrecisions
+[       OK ] Unsigned_Boolean_Spaceship.DifferentPrecisions (0 ms)
+[----------] 3 tests from Unsigned_Boolean_Spaceship (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 128 tests from 30 test suites ran. (43269 ms total)
+[  PASSED  ] 55 tests.
+[  FAILED  ] 73 tests, listed below:
+[  FAILED  ] Signed_Bitwise.AND
+[  FAILED  ] Signed_Bitwise.DifferentPrecisionAND
+[  FAILED  ] Signed_Bitwise.GetSetBit
+[  FAILED  ] Signed_Bitwise.GetSetByte
+[  FAILED  ] Signed_Bitwise.GetSetBlock
+[  FAILED  ] Signed_Bitwise.CountBitsBytes
+[  FAILED  ] Signed_Bitwise.OR
+[  FAILED  ] Signed_Bitwise.DifferentPrecisionOR
+[  FAILED  ] Signed_Bitwise.LeftShift
+[  FAILED  ] Signed_Bitwise.RightShift
+[  FAILED  ] Signed_Bitwise.XOR
+[  FAILED  ] Signed_Bitwise.DifferentPrecisionXOR
+[  FAILED  ] Signed_Addition.Basic
+[  FAILED  ] Signed_Addition.MixedMultiplication
+[  FAILED  ] Signed_Addition.MixedMultiplicationAssignment
+[  FAILED  ] Signed_Addition.DifferentPrecision
+[  FAILED  ] Signed_Addition.Huge
+[  FAILED  ] Signed_Addition.HugeAssignment
+[  FAILED  ] Signed_Addition.Increment
+[  FAILED  ] Signed_Division.Basic
+[  FAILED  ] Signed_Division.MixedMultiplication
+[  FAILED  ] Signed_Division.MixedMultiplicationAssignment
+[  FAILED  ] Signed_Division.DifferentPrecision
+[  FAILED  ] Signed_Division.Huge
+[  FAILED  ] Signed_Division.HugeAssignment
+[  FAILED  ] Signed_Modulo.Basic
+[  FAILED  ] Signed_Modulo.MixedMultiplication
+[  FAILED  ] Signed_Modulo.MixedMultiplicationAssignment
+[  FAILED  ] Signed_Modulo.DifferentPrecision
+[  FAILED  ] Signed_Modulo.Huge
+[  FAILED  ] Signed_Modulo.HugeAssignment
+[  FAILED  ] Signed_Multiplication.Basic
+[  FAILED  ] Signed_Multiplication.MixedMultiplication
+[  FAILED  ] Signed_Multiplication.MixedMultiplicationAssignment
+[  FAILED  ] Signed_Multiplication.DifferentPrecision
+[  FAILED  ] Signed_Multiplication.Huge
+[  FAILED  ] Signed_Multiplication.HugeAssignment
+[  FAILED  ] Unsigned_Multiplication.Basic
+[  FAILED  ] Signed.OddEven
+[  FAILED  ] Signed.Power2
+[  FAILED  ] Signed_SquareRoot.SquareRoot
+[  FAILED  ] Signed_Subtraction.Basic
+[  FAILED  ] Signed_Subtraction.Decrement
+[  FAILED  ] Signed_Subtraction.MixedSubtraction
+[  FAILED  ] Signed_Subtraction.MixedSubtractionAssignment
+[  FAILED  ] Signed_Subtraction.DifferentPrecision
+[  FAILED  ] Signed_Subtraction.Huge
+[  FAILED  ] Signed_Subtraction.HugeAssignment
+[  FAILED  ] Signed_IntegralCast.IntegralCast
+[  FAILED  ] Signed_PrecisionCast.PrecisionCast
+[  FAILED  ] Signed_Display.Zero
+[  FAILED  ] Signed_Display.DecimalStreams
+[  FAILED  ] Signed_Display.DecimalFormat
+[  FAILED  ] Signed_Display.OctalStreams
+[  FAILED  ] Signed_Display.OctalFormat
+[  FAILED  ] Signed_Display.HexadecimalStreams
+[  FAILED  ] Signed_Display.HexadecimalFormat
+[  FAILED  ] Signed_Display.ShowBase
+[  FAILED  ] Signed_Initialization.Basic
+[  FAILED  ] Signed_Initialization.Different_precisions
+[  FAILED  ] Signed_Initialization.Binary
+[  FAILED  ] Signed_Initialization.Decimal
+[  FAILED  ] Signed_Initialization.Octal
+[  FAILED  ] Signed_Initialization.Hexadecimal
+[  FAILED  ] Prezentation.Factorial
+[  FAILED  ] Signed_NumberTheory.GreatestCommonDivisor
+[  FAILED  ] Signed_NumberTheory.GreatestCommonDivisor_DifferentPrecision
+[  FAILED  ] Signed_NumberTheory.LeastCommonMultiplier
+[  FAILED  ] Signed_NumberTheory.LeastCommonMultiplier_DifferentPrecision
+[  FAILED  ] Unsigned_NumberTheory.PowerByModuloDifferentPrecision
+[  FAILED  ] Signed_Boolean_Spaceship.ThreeWayComparasion
+[  FAILED  ] Signed_Boolean_Spaceship.ThreeWayEquallComparasion
+[  FAILED  ] Signed_Boolean_Spaceship.DifferentPrecisions
