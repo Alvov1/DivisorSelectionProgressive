@@ -30,7 +30,9 @@ thrust::host_vector<primeType> loadPrimes(const std::filesystem::path& fromLocat
 
 
 /* 128 primes + 192 bit base + 32 bit additional -> 4320 */
-using Uns = Aeu<2272>;
+/* 4320 -> 128 primes
+ * 2272 -> 64 primes. */
+using Uns = Aeu<4320>;
 
 __global__
 void kernel(Uns* const numberAndFactor,
@@ -89,10 +91,7 @@ void kernel(Uns* const numberAndFactor,
 
         const auto candidate = Uns::gcd(Uns::powm(a, product, n) - 1, n);
         if(candidate > 1) {
-            char buffer [256] {};
-            product.getString<10>(buffer, 256, true, false);
             printf("Thread %u. Found factor.\n", logicalThreadId);
-
             factor.tryAtomicSet(candidate);
             return;
         }
