@@ -44,43 +44,43 @@ Aeu<precision> countE(unsigned B, unsigned shift, const std::vector<uint64_t>& p
     return e;
 }
 
+//template <std::size_t precision>
+//void preparePowers(const std::vector<uint64_t>& primes, std::ostream& output, unsigned shift) {
+//    Aeu<precision> previous = 0;
+//
+//    unsigned B = 0;
+//    for (B = 2; ; B += 25) {
+//        for (unsigned i = 0; i < 5; ++i) {
+//            const auto e = countE<precision>(B, i, primes);
+//
+//            if(e > previous) {
+//                /*if(e.bitCount() >= 32) {
+//                    std::cout << "B: " << std::dec << B << ", e: 0x" << std::hex << e << ", " << std::dec << e.bitCount() << " bits" << std::endl;
+//                    output.write(reinterpret_cast<const char*>(&B), sizeof(unsigned));
+//                    e.writeBinary(output);
+//                } */
+//
+//                previous = e;
+//
+//                if(e.bitCount() >= static_cast<std::size_t>(Aesi<precision>::getBitness() * 0.99)) {
+//                    std::cout << std::endl << "Last: " << previous << std::endl;
+//                    return;
+//                }
+//            }
+//        }
+//
+//        std::cout << std::endl;
+//    }
+//
+//
+//}
+
 template <std::size_t precision>
-void preparePowers(const std::vector<uint64_t>& primes, std::ostream& output, unsigned shift) {
-    Aeu<precision> previous = 0;
-
-    unsigned B = 0;
-    for (B = 2; ; B += 25) {
-        for (unsigned i = 0; i < 5; ++i) {
-            const auto e = countE<precision>(B, i, primes);
-
-            if(e > previous) {
-                /*if(e.bitCount() >= 32) {
-                    std::cout << "B: " << std::dec << B << ", e: 0x" << std::hex << e << ", " << std::dec << e.bitCount() << " bits" << std::endl;
-                    output.write(reinterpret_cast<const char*>(&B), sizeof(unsigned));
-                    e.writeBinary(output);
-                } */
-
-                previous = e;
-
-                if(e.bitCount() >= static_cast<std::size_t>(Aesi<precision>::getBitness() * 0.99)) {
-                    std::cout << std::endl << "Last: " << previous << std::endl;
-                    return;
-                }
-            }
-        }
-
-        std::cout << std::endl;
-    }
-
-
-}
-
-template <std::size_t precision>
-void preparePowers(const std::vector<uint64_t>& primes, std::ostream& output) {
+void preparePowers(const std::vector<primeType>& primes, std::ostream& output) {
 
     /* 1. At first, we need to find the maximum B for which product overflows the precision. */
     auto [factors, B] = [&primes] {
-        std::pair values = { std::map<uint64_t, uint8_t>{}, unsigned() };
+        std::pair values = { std::map<primeType, uint8_t>{}, unsigned() };
         auto& [factorsWithPowers, inB] = values;
 
         for(inB = 48; inB += 5;) {
@@ -91,7 +91,7 @@ void preparePowers(const std::vector<uint64_t>& primes, std::ostream& output) {
                     break;
 
                 const auto power = static_cast<uint8_t>(log(static_cast<double>(inB)) / log(static_cast<double>(prime)));
-                buffer *= { static_cast<uint64_t>(pow(static_cast<double>(prime), static_cast<double>(power))) };
+                buffer *= { static_cast<primeType>(pow(static_cast<double>(prime), static_cast<double>(power))) };
                 if(buffer.bitCount() > precision)
                     return values;
 
@@ -115,15 +115,15 @@ void preparePowers(const std::vector<uint64_t>& primes, std::ostream& output) {
 
 
 int main() {
-    const std::filesystem::path primes = "../../all-smooth-32-bit.bin", outputLocation = "../test-test.txt";
-//    if(std::filesystem::is_regular_file(outputLocation))
-//        return std::printf("Output file exists and no overwritting.");
+    const std::filesystem::path primes = "../../all-primes-32-bit.bin", outputLocation = "../test-test.txt";
+    if(std::filesystem::is_regular_file(outputLocation))
+        return std::printf("Output file exists and no overwritting.");
 
-//    std::ofstream output(outputLocation, std::ios::binary);
-//    if(output.fail())
-//        return std::printf("Failed to open output file.");
+    std::ofstream output(outputLocation, std::ios::binary);
+    if(output.fail())
+        return std::printf("Failed to open output file.");
 
-//    preparePowers<96>(loadPrimes(smooth), output);
+    preparePowers<8192>(loadPrimes(primes), output);
 
     auto primesL = loadPrimes(primes);
     std::cout << primesL.back() << std::endl;

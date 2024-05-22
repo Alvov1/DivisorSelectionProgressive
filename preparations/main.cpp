@@ -9,7 +9,7 @@ std::vector<primeType> loadPrimes(const std::filesystem::path& fromLocation) {
     if(!std::filesystem::is_regular_file(fromLocation))
         throw std::invalid_argument("Failed to load prime table: bad input file");
 
-    const auto primesCount = 100'000'000; //std::filesystem::file_size(fromLocation) / sizeof(primeType);
+    const auto primesCount = 30; //100'000'000; //std::filesystem::file_size(fromLocation) / sizeof(primeType);
     std::ifstream input(fromLocation, std::ios::binary);
 
     std::vector<primeType> primes (primesCount);
@@ -19,7 +19,7 @@ std::vector<primeType> loadPrimes(const std::filesystem::path& fromLocation) {
     return primes;
 }
 
-//using Uns = Aeu<8416>;
+using Uns = Aeu<8192>;
 
 void kernel(//Uns* const numberAndFactor,
             //const primeType* const primes,
@@ -129,8 +129,50 @@ void makeTest() {
     std::cout << "GCD: " << gcd << std::endl;
 }
 
+template <typename Elem>
+int binary_search_find_index(std::vector<Elem> v, Elem data) {
+    auto it = std::lower_bound(v.begin(), v.end(), data);
+    if (it == v.end() || *it != data) {
+        return -1;
+    } else {
+        return std::distance(v.begin(), it);
+    }
+}
+
+
+Uns countE(unsigned B, const unsigned* const primes, std::size_t primesCount) {
+    auto primeUl = primes[0];
+
+    Uns e = 1;
+    for (unsigned pi = 0; primeUl < B && pi < primesCount; ++pi) {
+        const auto power = static_cast<unsigned>(log(static_cast<double>(B)) / log(static_cast<double>(primeUl)));
+        const auto factor = static_cast<unsigned>(pow(static_cast<double>(primeUl), static_cast<double>(power)));
+
+        std::cout << " * " << primeUl << '^' << power;
+//        e *= factor;
+        primeUl = primes[pi + 1];
+    }
+    std::cout << std::endl;
+
+    return e;
+}
+
+std::vector<Uns> loadPowers(const std::filesystem::path& fromLocation) {
+    if(!std::filesystem::is_regular_file(fromLocation))
+        throw std::invalid_argument("Failed to load powers table: bad input file");
+
+    const auto recordsNumber = static_cast<std::size_t>(std::filesystem::file_size(fromLocation) / (static_cast<std::size_t>(Uns::getBitness() / 8)));
+    std::vector<Uns> records (recordsNumber);
+
+    std::ifstream input(fromLocation, std::ios::binary);
+    for(auto& value: records)
+        value.readBinary(input);
+
+    return records;
+}
+
 int main() {
-    makeTest();
+//    makeTest();
 //    showIndexes();
 //    kernel(100'000'000, 128);
 //         203'227'136
@@ -164,4 +206,19 @@ int main() {
 //               * 317 * 1051 * 1297 * 1637 * 1933;
 //
 //    std::cout << base << std::endl << base.bitCount() << std::endl;
+
+//    Uns base = Uns(1) * 512 * 729 * 3125 * 2401 * 121 *
+//    169 * 17 * 19 * 21 * 23 * 27 * 29
+//    * 31 * 37 * 79 * 79 * 83 * 131 * 137 * 199 * 257
+//    * 317 * 359 * 601 * 1051 * 1297 * 1637 * 1933 * 24671;
+//
+//    std::cout << base << std::endl << base.bitCount() << std::endl;
+
+    const auto powers = loadPowers("../../powers/powers-8192.txt");
+    std::cout << std::hex << "0x" << powers.back() << std::endl;
+
+//    std::cout << primes[3745306] << std::endl;
+//    std::cout << binary_search_find_index(primes, 63287041u) << std::endl;
+
+
 }

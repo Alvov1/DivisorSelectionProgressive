@@ -55,53 +55,50 @@ BASE: 2^9 * 3^6 * 5^5 * 7^4 * 11^2 * 13^2 * 17 * 19 * 21 * 23 * 27 * 29 * 31 * 3
 BASE × 76840783
 Index: 4495744
 2048 bit --- Thread 2900 --- 59497 ms -- Epoch 11
-4096 bit --- Thread --- ms --- Epoch
+4096 bit --- Thread 2900 --- 122716 ms --- Epoch 5
 
 0xc5c8f3c384420f943cad2186cb57 = 0x9f2f2b370d * 0x13e13e079aa558532f3;                      (112 bits).
 BASE * 498317173;                     2 × 3 × 739 × 997 × 6833 × 70199 × 2767067
 Index: 26272001
-2048 bit --- Thread 16949 --- 89416 ms
-4096 bit --- Thread --- ms --- Epoch
+2048 bit --- Thread 16949 --- 89416 ms --- Epoch 15
+4096 bit --- Thread 16949 --- 188989 ms --- Epoch 8
 
 0x19d824f0ac1f9023a793b55cda898d09 = 0x61703ba69797 * 0x43e699ae75d0bb0c945f;               (125 bits).
 BASE × 61779353;         2 × 5 × 7 × 107 × 11732521 × 3648894518327
 Index: 3661285
-2048 bit --- Thread 2362 --- 21234 ms
-4096 bit --- Thread --- ms --- Epoch
+2048 bit --- Thread 2362 --- 21234 ms --- Epoch 2
+4096 bit --- Thread 2362 --- 56595 ms --- Epoch 1
 
 0x545e18a29cdbb180605b5ab2e8a7012948e49357 = 0x6567934a6bdb75 * 0xd4fd44ea8b55228cdc25daf61b; (159 bits).
 BASE × 652450049;          2 × 599 × 6467621 × 30707689 × 70923298052231
 Index: 33914092
-2048 bit --- Thread 21880 --- 21907 ms
-4096 bit --- Thread --- ms --- Epoch
+2048 bit --- Thread 21880 --- 21907 ms --- Epoch 1
+4096 bit --- Thread 21880 --- 51049 ms --- Epoch 0
 
 0x5ee1aa56fb23b6f2e13c7bb6d6a5b5d0f2d2f7a6ed6eef77724d51a7b49 = 0x23b7da80d4e33 * 0x2a809596cbea7479f78e633c1447929080cea9740731c93; (235 bits).
 BASE × 47432659;           2 × 5 × 6741497089 × 1857881445809 × 520040449147050758786092797282053
 Index: 2856137
-2048bit --- Thread 1842 --- 163492 ms
-4096 bit --- Thread --- ms --- Epoch
+2048 bit --- Thread 1842 --- 163492 ms --- Epoch 16
+4096 bit --- Thread 1842 --- 360545 ms --- Epoch 8
 
 0x360d1291dd5479fc94d10b9bbd466352d78c61d305daab27349b9942d2d = 0x18570cbb26d99 * 0x2387d7c4c27552a6caea862149d6bbd30f8cdef6ae030b5; (234 bits).
 BASE × 1965132343;                2^2 × 3 × 11 × 3301 × 5417 × 137869 × 19231237 × 5695251507767 × 1527696761602395598567
 Index: 96593623
-2048bit --- Thread 62318 --- 139554 ms
-4096 bit --- Thread --- ms --- Epoch
+2048 bit --- Thread 62318 --- 139554 ms --- Epoch 11
+4096 bit --- Thread 62318 --- 285388 ms --- Epoch 5
 
 0x1b1f9030b9b6055fe93391bb8e89b803cff = 0x565bb88de689 * 0x5067756e4c889272e57a547; (137 bits).
 BASE * 11391823;               2 × 3^2 × 7477 × 11555749992877730097023
 Index: 750612
-2048bit --- Thread 484 --- 41292 ms
-4096 bit --- Thread --- ms --- Epoch
+2048 bit --- Thread 484 --- 41292 ms --- Epoch 6
+4096 bit --- Thread 484 --- 102805 ms --- Epoch 3
 
+0xce586144cc86c60a3c723c3fb33219415f48874bb499a2591f97aa63901fcdb08da311a19d9687d230fe26c700bf7ee0f7d1 = 0xcf4895f9f73016abf8cdb7 * 0xfed75712b994d5f2320d06582e6291f339132d38e427b34ae953c11feb4fe7e401518f626966b7; (400 bits).
+BASE * 63287041;      2 × 3 × 1579 × 113489 × 6579211 × 7406540556168973 × 158530163134385749373576339480760251299717913925581059394457701
+Index: 3745306
+2048 bit --- Thread 2416 --- 142477 ms --- Epoch 7
+4096 bit --- Thread 2416 --- 312263 ms --- Epoch 3
 
-512 numbers per iteration
-Index 26272001 is 329's in thread 8472, iteration 0     // 112 bit
-Index 2856137 is 116's in thread 921, iteration 0       // 235 bit
-Index 750612 is 170's in thread 242, iteration 0        // 137 bit
-Index 96'593'623 is 62's in thread 31149, iteration 1     // 234 bit
-Index 33914092 is 20's in thread 10936, iteration 3     // 159 bit
-Index 4495744 is 347's in thread 1449, iteration 4      // 111 bit
-Index 3661285 is 57's in thread 1180, iteration 4       // 125 bit
 
 
 
