@@ -2,22 +2,9 @@
 #include <fstream>
 #include <filesystem>
 #include <vector>
+#include <bitset>
 #include <Aeu.h>
 
-using primeType = unsigned;
-std::vector<primeType> loadPrimes(const std::filesystem::path& fromLocation) {
-    if(!std::filesystem::is_regular_file(fromLocation))
-        throw std::invalid_argument("Failed to load prime table: bad input file");
-
-    const auto primesCount = 30; //100'000'000; //std::filesystem::file_size(fromLocation) / sizeof(primeType);
-    std::ifstream input(fromLocation, std::ios::binary);
-
-    std::vector<primeType> primes (primesCount);
-    for(auto& prime: primes)
-        input.read(reinterpret_cast<char*>(&prime), sizeof(primeType));
-
-    return primes;
-}
 
 using Uns = Aeu<8192>;
 
@@ -106,38 +93,30 @@ void showIndexes() {
 //    }
 }
 
-void makeTest() {
-    //4495640, ending prime: 4495704
-    const auto primes = loadPrimes("../../all-primes-32-bit.bin");
+//void makeTest() {
+//    //4495640, ending prime: 4495704
+//    const auto primes = loadPrimes("../../all-primes-32-bit.bin");
+//
+//    Aeu<4096> base = Aeu<4096>(2) * 3 * 7 * 83 * 257;
+//
+//    for (std::size_t i = 4495704; i < 4495704 + 64; ++i) {
+//        base *= primes[i];
+//    }
+////    base *= primes[4495744];
+//    std::cout << "Base: " << base << std::endl;
+//
+//    // 2 × 3 × 7 × 83 × 257 × 76840783
+//
+//    const Aeu<4096> a = 2, n = "0x66ee64b74c3d88a79c57064d8365";
+//
+//    const auto powm = Aeu<4096>::powm(a, base, n);
+//    const auto gcd = Aeu<4096>::gcd(powm - 1, n);
+//
+//    std::cout << "Powm: " << powm << std::endl;
+//    std::cout << "GCD: " << gcd << std::endl;
+//}
 
-    Aeu<4096> base = Aeu<4096>(2) * 3 * 7 * 83 * 257;
 
-    for (std::size_t i = 4495704; i < 4495704 + 64; ++i) {
-        base *= primes[i];
-    }
-//    base *= primes[4495744];
-    std::cout << "Base: " << base << std::endl;
-
-    // 2 × 3 × 7 × 83 × 257 × 76840783
-
-    const Aeu<4096> a = 2, n = "0x66ee64b74c3d88a79c57064d8365";
-
-    const auto powm = Aeu<4096>::powm(a, base, n);
-    const auto gcd = Aeu<4096>::gcd(powm - 1, n);
-
-    std::cout << "Powm: " << powm << std::endl;
-    std::cout << "GCD: " << gcd << std::endl;
-}
-
-template <typename Elem>
-int binary_search_find_index(std::vector<Elem> v, Elem data) {
-    auto it = std::lower_bound(v.begin(), v.end(), data);
-    if (it == v.end() || *it != data) {
-        return -1;
-    } else {
-        return std::distance(v.begin(), it);
-    }
-}
 
 
 Uns countE(unsigned B, const unsigned* const primes, std::size_t primesCount) {
@@ -170,6 +149,59 @@ std::vector<Uns> loadPowers(const std::filesystem::path& fromLocation) {
 
     return records;
 }
+
+
+template <typename Elem>
+int binary_search_find_index(std::vector<Elem> v, Elem data) {
+    auto it = std::lower_bound(v.begin(), v.end(), data);
+    if (it == v.end()) {
+        return -1;
+    } else {
+        return std::distance(v.begin(), it);
+    }
+}
+
+using primeType = unsigned;
+std::vector<primeType> loadPrimes(const std::filesystem::path& fromLocation) {
+    if(!std::filesystem::is_regular_file(fromLocation))
+        throw std::invalid_argument("Failed to load prime table: bad input file");
+
+    const auto primesCount = std::filesystem::file_size(fromLocation) / sizeof(primeType);
+    std::ifstream input(fromLocation, std::ios::binary);
+
+    std::vector<primeType> primes (primesCount);
+    for(auto& prime: primes)
+        input.read(reinterpret_cast<char*>(&prime), sizeof(primeType));
+
+    return primes;
+}
+
+
+
+std::vector<primeType> loadPrimesFilterBitness(const std::filesystem::path& primesLocation, std::size_t requiredBitness) {
+    constexpr auto getFirstWithBitness = [] (std::size_t bitness) {
+        if(bitness > sizeof(primeType) * 8)
+            throw std::invalid_argument("Specified bitness overflows the type");
+        return static_cast<primeType>(1ull << (bitness - 1));
+    };
+    constexpr auto getLastWithBitness = [] (std::size_t bitness) {
+        if(bitness > sizeof(primeType) * 8)
+            throw std::invalid_argument("Specified bitness overflows the type");
+        return static_cast<primeType>((1ull << bitness) - 1);
+    };
+
+    const auto allPrimes = loadPrimes(primesLocation);
+    const auto first = getFirstWithBitness(requiredBitness),
+        last = getLastWithBitness(requiredBitness);
+    const auto firstIdx = binary_search_find_index(allPrimes, first),
+        lastIdx = binary_search_find_index(allPrimes, last);
+
+    return { allPrimes.begin() + firstIdx - 1, allPrimes.begin() + lastIdx + 1};
+}
+
+constexpr auto getNumbersBitness = [] (primeType number) {
+    return sizeof(primeType) * 8 - std::countl_zero(number);
+};
 
 int main() {
 //    makeTest();
@@ -214,11 +246,23 @@ int main() {
 //
 //    std::cout << base << std::endl << base.bitCount() << std::endl;
 
-    const auto powers = loadPowers("../../powers/powers-8192.txt");
-    std::cout << std::hex << "0x" << powers.back() << std::endl;
+//    const auto powers = loadPowers("../../powers/powers-8192.txt");
+//    std::cout << std::hex << "0x" << powers.back() << std::endl;
 
 //    std::cout << primes[3745306] << std::endl;
 //    std::cout << binary_search_find_index(primes, 63287041u) << std::endl;
 
+//    std::cout << "Your bitness: " << std::endl;
+//    unsigned bitness; std::cin >> bitness;
+//    std::cout << "Received bitness " << bitness << std::endl;
+
+    const std::filesystem::path primesLocation = "../../all-primes-32-bit.bin";
+    const auto values = loadPrimesFilterBitness(primesLocation, 25);
+
+    std::cout << "First: " << values[0] << " = " << std::bitset<32>(values[0]) << " (" << getNumbersBitness(values[0]) << " bits)" << std::endl;
+    std::cout << "Second: " << values[1] << " = " << std::bitset<32>(values[1]) << " (" << getNumbersBitness(values[1]) << " bits)" << std::endl;
+
+    std::cout << "Before last: " << values[values.size() - 2] << " = " << std::bitset<32>(values[values.size() - 2]) << " (" << getNumbersBitness(values[values.size() - 2]) << " bits)" << std::endl;
+    std::cout << "Last: " << values.back() << " = " << std::bitset<32>(values.back()) << " (" << getNumbersBitness(values.back()) << " bits)" << std::endl;
 
 }
