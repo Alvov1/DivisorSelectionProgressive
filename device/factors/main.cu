@@ -1,38 +1,41 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
+#include <bitset>
 #include <thrust/device_vector.h>
 #include <thrust/host_vector.h>
 #include <cuda/std/array>
 #include "Aeu.h"
 #include "Timer.h"
 
-template <typename Elem>
-int binary_search_find_index(std::vector<Elem>& v, Elem data) {
+using Uns = Aeu<16000>;
+
+using primeType = unsigned;
+std::size_t binary_search_find_index(const thrust::host_vector<primeType>& v, primeType data) {
     auto it = std::lower_bound(v.begin(), v.end(), data);
     if (it == v.end()) {
-        return -1;
+        return 0;
     } else {
         return std::distance(v.begin(), it);
     }
 }
 
-using primeType = unsigned;
-std::vector<primeType> loadPrimes(const std::filesystem::path& fromLocation) {
+
+thrust::host_vector<primeType> loadPrimes(const std::filesystem::path& fromLocation) {
     if(!std::filesystem::is_regular_file(fromLocation))
         throw std::invalid_argument("Failed to load prime table: bad input file");
 
     const auto primesCount = std::filesystem::file_size(fromLocation) / sizeof(primeType);
     std::ifstream input(fromLocation, std::ios::binary);
 
-    std::vector<primeType> primes (primesCount);
+    thrust::host_vector<primeType> primes (primesCount);
     for(auto& prime: primes)
         input.read(reinterpret_cast<char*>(&prime), sizeof(primeType));
 
     return primes;
 }
 
-std::vector<primeType> loadPrimesFilterBitness(const std::filesystem::path& primesLocation, std::size_t requiredBitness) {
+thrust::host_vector<primeType> loadPrimesFilterBitness(const std::filesystem::path& primesLocation, std::size_t requiredBitness) {
     constexpr auto getFirstWithBitness = [] (std::size_t bitness) {
         if(bitness > sizeof(primeType) * 8)
             throw std::invalid_argument("Specified bitness overflows the type");
@@ -56,11 +59,6 @@ std::vector<primeType> loadPrimesFilterBitness(const std::filesystem::path& prim
 constexpr auto getNumbersBitness = [] (primeType number) {
     return sizeof(primeType) * 8 - std::countl_zero(number);
 };
-
-
-
-
-using Uns = Aeu<4320>;
 
 __global__
 void kernel(Uns* const numberFactorBase,
@@ -102,7 +100,7 @@ void kernel(Uns* const numberFactorBase,
         /* Индекс последнего числа в этой итерации. */
         const unsigned endingPrimeIndex = (startingPrimeIndex + primesPerIteration < firstPrimeInThread + primesPerThread ?
                                            startingPrimeIndex + primesPerIteration
-                                           :
+                                                                                                                          :
                                            firstPrimeInThread + primesPerThread);
 
         if(!factor.isZero())
@@ -122,6 +120,9 @@ void kernel(Uns* const numberFactorBase,
         if(logicalThreadId == verboseThreadId)
             printf("Starting prime: %u, ending prime: %u. \t---\t Iteration %u complete\n", startingPrimeIndex, endingPrimeIndex, i);
     }
+
+    if(logicalThreadId == verboseThreadId)
+        std::printf("Verbose thread exited.\n");
 }
 
 
@@ -129,7 +130,7 @@ void kernel(Uns* const numberFactorBase,
 int showUsage(const char* const exe) {
     return std::printf("Usage: %s <number> <factorization base> <primes location> <remaining factor bitness> <threads> <verbose thread id>\n"
                        "\tNumber - number to factorize\n"
-                       "\tFactorization base - common multiplier with set of smallest primes in powers\n"
+                       "\tFactorization base - product of the smallest primes. IT MUST CONTAIN ALL FACTORS FOR THE (p-1) EXCEPT FOR THE BIGGEST ONE\n"
                        "\tPrimes location - file with all available primes, SORTED IN ASCENDING ORDER\n"
                        "\tRemaining factor bitness - presumptive bit length of the existing factor\n"
                        "\tThreads - amount of threads (used both for amount of blocks and amount of threads in one block)\n"
@@ -146,9 +147,9 @@ int main(int argc, const char* const* const argv) {
 
         /* 1. Load number for factorize and factorization base. */
         const Uns number = std::string_view(argv[1]), factorBase = std::string_view(argv[2]);
-        thrust::device_vector<Uns> numberFactorBase = thrust::host_vector{ number, Uns { 0u }, base };
+        thrust::device_vector<Uns> numberFactorBase = thrust::host_vector{ number, Uns { 0u }, factorBase };
         Timer::init() << "Factorizing number 0x" << std::hex << number
-            << ". Using factor base 0x" << base << std::dec << Timer::endl;
+                      << ". Using factor base 0x" << factorBase << std::dec << Timer::endl;
 
         /* 2. Load prime table and filter with primes of only required bitness. */
         const std::filesystem::path primesLocation (argv[3]);
@@ -156,16 +157,16 @@ int main(int argc, const char* const* const argv) {
         Timer::out << "Searching for prime with bit length " << std::dec << remainingFactorBitness << Timer::endl;
         const thrust::device_vector<primeType> primes = loadPrimesFilterBitness(primesLocation, remainingFactorBitness);
         Timer::out << "Loaded prime table, which was filtered for factors " << remainingFactorBitness
-            << " bit length only: " << primes.size() << " elements." << Timer::endl;
+                   << " bit length only: " << primes.size() << " elements." << Timer::endl;
         Timer::out << "First prime: " << primes[0] << " (" << std::bitset<sizeof(primeType) * 8>(primes[0])
-            << "), last prime: " << primes.back() << " (" << std::bitset<sizeof(primeType) * 8>(primes.back()) << ")." << std::endl;
+                   << "), last prime: " << primes.back() << " (" << std::bitset<sizeof(primeType) * 8>(primes.back()) << ")." << Timer::endl;
 
         /* 3. Calculate the number of primes for selection for each thread. */
         const std::size_t threads = std::stoul(argv[5]), verboseThreadId = std::stoul(argv[6]);
         const unsigned primesPerIteration = (Uns::getBitness() - factorBase.bitCount() - 32) / 32;
-        if(primesPerIteration < 10)
-            Timer::out << "Warning: selection window may be too small for enough efficiency (taking "
-                << primesPerIteration << " primes at each iteration)" << Timer::endl;
+        if(primesPerIteration < 50)
+            Timer::out << "Warning: selection window may be too small for enough efficiency (taking " << primesPerIteration
+                       << " primes at each iteration). Recompilation with greater precision length may be required." << Timer::endl;
 
         /* 4. Launch kernel with all the data. */
         const auto timePoint = std::chrono::system_clock::now();

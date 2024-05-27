@@ -256,13 +256,27 @@ int main() {
 //    unsigned bitness; std::cin >> bitness;
 //    std::cout << "Received bitness " << bitness << std::endl;
 
-    const std::filesystem::path primesLocation = "../../all-primes-32-bit.bin";
-    const auto values = loadPrimesFilterBitness(primesLocation, 25);
+//    const std::filesystem::path primesLocation = "../../all-primes-32-bit.bin";
+//    const auto values = loadPrimesFilterBitness(primesLocation, 25);
+//
+//    std::cout << "First: " << values[0] << " = " << std::bitset<32>(values[0]) << " (" << getNumbersBitness(values[0]) << " bits)" << std::endl;
+//    std::cout << "Second: " << values[1] << " = " << std::bitset<32>(values[1]) << " (" << getNumbersBitness(values[1]) << " bits)" << std::endl;
+//
+//    std::cout << "Before last: " << values[values.size() - 2] << " = " << std::bitset<32>(values[values.size() - 2]) << " (" << getNumbersBitness(values[values.size() - 2]) << " bits)" << std::endl;
+//    std::cout << "Last: " << values.back() << " = " << std::bitset<32>(values.back()) << " (" << getNumbersBitness(values.back()) << " bits)" << std::endl;
 
-    std::cout << "First: " << values[0] << " = " << std::bitset<32>(values[0]) << " (" << getNumbersBitness(values[0]) << " bits)" << std::endl;
-    std::cout << "Second: " << values[1] << " = " << std::bitset<32>(values[1]) << " (" << getNumbersBitness(values[1]) << " bits)" << std::endl;
+//    Uns base = Uns(1) * 512 * 729 * 3125 * 2401 * 121 *
+//               169 * 17 * 19 * 21 * 23 * 27 * 29
+//               * 31 * 37 * 83 * 131 * 199 * 257
+//               * 317 * 1051 * 1297 * 1637 * 1933;
+//    std::cout << std::hex << "0x" << base << std::endl;
 
-    std::cout << "Before last: " << values[values.size() - 2] << " = " << std::bitset<32>(values[values.size() - 2]) << " (" << getNumbersBitness(values[values.size() - 2]) << " bits)" << std::endl;
-    std::cout << "Last: " << values.back() << " = " << std::bitset<32>(values.back()) << " (" << getNumbersBitness(values.back()) << " bits)" << std::endl;
+//    std::cout << getNumbersBitness(63287041) << std::endl;
+
+//    Uns base = Uns(2) * 3 * 5 * 17 * 19 * 21 * 23 * 27 * 29
+//               * 31 * 37 * 79 * 79 * 83 * 121 * 131 * 137
+//               * 169 * 199 * 257 * 317 * 359 * 512 * 601 * 729 * 1051 * 1297 * 1637 * 1933 * 2401 * 3125 * 24671;
+//    std::cout << std::hex << "0x" << base << std::endl;
+
 
 }
