@@ -6,7 +6,7 @@
 #include <Aeu.h>
 
 
-using Uns = Aeu<8192>;
+using Uns = Aeu<64000>;
 
 void kernel(//Uns* const numberAndFactor,
             //const primeType* const primes,
@@ -151,8 +151,7 @@ std::vector<Uns> loadPowers(const std::filesystem::path& fromLocation) {
 }
 
 
-template <typename Elem>
-int binary_search_find_index(std::vector<Elem> v, Elem data) {
+int binary_search_find_index(const std::vector<unsigned>& v, unsigned data) {
     auto it = std::lower_bound(v.begin(), v.end(), data);
     if (it == v.end()) {
         return -1;
@@ -166,6 +165,7 @@ std::vector<primeType> loadPrimes(const std::filesystem::path& fromLocation) {
     if(!std::filesystem::is_regular_file(fromLocation))
         throw std::invalid_argument("Failed to load prime table: bad input file");
 
+    //30'000;
     const auto primesCount = std::filesystem::file_size(fromLocation) / sizeof(primeType);
     std::ifstream input(fromLocation, std::ios::binary);
 
@@ -278,5 +278,40 @@ int main() {
 //               * 169 * 199 * 257 * 317 * 359 * 512 * 601 * 729 * 1051 * 1297 * 1637 * 1933 * 2401 * 3125 * 24671;
 //    std::cout << std::hex << "0x" << base << std::endl;
 
+    const std::filesystem::path primesLocation = "../../all-primes-32-bit.bin";
+//    const auto values = loadPrimes(primesLocation);
+//    Uns value = 2;
+//    for(auto tValue: values) {
+//        value *= tValue;
+//        if(tValue > 1637)
+//            break;
+//    }
+//
+//    std::cout << std::hex << "0x" << value << " (" << std::dec << value.bitCount() << ")" << std::endl;
+//    Aeu<2048> v = Aeu<2048>(1) * 2 * 3 * 5 * 29 * 79 * 79 * 137 * 359 * 601 * 24671 * 63287041;
+//
 
+    const auto primes = loadPrimesFilterBitness(primesLocation, 30);
+    std::cout << primes.size() << std::endl;
+    std::cout << binary_search_find_index(primes, 652450049) << std::endl;
+
+//    1894122 -> 1681618
+//    1681596
+//    1681618
+//    const Aeu<4096> a = 2, n = "0x545e18a29cdbb180605b5ab2e8a7012948e49357";
+//
+//    Aeu<4096> v = "0x79df1b14b1ea3d0f65603047b7e2627c007e944f01e6e1d02d28d612530cf679407ac199ad956e454fbcd42285c1780f2173265831de519ae090ec76a0cbd93cb1cbc2cb79a477b969b11e527efea891ca9492e549e08999b5567f1f380d27d1e92ea80b5a41c52316565c43fa5298ebc792c31eee7136e12f56d0c90eb08f7da484691550a9d8db9e7bd8a109e1281616dcd59fd79f0a6aad77401f82a7af6e1094782a5baba0f49a881cb1003695664933c733150176682b620278a2b2b040d494c92987264b33132c7a6faea20dfb645409d8b57e966d9bc69285225379506e58ed3b7f713ff282b30d48c8267a0f96b4066312b4587eb6a2067f06fe84a10321d5e6e05a8a593089ec0eb29cdc8ae78b2183b84d6526e05cfbec66292f559169a23be";
+////    for (unsigned i = 0; i < 28; ++i) {
+////        v *= 63287041;
+////    }
+//
+//    v *= 652450049;
+//    v *= 2;
+//
+//    std::cout << v.bitCount() << ". Multiplied. " << v.bitCount() << std::endl;
+//
+//    std::cout << Aeu<4096>::gcd(Aeu<4096>::powm(a, v, n) - 1, n);
+//
+////    Aeu<2048> v = Aeu<2048>(1) * 2 * 3 * 5 * 29 * 79 * 79 * 137 * 359 * 601 * 24671 * 63287041;
+////        std::cout << Aeu<2048>::gcd(Aeu<2048>::powm(a, v, n) - 1, n);
 }

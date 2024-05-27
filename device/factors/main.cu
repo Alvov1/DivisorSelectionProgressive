@@ -8,7 +8,7 @@
 #include "Aeu.h"
 #include "Timer.h"
 
-using Uns = Aeu<16000>;
+using Uns = Aeu<4096>;
 
 using primeType = unsigned;
 std::size_t binary_search_find_index(const thrust::host_vector<primeType>& v, primeType data) {
