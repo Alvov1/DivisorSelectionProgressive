@@ -1,57 +1,338 @@
 РЕЗУЛЬТАТЫ НОВЫЕ:
-0x66ee64b74c3d88a79c57064d8365 = 0x3e9c7bb357c3 * 0x3e9c7bb357c3 (111 bits)
-BASE × 76840783. Bit length: 27
-2 × 3 × 7 × 83 × 257 × 76840783 -> 46
-2048bit - 55 primes per thread - 10051ms
 
 
-0xc5c8f3c384420f943cad2186cb57 = 0x9f2f2b370d * 0x13e13e079aa558532f3;                      (112 bits).
-BASE * 498317173. Bit length 29             2 × 3 × 739 × 997 × 6833 × 70199 × 2767067
-2^2 × 7^3 × 498 317173 -> 40
-2048bit - 206 primes per thread - 57889ms
+--------------------------------------------------------------------------------------------------------
+
+PRODUCT: 0xc5bf3f373d3cdba4b9077148540197acff67 = 0x9f2f2b370d * 0x13e0444d3b8bcfb10d0f77e3343 (144 bits)
+CALCULATIONS BITNESS: 2048
+P: 0x9f2f2b370d (40 bit) -> 2^2 × 7^3 × 498317173
+BASE (138 bit): 0x3aae36d948893a42f7abef670513fe91948
+SEARCHING FOR FACTOR: 498'317'173 (29 bits)
+
+OUTPUT:
+[0 ms] Factorizing number 0xc5bf3f373d3cdba4b9077148540197acff67. Using factor base 0x3aae36d948893a42f7abef670513fe91948
+[0 ms] Searching for prime with bit length 29
+[4130 ms] Loaded prime table, which was filtered for factors 29 bit length only: 13561909 elements.
+[4131 ms] First prime: 268435399 (00001111111111111111111111000111), last prime: 536870923 (00100000000000000000000000001011).
+[4131 ms] Tue May 28 07:58:16 2024
+ Starting kernel <<<256, 256>>>. Using bitness 2048. Primes per iteration: 58
+Verbose thread: 0
+Factorizing number with bitness 144
+Base bitness 138
+Primes per thread: 206
+Primes per iteration: 58
+Iterations amount: 4
+First prime in thread: 0
+Starting prime: 0, ending prime: 58. 	---	 Iteration 0 complete
+Starting prime: 58, ending prime: 116. 	---	 Iteration 1 complete
+Starting prime: 116, ending prime: 174. 	---	 Iteration 2 complete
+Starting prime: 174, ending prime: 206. 	---	 Iteration 3 complete
+Verbose thread exited.
+Thread 56510. Found factor.
+[74364 ms] Kernel completed. Founded factor: 0x9f2f2b370d.
+
+--------------------------------------------------------------------------------------------------------
 
 
-0x19d824f0ac1f9023a793b55cda898d09 = 0x61703ba69797 * 0x43e699ae75d0bb0c945f;               (125 bits).
-BASE × 61779353. Bit length 26       2 × 5 × 7 × 107 × 11732521 × 3648894518327
-2 × 3 × 5^2 × 11 × 1051 × 61779353 -> 47
-2048bit - 28 primes per thread - 13907ms
+--------------------------------------------------------------------------------------------------------
+
+PRODUCT: 0x3149bab04a7169e21e8aa7271ab12a7c8b3e7d4923 = 0x3e9c7bb357c3 * 0xc98660b83040df977ee8d2757e9321 (166 bits)
+CALCULATIONS BITNESS: 2048
+P: 0x3e9c7bb357c3 (46 bits) -> 2 × 3 × 7 × 83 × 257 × 76840783
+BASE (352 bits): 0xf26db926df3da16f9fce88e7ed02132c59a2178e753d96d02ec394702974dbfa630c81a7f5711071b60bc454
+SEARCHING FOR FACTOR: 76'840'783 (27 bits)
+
+OUTPUT:
+[0 ms] Factorizing number 0x3149bab04a7169e21e8aa7271ab12a7c8b3e7d4923. Using factor base 0xf26db926df3da16f9fce88e7ed02132c59a2178e753d96d02ec394702974dbfa630c81a7f5711071b60bc454
+[0 ms] Searching for prime with bit length 27
+[4165 ms] Loaded prime table, which was filtered for factors 27 bit length only: 3645746 elements.
+[4165 ms] First prime: 67108859 (00000011111111111111111111111011), last prime: 134217757 (00001000000000000000000000011101).
+[4165 ms] Tue May 28 08:00:33 2024
+ Starting kernel <<<256, 256>>>. Using bitness 2048. Primes per iteration: 52
+Verbose thread: 0
+Factorizing number with bitness 166
+Base bitness 352
+Primes per thread: 55
+Primes per iteration: 52
+Iterations amount: 2
+First prime in thread: 0
+Starting prime: 0, ending prime: 52. 	---	 Iteration 0 complete
+Thread 9780. Found factor.
+Starting prime: 52, ending prime: 55. 	---	 Iteration 1 complete
+Verbose thread exited.
+[10937 ms] Kernel completed. Founded factor: 0x3e9c7bb357c3.
+
+--------------------------------------------------------------------------------------------------------
 
 
-0x545e18a29cdbb180605b5ab2e8a7012948e49357 = 0x6567934a6bdb75 * 0xd4fd44ea8b55228cdc25daf61b; (159 bits).
-BASE × 652450049. Bit length 30          2 × 599 × 6467621 × 30707689 × 70923298052231
-2^2 × 3 × 17 × 131 × 1637 × 652450049 -> 55
-2048bit - 399 primes per thread - 19793ms
+--------------------------------------------------------------------------------------------------------
 
+PRODUCT: 0x205dc4d9c339d4f2c34533929d18335b57dc52f5bd = 0x61703ba69797 * 0x550934ce62ce68295a8fc808fd67cb (166 bits)
+CALCULATIONS BITNESS: 2048
+P: 0x61703ba69797 (47 bit) -> 2 × 3 × 5^2 × 11 × 1051 × 61779353
+BASE (1483 bits): 0x407dff752baf1992a3575add1a2d2ded25acad5ffa09e79495cca855e27093d4a711f7322b5795f2d7275cc60a527e2ded74da6f5fbb7cd5ef55322ea5ae3f1c550021433b1d6ed4fa6ca92219c04d8264161dc71c09e9c1578980800dc136692da1317d6ec617d9fecefe4e396fb526e1515ba599936e2f72a984069612e3cdd5cf56ccd69a91bd58449078b8d5c09424f34fb058a7954e342ae68bb558c14937e762bc7ec1e6480b9f3f6194ef7e3d1940e65677f51232dc6
+SEARCHING FOR FACTOR: 61'779'353 (26 bits)
 
-0x5ee1aa56fb23b6f2e13c7bb6d6a5b5d0f2d2f7a6ed6eef77724d51a7b49 = 0x23b7da80d4e33 * 0x2a809596cbea7479f78e633c1447929080cea9740731c93; (235 bits).
-BASE × 47432659. Bit length 26          2 × 5 × 6741497089 × 1857881445809 × 520040449147050758786092797282053
-2 × 3 × 5 × 7 × 199 × 317 × 47432659 -> 50
-2048bit - 28 primes per thread - 15559ms
+OUTPUT:
+[0 ms] Factorizing number 0x205dc4d9c339d4f2c34533929d18335b57dc52f5bd. Using factor base 0x407dff752baf1992a3575add1a2d2ded25acad5ffa09e79495cca855e27093d4a711f7322b5795f2d7275cc60a527e2ded74da6f5fbb7cd5ef55322ea5ae3f1c550021433b1d6ed4fa6ca92219c04d8264161dc71c09e9c1578980800dc136692da1317d6ec617d9fecefe4e396fb526e1515ba599936e2f72a984069612e3cdd5cf56ccd69a91bd58449078b8d5c09424f34fb058a7954e342ae68bb558c14937e762bc7ec1e6480b9f3f6194ef7e3d1940e65677f51232dc6
+[0 ms] Searching for prime with bit length 26
+[4092 ms] Loaded prime table, which was filtered for factors 26 bit length only: 1894122 elements.
+[4092 ms] First prime: 33554393 (00000001111111111111111111011001), last prime: 67108879 (00000100000000000000000000001111).
+[4092 ms] Warning: selection window may be too small for enough efficiency (taking 16 primes at each iteration). Recompilation with greater precision length may be required.
+[4092 ms] Tue May 28 08:01:34 2024
+ Starting kernel <<<256, 256>>>. Using bitness 2048. Primes per iteration: 16
+Verbose thread: 0
+Factorizing number with bitness 166
+Base bitness 1483
+Primes per thread: 28
+Primes per iteration: 16
+Iterations amount: 2
+First prime in thread: 0
+Starting prime: 0, ending prime: 16. 	---	 Iteration 0 complete
+Starting prime: 16, ending prime: 28. 	---	 Iteration 1 complete
+Verbose thread exited.
+Thread 57057. Found factor.
+[54655 ms] Kernel completed. Founded factor: 0x61703ba69797.
 
-
-0x360d1291dd5479fc94d10b9bbd466352d78c61d305daab27349b9942d2d = 0x18570cbb26d99 * 0x2387d7c4c27552a6caea862149d6bbd30f8cdef6ae030b5; (234 bits).
-BASE × 1965132343. Bit length 31              2^2 × 3 × 11 × 3301 × 5417 × 137869 × 19231237 × 5695251507767 × 1527696761602395598567
-23 × 3 × 7 × 1297 × 1965132343 -> 49
-2048bit - 773 primes per thread - 378160ms
-
-
-
-0x1b1f9030b9b6055fe93391bb8e89b803cff = 0x565bb88de689 * 0x5067756e4c889272e57a547; (137 bits).
-BASE * 11391823. Bit length 24              2 × 3^2 × 7477 × 11555749992877730097023
-23 × 72 × 11 × 1933 × 11391823 -> 47
-2048bit - 7 primes per thread - 6538ms
-
-
-
-0xce586144cc86c60a3c723c3fb33219415f48874bb499a2591f97aa63901fcdb08da311a19d9687d230fe26c700bf7ee0f7d1 = 0xcf4895f9f73016abf8cdb7 * 0xfed75712b994d5f2320d06582e6291f339132d38e427b34ae953c11feb4fe7e401518f626966b7; (400 bits).
-BASE * 63287041. Bit length 26     2 × 3 × 1579 × 113489 × 6579211 × 7406540556168973 × 158530163134385749373576339480760251299717913925581059394457701
-2 × 3 × 5 × 29 × 79^2 × 137 × 359 × 601 × 24671 × 63287041 -> 88
-2048bit - 28 primes per thread - 36467ms
-
-
+--------------------------------------------------------------------------------------------------------
 
 
 
+--------------------------------------------------------------------------------------------------------
+
+PRODUCT: 0x25f8679feb667e78d374775bc901ea34335923cda1 = 0x565bb88de689 * 0x708f1c994de266177135c1bf2f6859 (166 bits)
+CALCULATIONS BITNESS: 4096
+P: 0x565bb88de689 (47 bits) -> 2^3 × 7^2 × 11 × 1933 × 11391823
+BASE (2727 bits): 0x6a3e7220771dcb32eab3ffb1b48ab2b6748b83183d603ee79ccd28ab17bd2d4a49248f4f61eec240b306e79605e99fd306953663b96511b843747c548f9e4b74fac24e276178f742d6ce54317efe7e5d26972455ae346b43e16fa51ff8ad6f1d08fd189d56165c311eaf731e2e7a75ce0ec00b3cc7a769ad57658abe1e78c2395817f4374aacaa7c4c85072d7004c492ea8bdfd1ffe44b8b084aba5df37cf238cac07bf9e8b760e816355da087f884c8e0f2e7e98fca8d4275d184d56745ac10bb9bf20b6c6a8c78b3ff2211db712636d015ac23d4fd214a2c7931c85e6711c0927f56d800b9c1b88d0b54e33540571986f6027ae9ce98f05b8222f8e9a28c2838107ce5ae1e6b68b255081c36da75c9d4d576067800bfc6118e635e288891b0ca1d8e154f85f618143e62f028d1ca51f7a712b1d8be72cd34ea745c06d4316a024198c324389ad11ad43c6e5db3ff7c2665f22448
+SEARCHING FOR FACTOR: 11'391'823 (24 bits)
+
+OUTPUT:
+[0 ms] Factorizing number 0x25f8679feb667e78d374775bc901ea34335923cda1. Using factor base 0x6a3e7220771dcb32eab3ffb1b48ab2b6748b83183d603ee79ccd28ab17bd2d4a49248f4f61eec240b306e79605e99fd306953663b96511b843747c548f9e4b74fac24e276178f742d6ce54317efe7e5d26972455ae346b43e16fa51ff8ad6f1d08fd189d56165c311eaf731e2e7a75ce0ec00b3cc7a769ad57658abe1e78c2395817f4374aacaa7c4c85072d7004c492ea8bdfd1ffe44b8b084aba5df37cf238cac07bf9e8b760e816355da087f884c8e0f2e7e98fca8d4275d184d56745ac10bb9bf20b6c6a8c78b3ff2211db712636d015ac23d4fd214a2c7931c85e6711c0927f56d800b9c1b88d0b54e33540571986f6027ae9ce98f05b8222f8e9a28c2838107ce5ae1e6b68b255081c36da75c9d4d576067800bfc6118e635e288891b0ca1d8e154f85f618143e62f028d1ca51f7a712b1d8be72cd34ea745c06d4316a024198c324389ad11ad43c6e5db3ff7c2665f22448
+[0 ms] Searching for prime with bit length 24
+[4100 ms] Loaded prime table, which was filtered for factors 24 bit length only: 513710 elements.
+[4100 ms] First prime: 8388593 (00000000011111111111111111110001), last prime: 16777259 (00000001000000000000000000101011).
+[4100 ms] Warning: selection window may be too small for enough efficiency (taking 41 primes at each iteration). Recompilation with greater precision length may be required.
+[4100 ms] Tue May 28 08:14:26 2024
+ Starting kernel <<<256, 256>>>. Using bitness 4096. Primes per iteration: 41
+Verbose thread: 26635
+Factorizing number with bitness 166
+Base bitness 2727
+Primes per thread: 7
+Primes per iteration: 41
+Iterations amount: 1
+First prime in thread: 186445
+Thread 26635. Found factor.
+[46946 ms] Kernel completed. Founded factor: 0x565bb88de689.
+
+--------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------
+
+PRODUCT: 0x2b0d86b43aa7c3f6df96a39168dc6c4e2c30cf4324bd = 0x18570cbb26d99 * 0x1c4d08df72a0ef33a298283b544ffec5 (174 bits)
+CALCULATIONS BITNESS: 4096
+P: 0x18570cbb26d99 (49 bits) -> 2^3 × 3 × 7 × 1297 × 1965132343
+BASE (1829 bits): 0x1c95ca62c3cea10ed9221e7e82940d8a534e5199d8ed30bac833e7ab050f1366a8474e4af59bcdcbf4f291e17f9e6fb90c8ecd491941da2dbfc9d323126045007d2cb1d691c68f41b061438860b338babff4a23497332ddf34d9d82fed542df732c55fff6c075e24b3344a02c29f553a3f19961e5e9e9e9f790976f052d4c4ff0067366625b509511ed8a5c43e7833204b79fdb18cc285a990070be12fb9ce5e06ee86f6912b7860465203ff7ff5ec1143f7456a4c3aaec397e48542237656f2a8489703d66cc56ce5b8811ca1a351961f724248a8859ded79eb8e14f6f84a8dd8e4916ac8
+SEARCHING FOR FACTOR: 1'965'132'343 (31 bits)
+
+OUTPUT:
+[0 ms] Factorizing number 0x2b0d86b43aa7c3f6df96a39168dc6c4e2c30cf4324bd. Using factor base 0x1c95ca62c3cea10ed9221e7e82940d8a534e5199d8ed30bac833e7ab050f1366a8474e4af59bcdcbf4f291e17f9e6fb90c8ecd491941da2dbfc9d323126045007d2cb1d691c68f41b061438860b338babff4a23497332ddf34d9d82fed542df732c55fff6c075e24b3344a02c29f553a3f19961e5e9e9e9f790976f052d4c4ff0067366625b509511ed8a5c43e7833204b79fdb18cc285a990070be12fb9ce5e06ee86f6912b7860465203ff7ff5ec1143f7456a4c3aaec397e48542237656f2a8489703d66cc56ce5b8811ca1a351961f724248a8859ded79eb8e14f6f84a8dd8e4916ac8
+[0 ms] Searching for prime with bit length 31
+[4287 ms] Loaded prime table, which was filtered for factors 31 bit length only: 50697538 elements.
+[4287 ms] First prime: 1073741789 (00111111111111111111111111011101), last prime: 2147483647 (01111111111111111111111111111111).
+[4287 ms] Tue May 28 08:06:27 2024
+ Starting kernel <<<256, 256>>>. Using bitness 4096. Primes per iteration: 69
+Verbose thread: 54584
+Factorizing number with bitness 174
+Base bitness 1829
+Primes per thread: 773
+Primes per iteration: 69
+Iterations amount: 12
+First prime in thread: 42193432
+Starting prime: 42193432, ending prime: 42193501. 	---	 Iteration 0 complete
+Starting prime: 42193501, ending prime: 42193570. 	---	 Iteration 1 complete
+Thread 54584. Found factor.
+[107573 ms] Kernel completed. Founded factor: 0x18570cbb26d99.
+
+--------------------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------------------
+
+PRODUCT: 4 = 0x23b7da80d4e33 * 0x9fe1c85f69e96bd2d1f69266a3fe0feb (177 bits)
+CALCULATIONS BITNESS: 2048
+P: 0x23b7da80d4e33 (50 bits) -> 2 × 3 × 5 × 7 × 199 × 317 × 47432659
+BASE (443 bits): 0x483ad35c09e48c27b448bf381222f90743267d76300e6b4163242d1e01403fbce7017302605e89f0f85dda891adabca51a84359babebb7c
+SEARCHING FOR FACTOR: 47432659 (26 bits)
+
+OUTPUT:
+[0 ms] Factorizing number 0x164eb1420229ec9da6d2589c99c77801e6d821b65c5d1. Using factor base 0x483ad35c09e48c27b448bf381222f90743267d76300e6b4163242d1e01403fbce7017302605e89f0f85dda891adabca51a84359babebb7c
+[0 ms] Searching for prime with bit length 26
+[4083 ms] Loaded prime table, which was filtered for factors 26 bit length only: 1894122 elements.
+[4083 ms] First prime: 33554393 (00000001111111111111111111011001), last prime: 67108879 (00000100000000000000000000001111).
+[4083 ms] Warning: selection window may be too small for enough efficiency (taking 49 primes at each iteration). Recompilation with greater precision length may be required.
+[4083 ms] Tue May 28 08:03:22 2024
+ Starting kernel <<<256, 256>>>. Using bitness 2048. Primes per iteration: 49
+Verbose thread: 0
+Factorizing number with bitness 177
+Base bitness 443
+Primes per thread: 28
+Primes per iteration: 49
+Iterations amount: 1
+First prime in thread: 0
+Starting prime: 0, ending prime: 28. 	---	 Iteration 0 complete
+Verbose thread exited.
+Thread 28301. Found factor.
+[15962 ms] Kernel completed. Founded factor: 0x23b7da80d4e33.
+
+--------------------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------------------
+
+PRODUCT: 4 = 0x6567934a6bdb75 * 0x885c2bf8b5f7d323d6bc1204b041fd06687 (194 bits)
+CALCULATIONS BITNESS: 4096
+P: 0x6567934a6bdb75 (55 bits) -> 2^2 × 3 × 17 × 131 × 1637 × 652450049
+BASE (2334 bits): 0x315d9ccad02b0887db4a9ba86468a9833dc5186dc670f7034fdcb1725bf849e9d2d3bfd68d9a80eb77cade0780b61039fa1b332d722cafa330d63f60a8d4311bd35c41f134836e10c65b2fed916a64afb68379125841072118d88143bbf85de6d997c272c695c7c070be8696acb00a1836ea6f70fc20e59f43c86e7ecedc94db664913e1bf75680b2ffe514478a8f98dceee83e603164b82b4711d36e3e930606e6981aff148c2d141d5eb377e775333275f814bc7b2d1fcd400d064b68fabd97345fd3af2b18965b3836f29ff723ffe2228859bd4dbc846528ac3737f526b7812c60bd74a4e4745114bc49223b4d9f2df11d53855594102b827b4dbf5defea26f722946d60445007b5b834385eb492194e0dcf7c908aa97d942d438ded99808bc8585c4
+SEARCHING FOR FACTOR: 652'450'049 (30 bits)
+
+OUTPUT:
+[0 ms] Factorizing number 0x360388e36233eef1b0ef20dd080b8980801088a5cb26158b3. Using factor base 0x315d9ccad02b0887db4a9ba86468a9833dc5186dc670f7034fdcb1725bf849e9d2d3bfd68d9a80eb77cade0780b61039fa1b332d722cafa330d63f60a8d4311bd35c41f134836e10c65b2fed916a64afb68379125841072118d88143bbf85de6d997c272c695c7c070be8696acb00a1836ea6f70fc20e59f43c86e7ecedc94db664913e1bf75680b2ffe514478a8f98dceee83e603164b82b4711d36e3e930606e6981aff148c2d141d5eb377e775333275f814bc7b2d1fcd400d064b68fabd97345fd3af2b18965b3836f29ff723ffe2228859bd4dbc846528ac3737f526b7812c60bd74a4e4745114bc49223b4d9f2df11d53855594102b827b4dbf5defea26f722946d60445007b5b834385eb492194e0dcf7c908aa97d942d438ded99808bc8585c4
+[0 ms] Searching for prime with bit length 30
+[4226 ms] Loaded prime table, which was filtered for factors 30 bit length only: 26207280 elements.
+[4226 ms] First prime: 536870909 (00011111111111111111111111111101), last prime: 1073741827 (01000000000000000000000000000011).
+[4227 ms] Tue May 28 08:10:57 2024
+ Starting kernel <<<256, 256>>>. Using bitness 4096. Primes per iteration: 54
+Verbose thread: 14339
+Factorizing number with bitness 194
+Base bitness 2334
+Primes per thread: 399
+Primes per iteration: 54
+Iterations amount: 8
+First prime in thread: 5721261
+Starting prime: 5721261, ending prime: 5721315. 	---	 Iteration 0 complete
+Thread 14339. Found factor.
+[92226 ms] Kernel completed. Founded factor: 0x6567934a6bdb75.
+--------------------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------------------
+
+PRODUCT: 0x2c78e5029bd4bb31f69c965cb016b622c0540e85e919ed563f27a21098084950addf = 0x14a3fde916a3d41cc2d5 * 0x22793efdf8073b753ca4d0caddc6128c2ccb7ab07d027bfe3 (270 bits)
+CALCULATIONS BITNESS: 92
+P: 0x14a3fde916a3d41cc2d5 (77 bits) -> 2^2 × 3^3 × 5 × 97 × 23747 × 105137 × 745335889
+BASE (4307 bits) -> 0x786b7d3c6b7912b804374574fbf76f8cc2b96f87a718e7c15b15fd6accaa2c86b2b29ba78e50dae983b8950c3bc0312bf3d232b5375e0eb8a584d25faa0613656cf92e4634a9f69de4540fce11e59d20da0cad1eef9d11c5736b155d5728ce0939550eebf872cc9cfd087cbd36ad64dc602c8925aed63edc641d7c99e03630024520c7bdeb92a8f55889ff22b907d8fc98367f8d75b9d29c2b1d5bac6caba93f6bec29a81e89de75d8a012a96ad1aabcce11c32a369d0a2de8bb671ed1513424d7519c3e69108839989d9e4da10e8842d4bd8b304796a3c3a81b7591b52d57d25e646f057542d4100d336f1ed95d31ae8b03cd5e61e41583b01b27482747c2d2aa03a04b523236290b5dacfe7819e870f562bd2eb7e82168f8019700eb557f4ce006ae8ab30cdb11b56aab4f1a55a340b1e5aafe0209821cefe20502ab22ec05d3fe13dd800940098ca54beae99b7001b38ce93608be14f76b52e9906bf73671ed1de99f34e2cefb2d64ba0a121279cac6e097c2a370e60d6ef7b797ab17120ed10e504927ffc7d69cb6eb6fbaace28456e9b33c2c6976e7809e106444eebe0fa0a315a40b38d36e68271cd2ac1b348f42147ff380fa86fe852ec6e0b692f2260e3128aba3daad73fe3acd7d2b9467d2e53c32d136da099b3ef2817319eb425917aeaaedda55e2b81514c346fe193fb228bce5869acae6aaad35bf8d2625186ae2bd33eee619910c6c933ba623125b34fd8b32765a713b975535c
+SEARCHING FOR FACTOR: 745'335'889 (30 bits)
+
+CMD: ./PrimesSelection 0x2c78e5029bd4bb31f69c965cb016b622c0540e85e919ed563f27a21098084950addf 0x786b7d3c6b7912b804374574fbf76f8cc2b96f87a718e7c15b15fd6accaa2c86b2b29ba78e50dae983b8950c3bc0312bf3d232b5375e0eb8a584d25faa0613656cf92e4634a9f69de4540fce11e59d20da0cad1eef9d11c5736b155d5728ce0939550eebf872cc9cfd087cbd36ad64dc602c8925aed63edc641d7c99e03630024520c7bdeb92a8f55889ff22b907d8fc98367f8d75b9d29c2b1d5bac6caba93f6bec29a81e89de75d8a012a96ad1aabcce11c32a369d0a2de8bb671ed1513424d7519c3e69108839989d9e4da10e8842d4bd8b304796a3c3a81b7591b52d57d25e646f057542d4100d336f1ed95d31ae8b03cd5e61e41583b01b27482747c2d2aa03a04b523236290b5dacfe7819e870f562bd2eb7e82168f8019700eb557f4ce006ae8ab30cdb11b56aab4f1a55a340b1e5aafe0209821cefe20502ab22ec05d3fe13dd800940098ca54beae99b7001b38ce93608be14f76b52e9906bf73671ed1de99f34e2cefb2d64ba0a121279cac6e097c2a370e60d6ef7b797ab17120ed10e504927ffc7d69cb6eb6fbaace28456e9b33c2c6976e7809e106444eebe0fa0a315a40b38d36e68271cd2ac1b348f42147ff380fa86fe852ec6e0b692f2260e3128aba3daad73fe3acd7d2b9467d2e53c32d136da099b3ef2817319eb425917aeaaedda55e2b81514c346fe193fb228bce5869acae6aaad35bf8d2625186ae2bd33eee619910c6c933ba623125b34fd8b32765a713b975535c ../../../../primes.bin 30 256 25770
+
+OUTPUT:
+[0 ms] Factorizing number 0x2c78e5029bd4bb31f69c965cb016b622c0540e85e919ed563f27a21098084950addf. Using factor base 0x786b7d3c6b7912b804374574fbf76f8cc2b96f87a718e7c15b15fd6accaa2c86b2b29ba78e50dae983b8950c3bc0312bf3d232b5375e0eb8a584d25faa0613656cf92e4634a9f69de4540fce11e59d20da0cad1eef9d11c5736b155d5728ce0939550eebf872cc9cfd087cbd36ad64dc602c8925aed63edc641d7c99e03630024520c7bdeb92a8f55889ff22b907d8fc98367f8d75b9d29c2b1d5bac6caba93f6bec29a81e89de75d8a012a96ad1aabcce11c32a369d0a2de8bb671ed1513424d7519c3e69108839989d9e4da10e8842d4bd8b304796a3c3a81b7591b52d57d25e646f057542d4100d336f1ed95d31ae8b03cd5e61e41583b01b27482747c2d2aa03a04b523236290b5dacfe7819e870f562bd2eb7e82168f8019700eb557f4ce006ae8ab30cdb11b56aab4f1a55a340b1e5aafe0209821cefe20502ab22ec05d3fe13dd800940098ca54beae99b7001b38ce93608be14f76b52e9906bf73671ed1de99f34e2cefb2d64ba0a121279cac6e097c2a370e60d6ef7b797ab17120ed10e504927ffc7d69cb6eb6fbaace28456e9b33c2c6976e7809e106444eebe0fa0a315a40b38d36e68271cd2ac1b348f42147ff380fa86fe852ec6e0b692f2260e3128aba3daad73fe3acd7d2b9467d2e53c32d136da099b3ef2817319eb425917aeaaedda55e2b81514c346fe193fb228bce5869acae6aaad35bf8d2625186ae2bd33eee619910c6c933ba623125b34fd8b32765a713b975535c
+[0 ms] Searching for prime with bit length 30
+[4282 ms] Loaded prime table, which was filtered for factors 30 bit length only: 26207280 elements.
+[4282 ms] First prime: 536870909 (00011111111111111111111111111101), last prime: 1073741827 (01000000000000000000000000000011).
+[4282 ms] Tue May 28 10:02:59 2024
+ Starting kernel <<<256, 256>>>. Using bitness 9216. Primes per iteration: 152
+Verbose thread: 25770
+Factorizing number with bitness 270
+Base bitness 4307
+Primes per thread: 399
+Primes per iteration: 152
+Iterations amount: 3
+First prime in thread: 10282230
+Thread 26569. Found factor.
+[388605 ms] Kernel completed. Founded factor: 0x14a3fde916a3d41cc2d5.
+--------------------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------------------
+
+PRODUCT: 0x809ba7242d458f006deab4bbd6980f301b5a64b7b086468ef2c385604c2e87e34c7c600b6f7 = 0x1e062bb662de70170ca503 * 0x44892f2d1851e50aac087e34eab055eb3c4a738e68a4aa8e7ee1fd (300 bits)
+CALCULATIONS BITNESS: 4608
+P: 0x1e062bb662de70170ca503 (85 bits) -> 2 × 5^2 × 7 × 107 × 2161 × 12907 × 597'589 × 58'148'059
+BASE (3558 bits) -> 0x2a4d5004f65cf64ecf589c4bb3f4f591e2becf8a25ca7d95a8529f9342afcc137f8fb5caefde1a55ad9180241ddcf08d24c4c9ddb5a45b775fca16a2f3f9051fac5399860d11a5cc93bf96fd394be77b788e92d0b79abd2797d780282ce39f701bc890e8b6cd0c8ce421f2cc293fa9c07f4bfb2c236ca9eade5449fb37bf31171a1c4a34aa542c48e6d605d0bfa129f365f4b1a7d9bb06a2b05bf3ac68cfb569b6ec102d8cd7aac860b0126044201c3170f507a5710d4a9c3de6b5fd36ba0fc33430a9a0c4435636f72301f810dcc88f551a1facfcab0516766963010fabef9de42b1b4f7c0efdd83dedfc1cf3a0335ea059f12e7ba22953a7401c64a06859306e5e1c39534845d729d00fa00d2f6c66e6234ceb7659ab2d14150b11250916f30d31ae66067e2f923d2582227bb7601dd662f80ccb84c6c4c04795bbf3a8a484845f67a188b9b483651fd9732227d9bb5071295bc4761ddc6b18c429d8fe386633b1ce0492b4b126c8657e00930711a22fd55bb0feb1cb4bca3dfc2787f39ffccd0c4f115bc421079db32b23b0329fc6e2d2d21fdd84e24899a1a44fd6ca562896a0cabf051e05e053ad76210afc88c6cdc107a42177ca4d830c7bf56a
+SEARCHING FOR FACTOR: 58'148'059 (26 bits)
+
+OUTPUT:
+[0 ms] Factorizing number 0x809ba7242d458f006deab4bbd6980f301b5a64b7b086468ef2c385604c2e87e34c7c600b6f7. Using factor base 0x2a4d5004f65cf64ecf589c4bb3f4f591e2becf8a25ca7d95a8529f9342afcc137f8fb5caefde1a55ad9180241ddcf08d24c4c9ddb5a45b775fca16a2f3f9051fac5399860d11a5cc93bf96fd394be77b788e92d0b79abd2797d780282ce39f701bc890e8b6cd0c8ce421f2cc293fa9c07f4bfb2c236ca9eade5449fb37bf31171a1c4a34aa542c48e6d605d0bfa129f365f4b1a7d9bb06a2b05bf3ac68cfb569b6ec102d8cd7aac860b0126044201c3170f507a5710d4a9c3de6b5fd36ba0fc33430a9a0c4435636f72301f810dcc88f551a1facfcab0516766963010fabef9de42b1b4f7c0efdd83dedfc1cf3a0335ea059f12e7ba22953a7401c64a06859306e5e1c39534845d729d00fa00d2f6c66e6234ceb7659ab2d14150b11250916f30d31ae66067e2f923d2582227bb7601dd662f80ccb84c6c4c04795bbf3a8a484845f67a188b9b483651fd9732227d9bb5071295bc4761ddc6b18c429d8fe386633b1ce0492b4b126c8657e00930711a22fd55bb0feb1cb4bca3dfc2787f39ffccd0c4f115bc421079db32b23b0329fc6e2d2d21fdd84e24899a1a44fd6ca562896a0cabf051e05e053ad76210afc88c6cdc107a42177ca4d830c7bf56a
+[0 ms] Searching for prime with bit length 26
+[4266 ms] Loaded prime table, which was filtered for factors 26 bit length only: 1894122 elements.
+[4266 ms] First prime: 33554393 (00000001111111111111111111011001), last prime: 67108879 (00000100000000000000000000001111).
+[4266 ms] Warning: selection window may be too small for enough efficiency (taking 31 primes at each iteration). Recompilation with greater precision length may be required.
+[4266 ms] Tue May 28 08:26:19 2024
+ Starting kernel <<<256, 256>>>. Using bitness 4608. Primes per iteration: 31
+Verbose thread: 49819
+Factorizing number with bitness 300
+Base bitness 3558
+Primes per thread: 28
+Primes per iteration: 31
+Iterations amount: 1
+First prime in thread: 1394932
+Thread 49819. Found factor.
+[108060 ms] Kernel completed. Founded factor: 0x1e062bb662de70170ca503.
+--------------------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------------------
+
+CALCULATIONS BITNESS: 9216
+PRODUCT: 0x5f31e05629e0e7899af6992bfde6fd1ec6476531c1e3c544f6ac5c3e05a139ef54bdae5ebd2f5 = 0xcf4895f9f73016abf8cdb7 * 0x75915d774f29fbfdc218959bb53587a3e919dfcb8bbb9978e2be4b3 (307 bits)
+P: 0xcf4895f9f73016abf8cdb7 (88 bits) -> 2 × 3 × 5 × 29 × 79^2 × 137 × 359 × 601 × 24671 × 63287041
+BASE (4263 bits) -> 0x7b44126612c8e50fc5fed536db8b3f4e955b023bfe2a8f55b9c7ef82d47fbad084cff562269114488d9596cae7277ac7113560d4b9ce68b3142e5789884ee1b9e8aad69359bffb4258827525a03ffca96c59be362dce6c7f107db867f9d268d052bc42b9197496e05c471bfe2303a2287923d4e13713518e242b04d9597e911d9d9ba302d79193c63d48c510ee9ffc84495b8a1797b0616a4d69a09ca16e2dafa34b0250473b1389dba16479c2bd2a4b46fa01d9cef5c321dab59bcab53ed2439a6ec708f447e80790392a71e3b13df6cd1dccb2b03bd574a1b56919c524202f84fd5b2bf4563e50cba9cde095ab376b8ca344954a8f11706530adf42a5b0033061fbf9c86b9bfedefbaa160aa6e17c851bede26ece39fcde0c0eb213266868559c4c93624bb8351d4889223a8f6b02fa0c8122c52e5c96e1cf22c0a78d12dda1754dac66cb954c8ab248d99e14600f3e89fb9b059dac625583164b6ccbb95391eac9f2944b8db27482cf14bf42686ee4db5d0e3745fa15f0b04e58789184e1ac66d1eac533786547c665d1a32ea7c14f3ed31047c4003fee5d72036550c6c396633b885cebf95107254073bb06f462b4b49349ea69c73705140735bb1b213d8fdbb34f8aa8e31ff25f1734cc2cfb92301414bce2ce122b0c47cbb39ff49e58ac2b30b8d151af8cfa8fec7c6f034c9a10e146f43df610ab6767893b07509193ee15bbacd1028f2c2997d69d6c78bce1d34e995e88a
+SEARCHING FOR FACTOR: 63'287'041 (26 bits)
+
+
+CMD: ./PrimesSelection 0x5f31e05629e0e7899af6992bfde6fd1ec6476531c1e3c544f6ac5c3e05a139ef54bdae5ebd2f5 0x1d0fbdd5e9ca884dbd40702b188e930af0af77738071b69644b77ff3ead64415938e982a8896ea0c8ec61f33a83a2a0b4796dc0904732e97e6be62ebb742d10566703c18acae19bb799f9871d6c3ee4c89d3c04c79b72a544f272ad217d8253e8c0b1068815bf9c8853ce017d63d29fe16df1096c9e6559d8a1d270d3c9f31fe354eb887bc12c2165db1af9d4d2d9432ae6f0b967b076a85ffddb7ff0a1374929bbc80fa27c64b2503f380cee4bb3a980692c3928470abc5df756384352637f3fd02c69993eb913c067bb1ba38c5036a0602582c99e44b737cc20d4d2b2280aca44eb216300704bcf7f309eeefa829888f6e000af475fd9d428571c657e3ff01fd3f710032399e5fcd61150d56e26e192cc2c253456701fea3193a8159f990e5d0711ad5869432856f69a6a10dadc8a6ef05144e648db07b3ab2c17ac86c1234e4336a9c6da55b5b61ba2906cfeeb7a53589f100e51fcc9d213bf9fc11c19c4880e41e51609e1f5bd9bc6e7946f326ceaae5c6a00e6f9ec1ef4235c9bd454dd916a9513fdfa9bdca484353b69cd33ce38b84bedde579f434ed3a70961aadc2dc765ea0d51bb8907aca4c9f72745e84b4299a995b04bb442bfe882ee38c0f6193e37dbfaa44c1b925585a416d41d457da352622164426923d7eca32fca18b24bc743ad8db2690ba66bf8f5bce4773cf71223f54870fcddc497805a379b975efdd7529413bd0bd33425a88f6f4b756e3f4d8a39caf7f3be3e8a  ../../../../primes.bin 26 256 60057
+
+
+OUTPUT:
+[0 ms] Factorizing number 0x5f31e05629e0e7899af6992bfde6fd1ec6476531c1e3c544f6ac5c3e05a139ef54bdae5ebd2f5. Using factor base 0x1d0fbdd5e9ca884dbd40702b188e930af0af77738071b69644b77ff3ead64415938e982a8896ea0c8ec61f33a83a2a0b4796dc0904732e97e6be62ebb742d10566703c18acae19bb799f9871d6c3ee4c89d3c04c79b72a544f272ad217d8253e8c0b1068815bf9c8853ce017d63d29fe16df1096c9e6559d8a1d270d3c9f31fe354eb887bc12c2165db1af9d4d2d9432ae6f0b967b076a85ffddb7ff0a1374929bbc80fa27c64b2503f380cee4bb3a980692c3928470abc5df756384352637f3fd02c69993eb913c067bb1ba38c5036a0602582c99e44b737cc20d4d2b2280aca44eb216300704bcf7f309eeefa829888f6e000af475fd9d428571c657e3ff01fd3f710032399e5fcd61150d56e26e192cc2c253456701fea3193a8159f990e5d0711ad5869432856f69a6a10dadc8a6ef05144e648db07b3ab2c17ac86c1234e4336a9c6da55b5b61ba2906cfeeb7a53589f100e51fcc9d213bf9fc11c19c4880e41e51609e1f5bd9bc6e7946f326ceaae5c6a00e6f9ec1ef4235c9bd454dd916a9513fdfa9bdca484353b69cd33ce38b84bedde579f434ed3a70961aadc2dc765ea0d51bb8907aca4c9f72745e84b4299a995b04bb442bfe882ee38c0f6193e37dbfaa44c1b925585a416d41d457da352622164426923d7eca32fca18b24bc743ad8db2690ba66bf8f5bce4773cf71223f54870fcddc497805a379b975efdd7529413bd0bd33425a88f6f4b756e3f4d8a39caf7f3be3e8a
+[0 ms] Searching for prime with bit length 26
+[4157 ms] Loaded prime table, which was filtered for factors 26 bit length only: 1894122 elements.
+[4157 ms] First prime: 33554393 (00000001111111111111111111011001), last prime: 67108879 (00000100000000000000000000001111).
+[4157 ms] Tue May 28 09:38:03 2024
+ Starting kernel <<<256, 256>>>. Using bitness 9216. Primes per iteration: 152
+Verbose thread: 60057
+Factorizing number with bitness 307
+Base bitness 4289
+Primes per thread: 28
+Primes per iteration: 152
+Iterations amount: 1
+First prime in thread: 1681596
+Thread 6776. Found factor.
+[258350 ms] Kernel completed. Founded factor: 0xcf4895f9f73016abf8cdb7.
+--------------------------------------------------------------------------------------------------------
+
+
+0x305f61a4d4a150d029 -> 0x305f61a4d4a150d028 (70)
+2^3 × 5 × 11 × 17 × 29 × 593 × 73291 × 94648573
+
+0x43bdc3248db5bae85 -> 0x43bdc3248db5bae84 (70)
+2^2 × 79 × 907 × 53611 × 5082819943
+
+0x28ee0f30b824361 -> 0x28ee0f30b824360 (60)
+2^5 × 3 × 5 × 7 × 157 × 1801 × 194020679
+BASE (2552 bits): 0xe676f5b192fa8f955746cc1004de18a0c80ea439d8cb92b6cb5006e958f44a92a3c8e93422e1d123e6f5104a13907385995b5238dd928ce4b4d9f36ef5c43dd7ad53d6b0cd4566eae3fcc0ef71e704bf57a42eb48068d482af4734768949c296d14ab4d30a1f2f901ae80d826baf67eb21d2ddf563900007132d26533bbe71bbe0faafc2c34c1549d56fb40458dd6a6d61876281a747d910f81280d539da2bc0e32d563ec6a3e7ce54204c3c93f5316860827a955b7df2cc225921f0d04ed42c8f81d8bd060e37eb0847e4ae9a093c3e002994c7940952612e7a81e6868b766e69731b02d46358526191b73e6a7f4a26e118d897db2de4ed64544b51e58158d71ee7711975b34b0bd63e142537f4ace0c00dd21a14bcc428121a5a4b5ca505b88b00490188233aa1f23a10656efcba8e227ee3497e28e3581af75d9acee1e0
+
+0x19b48ff14bb0aab44634db -> 0x19b48ff14bb0aab44634da (85 bits)
+2 × 3^2 × 5 × 17 × 157 × 181 × 95881 × 423977 × 17582401
+
+0x7db06a9b6737bae5f5eed -> 0x7db06a9b6737bae5f5eec (83 bits)
+2^2 × 5 × 11 × 821 × 5749 × 9433 × 487973 × 1986889
+
+0x1ae2fc16c23ef335d256c5 -> 0x1ae2fc16c23ef335d256c4 (85 bits)
+2^2 × 5 × 76519 × 928337 × 978073 × 23391619
+
+0x2c94be0e6c8158835b091 -> 0x2c94be0e6c8158835b090 (82 bits)
+2^4 × 7 × 17 × 19 × 50723 × 479377 × 3829 367527
+
+0x4ac1ab3c48c9fac4a301 -> 0x4ac1ab3c48c9fac4a300 (79 bits)
+2^8 × 3^2 × 5 × 11 × 47119 × 139177 × 424 815211
+
+0x8b3a1ef946ff4da138d -> 0x8b3a1ef946ff4da138c (76 bits)
+2^2 × 3 × 31 × 97 × 594103 × 720703 × 2 659687
+
+0x18c92e9426b0161efbaf -> 0x18c92e9426b0161efbae (77 bits)
+2 × 3 × 5 × 4073 × 52999 × 210853 × 85719707
 
 Полный перебор 28 бит, 4320бит - 69537ms
 Полный перебор 28 бит, 2048бит - 36241ms

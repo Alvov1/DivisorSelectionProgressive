@@ -6,7 +6,7 @@
 #include <Aeu.h>
 
 
-using Uns = Aeu<64000>;
+using Uns = Aeu<9216>;
 
 void kernel(//Uns* const numberAndFactor,
             //const primeType* const primes,
@@ -204,6 +204,7 @@ constexpr auto getNumbersBitness = [] (primeType number) {
 };
 
 int main() {
+    const std::filesystem::path primesLocation = "../../all-primes-32-bit.bin";
 //    makeTest();
 //    showIndexes();
 //    kernel(100'000'000, 128);
@@ -278,22 +279,37 @@ int main() {
 //               * 169 * 199 * 257 * 317 * 359 * 512 * 601 * 729 * 1051 * 1297 * 1637 * 1933 * 2401 * 3125 * 24671;
 //    std::cout << std::hex << "0x" << base << std::endl;
 
-    const std::filesystem::path primesLocation = "../../all-primes-32-bit.bin";
+    //2^2 × 3^3 × 5 × 97 × 23747 × 105'137 × 745'335'889
+    //2^2 × 3^3 × 5 × 97 × 23747 × 105'137 × 745'335'889
 //    const auto values = loadPrimes(primesLocation);
-//    Uns value = 2;
+//    Uns value = Uns(18) * 23747 * 105'137;// * 105'137;
+////    Uns value = Uns(2) * 2 * 3 * 3 * 3 * 5 * 97 * 23747 * 105'137 * 745'335'889;
 //    for(auto tValue: values) {
 //        value *= tValue;
-//        if(tValue > 1637)
+//        if(tValue > 3000)
 //            break;
 //    }
 //
+//    value *= 745'335'889;
+    //2 * 3 × 5 × 29 × 79^2 × 137 × 359 × 601 × 24671 × 63287041
 //    std::cout << std::hex << "0x" << value << " (" << std::dec << value.bitCount() << ")" << std::endl;
+
+
 //    Aeu<2048> v = Aeu<2048>(1) * 2 * 3 * 5 * 29 * 79 * 79 * 137 * 359 * 601 * 24671 * 63287041;
 //
-
+//
     const auto primes = loadPrimesFilterBitness(primesLocation, 30);
     std::cout << primes.size() << std::endl;
-    std::cout << binary_search_find_index(primes, 652450049) << std::endl;
+    std::cout << binary_search_find_index(primes, 745'335'889) << std::endl;
+
+//    Uns n = "0x2c78e5029bd4bb31f69c965cb016b622c0540e85e919ed563f27a21098084950addf";
+//    Aeu<4096> v = "0x7b44126612c8e50fc5fed536db8b3f4e955b023bfe2a8f55b9c7ef82d47fbad084cff562269114488d9596cae7277ac7113560d4b9ce68b3142e5789884ee1b9e8aad69359bffb4258827525a03ffca96c59be362dce6c7f107db867f9d268d052bc42b9197496e05c471bfe2303a2287923d4e13713518e242b04d9597e911d9d9ba302d79193c63d48c510ee9ffc84495b8a1797b0616a4d69a09ca16e2dafa34b0250473b1389dba16479c2bd2a4b46fa01d9cef5c321dab59bcab53ed2439a6ec708f447e80790392a71e3b13df6cd1dccb2b03bd574a1b56919c524202f84fd5b2bf4563e50cba9cde095ab376b8ca344954a8f11706530adf42a5b0033061fbf9c86b9bfedefbaa160aa6e17c851bede26ece39fcde0c0eb213266868559c4c93624bb8351d4889223a8f6b02fa0c8122c52e5c96e1cf22c0a78d12dda1754dac66cb954c8ab248d99e14600f3e89fb9b059dac625583164b6ccbb95391eac9f2944b8db27482cf14bf42686ee4db5d0e3745fa15f0b04e58789184e1ac66d1eac533786547c665d1a32ea7c14f3ed31047c4003fee5d72036550c6c396633b885cebf95107254073bb06f462b4b49349ea69c73705140735bb1b213d8fdbb34f8aa8e31ff25f1734cc2cfb92301414bce2ce122b0c47cbb39ff49e58ac2b30b8d151af8cfa8fec7c6f034c9a10e146f43df610ab6767893b07509193ee15bbacd1028f2c2997d69d6c78bce1d34e995e88a";
+//    value *= primes[1681618];
+//    value *= 63287041;
+
+
+
+//    std::cout << Uns::gcd(Uns::powm(2, value, n) - 1, n) << std::endl;
 
 //    1894122 -> 1681618
 //    1681596
@@ -314,4 +330,40 @@ int main() {
 //
 ////    Aeu<2048> v = Aeu<2048>(1) * 2 * 3 * 5 * 29 * 79 * 79 * 137 * 359 * 601 * 24671 * 63287041;
 ////        std::cout << Aeu<2048>::gcd(Aeu<2048>::powm(a, v, n) - 1, n);
+
+
+    /* Итерация по элементам, с шагом по количеству потоков. */
+    for(std::size_t i = threadId; i < primesCount; i += threadsCount) {
+        /* В стеке хранится множитель, и его позиция в общем массиве. */
+        PrimeStack<primeType, stackSize + 2> stack {};
+        std::size_t primesPosition = i;
+
+        do {
+            /* Если стек уже заполнен: проверка текущего произведения. */
+            if (stack.getSize() >= stackSize) {
+                const Uns product = stack.unite<Uns>() * startingBase * primes[i];
+                const auto candidate = Uns::gcd(Uns::powm(a, product, n) - 1, n);
+                if(gcd > 1u)
+                    return factor.tryAtomicSet(gcd);
+            }
+
+            /* Извлечение элементов из стека. */
+            if (stack.getSize() >= stackSize || primesPosition >= primesCount) {
+                std::size_t checkedLast = primesCount;
+                do {
+                    primesPosition = stack.pop();
+                    checkedLast -= primesPositionShift;
+                } while (primesPosition == checkedLast);
+
+                primesPosition += primesPositionShift;
+                stack.push(primes[primesPosition], primesPosition);
+                primesPosition += primesPositionShift;
+            } else {
+                /* Добавление новых элементов. */
+                stack.push(primes[primesPosition], primesPosition);
+                primesPosition += primesPositionShift;
+            }
+
+        } while (!stack.isEmpty());
+    }
 }

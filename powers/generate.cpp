@@ -129,4 +129,28 @@ int main() {
     std::cout << primesL.back() << std::endl;
 
     return 0;
+
+    /* Итерация по зоне множителей текущего потока */
+    for (unsigned i = 0; i < iterationsAmount; ++i) {
+        /* Индекс первого числа в этой итерации. */
+        const unsigned startingPrimeIndex = firstPrimeInThread + (i * primesPerIteration);
+
+        /* Индекс последнего числа в текущей итерации. */
+        const unsigned endingPrimeIndex = (startingPrimeIndex + primesPerIteration <
+                                           firstPrimeInThread + primesPerThread ?
+                                           startingPrimeIndex + primesPerIteration
+                                                                                :
+                                           firstPrimeInThread + primesPerThread);
+
+        if (!factor.isZero())
+            return; /* Если искомый множитель найден другим потоком, выход. */
+
+        Uns product = base; /* Домножение множителей к сформированной базе. */
+        for (std::size_t j = startingPrimeIndex; j < endingPrimeIndex; ++j)
+            product *= primes[j]; /* Формирование произведения всех кандидатов в текущем окне */
+
+        const auto candidate = Uns::gcd(Uns::powm(a, product, n) - 1, n);
+        if (candidate > 1) /* Проверка. Возврат результата в случае успеха. */
+            return factor.tryAtomicSet(candidate);
+    }
 }
