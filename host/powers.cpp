@@ -34,16 +34,22 @@ void kernel(const std::vector<Uns>& powers, std::pair<Uns, Uns>& numberAndFactor
         factor = candidate; return true;
     };
 
-    uint64_t a = threadId * iterationBorder + 2;
-    for(unsigned i = threadId; i < powers.size(); i += blockDim.x) {
-        for(unsigned it = 0; it < iterationBorder; ++it) {
+    const auto lowerFirstIdx = 0, lowerLastIdx = 0;
+    const auto higherFirstIdx = 0, higherLastIdx = 0;
+
+
+    /* Итерируемся по множителям. Внешний цикл - элементы одной длины. */
+    for(std::size_t lowerIdx = lowerFirstIdx; lowerIdx < lowerLastIdx; ++lowerIdx) {
+        /* Внутренний цикл. Элементы второй длины. */
+        for(std::size_t higherIdx = higherFirstIdx; higherIdx < higherLastIdx; ++higherIdx) {
             if(!factor.isZero())
-                return;
+                return; /* Если другой поток нашел множитель - выходим. */
 
-            if(checkFactor(Uns::gcd(Uns::powm(a, powers[i], n) - 1, n)))
-                return;
-
-            a += threadsCount * iterationBorder;
+            /* Объединяем базу с множителем одной битовой длины и множителем
+             * второй битовой длины. Проверяем */
+            const auto candidate = Uns::gcd(Uns::powm(a, base * primes[lowerIdx] * primes[higherIdx], n) - 1, n);
+            if(candidate > 1)
+                return factor->tryAtomicSet(candidate);
         }
     }
 }
