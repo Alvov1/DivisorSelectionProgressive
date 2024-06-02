@@ -28,7 +28,7 @@ thrust::host_vector<primeType> loadPrimes(const std::filesystem::path& fromLocat
 
     const auto primesCount = std::filesystem::file_size(fromLocation) / sizeof(primeType);
     std::cout << "Loading prime table of " << primesCount << " elements ("
-        << std::filesystem::file_size(fromLocation) << " bytes)" << std::endl;
+              << std::filesystem::file_size(fromLocation) << " bytes)" << std::endl;
     std::ifstream input(fromLocation, std::ios::binary);
 
     thrust::host_vector<primeType> primes (primesCount);
@@ -135,8 +135,7 @@ int main(int argc, const char* const* const argv) {
         /* 2. Load prime table and filter with primes of only required bitness. */
         const std::filesystem::path primesLocation (argv[3]);
         const thrust::device_vector<primeType> primes = loadPrimes(primesLocation);
-        Timer::out << "Loaded prime table, which was filtered for factors " << remainingFactorBitness
-                   << " bit length only: " << primes.size() << " elements." << Timer::endl;
+        Timer::out << "Loaded prime table with " << primes.size() << " elements." << Timer::endl;
         Timer::out << "First prime: " << primes[0] << " (" << std::bitset<sizeof(primeType) * 8>(primes[0])
                    << "), last prime: " << primes.back() << " (" << std::bitset<sizeof(primeType) * 8>(primes.back()) << ")." << Timer::endl;
 
