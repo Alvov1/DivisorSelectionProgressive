@@ -1,5 +1,49 @@
 NUMBER: 0xd2f9e0bf18f2ac827a3a6ed87c09412df552e951963de839154bf6e7d4b79305cf2335335ab74b =
     0x29f5ce09e37b209fef54e05 * 0x5072b83fa19875b8b18f68e93030e888f64311670a80f59dd362a10f (312)
 P: 0x29f5ce09e37b209fef54e05 -> 2^2 × 3 × 37 × 73 × 83 × 89 × 1'567 × 146'299 × 14'786'747'089
-BASE:0xc30122bbeae6c4
+BASE: 0xc30122bbeae6c4
 INDEX: 267'461'362
+SEARCHING FOR FACTOR: 14'786'747'089 (34 bits)
+
+[0 ms] Factorizing number 0xd2f9e0bf18f2ac827a3a6ed87c09412df552e951963de839154bf6e7d4b79305cf2335335ab74b. Using factor base 0xc30122bbeae6c4
+Loading prime table of 369323304 elements (2954586432 bytes)
+[9532 ms] Loaded prime table with 369323304 elements.
+[9532 ms] First prime: 8589934621 (0000000000000000000000000000001000000000000000000000000000011101), last prime: 17179869143 (0000000000000000000000000000001111111111111111111111111111010111).
+[9532 ms] Sun Jun  2 12:21:05 2024
+ Starting kernel <<<256, 256>>>. Using bitness 4096. Primes per iteration: 62
+Verbose thread: 47464
+Factorizing number with bitness 312
+Base bitness 56
+Primes per thread: 5635
+Primes per iteration: 62
+Iterations amount: 91
+First prime in thread: 267459640
+Starting prime[267459640] = 14786707673, ending prime[267459702] = 14786708929. 	---	 Iteration 0 complete
+Starting prime[267459702] = 14786708929, ending prime[267459764] = 14786710283. 	---	 Iteration 1 complete
+Starting prime[267459764] = 14786710283, ending prime[267459826] = 14786711543. 	---	 Iteration 2 complete
+Starting prime[267459826] = 14786711543, ending prime[267459888] = 14786713069. 	---	 Iteration 3 complete
+Starting prime[267459888] = 14786713069, ending prime[267459950] = 14786714419. 	---	 Iteration 4 complete
+Starting prime[267459950] = 14786714419, ending prime[267460012] = 14786715809. 	---	 Iteration 5 complete
+Starting prime[267460012] = 14786715809, ending prime[267460074] = 14786717123. 	---	 Iteration 6 complete
+Starting prime[267460074] = 14786717123, ending prime[267460136] = 14786718599. 	---	 Iteration 7 complete
+Starting prime[267460136] = 14786718599, ending prime[267460198] = 14786720177. 	---	 Iteration 8 complete
+Starting prime[267460198] = 14786720177, ending prime[267460260] = 14786721511. 	---	 Iteration 9 complete
+Starting prime[267460260] = 14786721511, ending prime[267460322] = 14786723243. 	---	 Iteration 10 complete
+Starting prime[267460322] = 14786723243, ending prime[267460384] = 14786724499. 	---	 Iteration 11 complete
+Starting prime[267460384] = 14786724499, ending prime[267460446] = 14786725939. 	---	 Iteration 12 complete
+Starting prime[267460446] = 14786725939, ending prime[267460508] = 14786727161. 	---	 Iteration 13 complete
+Starting prime[267460508] = 14786727161, ending prime[267460570] = 14786728757. 	---	 Iteration 14 complete
+Starting prime[267460570] = 14786728757, ending prime[267460632] = 14786730041. 	---	 Iteration 15 complete
+Starting prime[267460632] = 14786730041, ending prime[267460694] = 14786731403. 	---	 Iteration 16 complete
+Starting prime[267460694] = 14786731403, ending prime[267460756] = 14786733007. 	---	 Iteration 17 complete
+Starting prime[267460756] = 14786733007, ending prime[267460818] = 14786734399. 	---	 Iteration 18 complete
+Starting prime[267460818] = 14786734399, ending prime[267460880] = 14786735773. 	---	 Iteration 19 complete
+Starting prime[267460880] = 14786735773, ending prime[267460942] = 14786737319. 	---	 Iteration 20 complete
+Starting prime[267460942] = 14786737319, ending prime[267461004] = 14786738903. 	---	 Iteration 21 complete
+Starting prime[267461004] = 14786738903, ending prime[267461066] = 14786740231. 	---	 Iteration 22 complete
+Starting prime[267461066] = 14786740231, ending prime[267461128] = 14786741939. 	---	 Iteration 23 complete
+Starting prime[267461128] = 14786741939, ending prime[267461190] = 14786743211. 	---	 Iteration 24 complete
+Starting prime[267461190] = 14786743211, ending prime[267461252] = 14786744617. 	---	 Iteration 25 complete
+Starting prime[267461252] = 14786744617, ending prime[267461314] = 14786745973. 	---	 Iteration 26 complete
+Thread 47464. Found factor.
+[817346 ms] Kernel completed. Founded factor: 0x29f5ce09e37b209fef54e05.

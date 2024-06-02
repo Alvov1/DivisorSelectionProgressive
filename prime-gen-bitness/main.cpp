@@ -3,6 +3,7 @@
 #include <primesieve.hpp>
 #include <limits>
 #include <vector>
+#include <filesystem>
 
 using primeType = uint64_t;
 std::size_t binary_search_find_index(const std::vector<primeType>& v, primeType data) {

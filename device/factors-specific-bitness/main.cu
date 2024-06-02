@@ -100,7 +100,12 @@ void kernel(Uns* const numberFactorBase,
         }
 
         if(logicalThreadId == verboseThreadId)
-            printf("Starting prime: %u, ending prime: %u. \t---\t Iteration %u complete\n", startingPrimeIndex, endingPrimeIndex, i);
+            printf("Starting prime[%u] = %llu, ending prime[%u] = %llu. \t---\t Iteration %u complete\n",
+                   startingPrimeIndex,
+                   primes[startingPrimeIndex],
+                   endingPrimeIndex,
+                   primes[endingPrimeIndex],
+                   i);
     }
 
     if(logicalThreadId == verboseThreadId)
@@ -141,7 +146,7 @@ int main(int argc, const char* const* const argv) {
 
         /* 3. Calculate the number of primes for selection for each thread. */
         const std::size_t threads = std::stoul(argv[4]), verboseThreadId = std::stoul(argv[5]);
-        const unsigned primesPerIteration = (Uns::getBitness() - factorBase.bitCount() - 32) / 32;
+        const unsigned primesPerIteration = (Uns::getBitness() - factorBase.bitCount() - sizeof(primeType) * 8) / (sizeof(primeType) * 8);
         if(primesPerIteration < 50)
             Timer::out << "Warning: selection window may be too small for enough efficiency (taking " << primesPerIteration
                        << " primes at each iteration). Recompilation with greater precision length may be required." << Timer::endl;
